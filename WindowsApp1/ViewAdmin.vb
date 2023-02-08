@@ -100,13 +100,11 @@
 
             updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
-            insertNextFlow = "INSERT INTO `sysadmin`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
 
             apdb.insertAdminhistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, inserthistory)
 
             apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
 
-            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
 
             insertNextFlow = "INSERT INTO `admingrouphead`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `adminheadstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
 
