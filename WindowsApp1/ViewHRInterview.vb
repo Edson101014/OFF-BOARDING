@@ -18,10 +18,17 @@ Public Class ViewHRInterview
     Private Sub ViewHRInterview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If verfSchedule() = True Then
             btnHRInterviewApp.Visible = False
+            btnFinalInterview.Visible = True
             CheckBoxInterview.Checked = True
             CheckBoxInterview.Enabled = False
+            CheckBoxFinal.Checked = False
+            CheckBoxFinal.Enabled = True
         Else
+            btnHRInterviewApp.Visible = True
             btnFinalInterview.Visible = False
+            CheckBoxInterview.Checked = False
+            CheckBoxInterview.Enabled = True
+            CheckBoxFinal.Checked = False
             CheckBoxFinal.Enabled = False
         End If
     End Sub
@@ -83,11 +90,13 @@ Public Class ViewHRInterview
             Next
 
 
-            insertNextFlow = "INSERT INTO `hrinterview`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `hrstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
-            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, HRInterviewStatAccept, insertNextFlow)
-
             Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
             apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+            insertNextFlow = "INSERT INTO `hrinterview`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `hrStatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
+            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, HRInterviewStatAccept, insertNextFlow)
+
+
 
             btnHRInterviewApp.Visible = False
             ButtonCancel.Visible = False
@@ -110,7 +119,38 @@ Public Class ViewHRInterview
 
     'FINAL ACCEPT
     Private Sub btnFinalInterview_Click(sender As Object, e As EventArgs) Handles btnFinalInterview.Click
+        If verfCheckedFinal() = True Then
+            HRInterviewStatAccept = "Interviewed"
 
+            HRInterviewNameAccept = LabelHRInterviewName.Text
+
+
+            HRInterviewDateAccept = Date.Today
+
+            LabelHRInterviewApp.Text = HRInterviewStatAccept
+
+            LabelDateHRInterview.Text = HRInterviewDateAccept
+
+
+            updateHistory = "UPDATE `historyrequest` SET `ExitInterviewBy`=@lblname, `ExitInterviewStatus`=@interviewstat, `ExitInterviewDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+
+            apdb.updateinterview(HRInterviewNameAccept, HRInterviewStatAccept, HRInterviewDateAccept, updateHistory)
+
+            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+            btnFinalInterview.Visible = False
+            ButtonCancel.Visible = False
+            ButtonClose.Visible = True
+
+            LabelDateHRInterview.Visible = True
+
+            CheckBoxFinal.Enabled = False
+
+        Else
+            MsgBox("Please check the checkbox if you want to Final Interview", MsgBoxStyle.Exclamation, "Interview")
+        End If
     End Sub
 
     'END OF FINAL ACCEPT
@@ -121,6 +161,7 @@ Public Class ViewHRInterview
 
 
         If CheckBoxInterview.Checked = False Then
+            CheckBoxInterview.BackColor = Color.Red
             Return False
         Else
             Return True
@@ -129,6 +170,7 @@ Public Class ViewHRInterview
 
     Function verfCheckedFinal() As Boolean
         If CheckBoxFinal.Checked = False Then
+            CheckBoxFinal.BackColor = Color.Red
             Return False
         Else
             Return True
@@ -137,22 +179,19 @@ Public Class ViewHRInterview
 
     Function verfSchedule() As Boolean
         Dim query As String
-        query = "select HRStatus from HRInterview where empID='" & LabelEmpID.Text & "'"
+        query = "select HRStatus from HRInterview where empID='" & LabelEmpID.Text & "' AND HRStatus='Scheduled'"
         Dim command As New MySqlCommand(query, dbs.getconn)
         adapter.SelectCommand = command
         adapter.Fill(table)
 
+
         If table.Rows.Count = 0 Then
             Return False
-
         Else
-            Dim hrStatus As String = table.Rows(0)("HRStatus").ToString
-            If hrStatus = "Scheduled" Then
-                Return True
-            Else
-                Return False
-            End If
+            Return true
         End If
+
+
 
     End Function
 
@@ -161,6 +200,8 @@ Public Class ViewHRInterview
         If LabelHRInterviewApp.Text = "Pending" Then
             LabelHRInterviewApp.BackColor = Color.PowderBlue
         ElseIf LabelHRInterviewApp.Text = "Scheduled" Then
+            LabelHRInterviewApp.BackColor = Color.Lime
+        ElseIf LabelHRInterviewApp.Text = "Interviewed" Then
             LabelHRInterviewApp.BackColor = Color.Lime
         Else
             LabelHRInterviewApp.BackColor = Color.Firebrick
@@ -171,11 +212,9 @@ Public Class ViewHRInterview
 
     Private Sub CheckBoxInterview_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxInterview.CheckedChanged
         If CheckBoxInterview.Checked = True Then
-
             CheckBoxInterview.BackColor = Color.Lime
         ElseIf CheckBoxInterview.Checked = False Then
             CheckBoxInterview.BackColor = Color.Gray
-
         End If
     End Sub
 
@@ -191,6 +230,7 @@ Public Class ViewHRInterview
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnHRInterviewApp.Visible = True
+        btnFinalInterview.Visible = False
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
@@ -198,11 +238,14 @@ Public Class ViewHRInterview
 
         CheckBoxInterview.Enabled = True
         CheckBoxInterview.Checked = False
+        CheckBoxFinal.Enabled = False
+        CheckBoxFinal.Checked = False
         Me.Close()
     End Sub
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         btnHRInterviewApp.Visible = True
+        btnFinalInterview.Visible = False
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
@@ -210,11 +253,14 @@ Public Class ViewHRInterview
 
         CheckBoxInterview.Enabled = True
         CheckBoxInterview.Checked = False
+        CheckBoxFinal.Enabled = False
+        CheckBoxFinal.Checked = False
         Me.Close()
     End Sub
 
     Private Sub ViewHRInterview_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         btnHRInterviewApp.Visible = True
+        btnFinalInterview.Visible = False
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
@@ -222,6 +268,9 @@ Public Class ViewHRInterview
 
         CheckBoxInterview.Enabled = True
         CheckBoxInterview.Checked = False
+        CheckBoxFinal.Enabled = False
+        CheckBoxFinal.Checked = False
+
 
 
         If Login.flag = "Finance Dept Head" Then
