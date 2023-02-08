@@ -271,48 +271,195 @@ Public Class Dashboard
         Dim senderGrid = DirectCast(sender, DataGridView)
         If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
            e.RowIndex >= 0 Then
-            ViewHistory.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
-            ViewHistory.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
-            ViewHistory.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
-            ViewHistory.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
-            ViewHistory.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
-            ViewHistory.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
-            ViewHistory.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
 
-            'If Login.flag = "Supervisor" Then
+            If Login.flag = "Supervisor" Then
 
+                ViewSDGSuper.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewSDGSuper.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewSDGSuper.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewSDGSuper.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewSDGSuper.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewSDGSuper.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewSDGSuper.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
 
-            'ElseIf Login.flag = "BDG Dept Head" Then
-            '    ViewHistoryBDG()
+                ViewSDGSuper.LabelSDGSuperName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewSDGSuper.LabelSDGSuperApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewSDGSuper.LabelSDGSuperComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewSDGSuper.LabelDateSDGSuper.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
 
-            'ElseIf Login.flag = "SDG Dept Head" Then
-            '    ViewHistorySDG()
+                ViewSDGSuper.btnSDGSuperApp.Visible = False
+                ViewSDGSuper.btnSDGSuperReject.Visible = False
+                ViewSDGSuper.ButtonCancel.Visible = False
 
-            'ElseIf Login.flag = "ITOPS Dept Head" Then
-            '    ViewHistoryITOPS()
+                ViewSDGSuper.txtboxSDGSuper.Visible = False
+                ViewSDGSuper.LabelSDGSuperComment.Visible = True
 
-            'ElseIf Login.flag = "PMG Dept Head" Then
-            '    ViewHistoryPMG()
+                ViewSDGSuper.ButtonEdit.Visible = True
+                ViewSDGSuper.ButtonClose.Visible = True
 
-            'ElseIf Login.flag = "Marketing Dept Head" Then
-            '    ViewHistoryMARKETING()
-
-            'ElseIf Login.flag = "Finance Dept Head" Then
-            '    ViewHistoryFINANCE()
-            'ElseIf Login.flag = "ADMIN" Then
-            '    ViewHistoryADMIN()
-            'ElseIf Login.flag = "ADMINHead" Then
-            '    ViewHistoryAdminHead()
+                ViewSDGSuper.ShowDialog()
 
 
-            'ElseIf Login.flag = "SYSADMIN" Then
-            '    ViewHistorySysAdmin()
+            ElseIf Login.flag = "BDG Dept Head" Then
+                ViewBDG.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewBDG.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewBDG.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewBDG.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewBDG.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewBDG.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewBDG.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
 
-            'ElseIf Login.flag = "SYSADMINHEAD" Then
-            '    ViewHistorySysAdminHead()
+                ViewBDG.LabelBDGName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewBDG.LabelBDGDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewBDG.LabelBDGDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewBDG.LabelDateBDGDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewBDG.btnBDGDeptApp.Visible = False
+                ViewBDG.btnBDGDeptReject.Visible = False
+                ViewBDG.ButtonCancel.Visible = False
+
+                ViewBDG.txtboxBDGDept.Visible = False
+                ViewBDG.LabelBDGDeptComment.Visible = True
+
+                ViewBDG.ButtonEdit.Visible = True
+                ViewBDG.ButtonClose.Visible = True
 
 
-            'End If
+                ViewBDG.ShowDialog()
+
+
+
+            ElseIf Login.flag = "SDG Dept Head" Then
+
+                ViewSDG.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewSDG.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewSDG.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewSDG.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewSDG.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewSDG.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewSDG.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewSDG.LabelSDGDeptName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewSDG.LabelSDGDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewSDG.LabelSDGDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewSDG.LabelDateSDGDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewSDG.btnSDGDeptApp.Visible = False
+                ViewSDG.btnSDGDeptReject.Visible = False
+                ViewSDG.ButtonCancel.Visible = False
+
+                ViewSDG.txtboxSDGDept.Visible = False
+                ViewSDG.LabelSDGDeptComment.Visible = True
+
+                ViewSDG.ButtonEdit.Visible = True
+                ViewSDG.ButtonClose.Visible = True
+
+                ViewSDG.ShowDialog()
+
+
+
+            ElseIf Login.flag = "ITOPS Dept Head" Then
+
+                ViewITOPS.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewITOPS.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewITOPS.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewITOPS.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewITOPS.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewITOPS.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewITOPS.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewITOPS.LabelITOPSDeptName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewITOPS.LabelITOPSDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewITOPS.LabelITOPSDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewITOPS.LabelDateITOPSDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewITOPS.btnITOPSDeptApp.Visible = False
+                ViewITOPS.btnITOPSDeptReject.Visible = False
+                ViewITOPS.ButtonCancel.Visible = False
+
+                ViewITOPS.txtboxITOPSDept.Visible = False
+                ViewITOPS.LabelITOPSDeptComment.Visible = True
+
+                ViewITOPS.ButtonEdit.Visible = True
+                ViewITOPS.ButtonClose.Visible = True
+
+                ViewITOPS.ShowDialog()
+
+
+
+
+            ElseIf Login.flag = "PMG Dept Head" Then
+
+                ViewPMG.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewPMG.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewPMG.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewPMG.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewPMG.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewPMG.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewPMG.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewPMG.LabelPMGName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewPMG.LabelPMGDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewPMG.LabelPMGDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewPMG.LabelDatePMGDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewPMG.btnPMGDeptApp.Visible = False
+                ViewPMG.btnPMGDeptReject.Visible = False
+                ViewPMG.ButtonCancel.Visible = False
+
+                ViewPMG.txtboxPMGDept.Visible = False
+                ViewPMG.LabelPMGDeptComment.Visible = True
+
+                ViewPMG.ButtonEdit.Visible = True
+                ViewPMG.ButtonClose.Visible = True
+
+                ViewPMG.ShowDialog()
+
+
+
+            ElseIf Login.flag = "Marketing Dept Head" Then
+
+                ViewMarketing.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewMarketing.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewMarketing.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewMarketing.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewMarketing.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewMarketing.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewMarketing.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewMarketing.LabelMarketingName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewMarketing.LabelMarketingDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewMarketing.LabelMarketingDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewMarketing.LabelDateMarketingDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewMarketing.btnMarketingDeptApp.Visible = False
+                ViewMarketing.btnMarketingDeptReject.Visible = False
+                ViewMarketing.ButtonCancel.Visible = False
+
+                ViewMarketing.txtboxMarketingDept.Visible = False
+                ViewMarketing.LabelMarketingDeptComment.Visible = True
+
+                ViewMarketing.ButtonEdit.Visible = True
+                ViewMarketing.ButtonClose.Visible = True
+
+                ViewMarketing.ShowDialog()
+
+                'ElseIf Login.flag = "Finance Dept Head" Then
+                '    ViewHistoryFINANCE()
+                'ElseIf Login.flag = "ADMIN" Then
+                '    ViewHistoryADMIN()
+                'ElseIf Login.flag = "ADMINHead" Then
+                '    ViewHistoryAdminHead()
+
+
+                'ElseIf Login.flag = "SYSADMIN" Then
+                '    ViewHistorySysAdmin()
+
+                'ElseIf Login.flag = "SYSADMINHEAD" Then
+                '    ViewHistorySysAdminHead()
+
+
+            End If
 
         End If
 

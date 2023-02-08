@@ -253,6 +253,7 @@ Public Class ViewFinance
         LabelDateFinanceDept.Text = ""
         txtboxOther.Enabled = False
         txtboxOther.Text = ""
+        txtboxOther.BackColor = SystemColors.Window
         Me.Close()
     End Sub
 
@@ -276,6 +277,7 @@ Public Class ViewFinance
         txtboxFinanceDept.Text = ""
         txtboxOther.Enabled = False
         txtboxOther.Text = ""
+        txtboxOther.BackColor = SystemColors.Window
         Me.Close()
     End Sub
 
@@ -347,6 +349,7 @@ Public Class ViewFinance
         txtboxFinanceDept.Text = ""
         txtboxOther.Enabled = False
         txtboxOther.Text = ""
+        txtboxOther.BackColor = SystemColors.Window
 
         If Login.flag = "Finance Dept Head" Then
             ShowFinanceData()

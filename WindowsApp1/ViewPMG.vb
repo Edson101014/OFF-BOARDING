@@ -138,6 +138,101 @@ Public Class ViewPMG
 
     'END OF REJECT
 
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+        PMGStatAccept = "Approve"
+
+        PMGNameAccept = LabelPMGName.Text
+
+        PMGCommentAccept = txtboxPMGDept.Text
+
+        PMGDateAccept = Date.Today
+
+        LabelPMGDeptApp.Text = PMGStatAccept
+
+        LabelDatePMGDept.Text = PMGDateAccept
+
+        LabelPMGDeptComment.Text = txtboxPMGDept.Text
+
+
+        updateHistory = "UPDATE `pmgdepthistory` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelPMGDeptComment.Visible = True
+
+        txtboxPMGDept.Visible = False
+        txtboxPMGDept.Text = ""
+
+    End Sub
+
+
+    'END OF EDIT APPROVE
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        PMGStatAccept = "Reject"
+
+        PMGNameAccept = LabelPMGName.Text
+
+        PMGCommentAccept = txtboxPMGDept.Text
+
+        PMGDateAccept = Date.Today
+
+        LabelPMGDeptApp.Text = PMGStatAccept
+
+        LabelDatePMGDept.Text = PMGDateAccept
+
+        LabelPMGDeptComment.Text = txtboxPMGDept.Text
+
+
+        updateHistory = "UPDATE `pmgdepthistory` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
+
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelPMGDeptComment.Visible = True
+
+        txtboxPMGDept.Visible = False
+        txtboxPMGDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
     'Private Function verfPMGIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select PMG from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -181,6 +276,8 @@ Public Class ViewPMG
     '        End If
 
     '    End Function
+
+
     Private Sub LabelPMGDeptApp_TextChanged(sender As Object, e As EventArgs) Handles LabelPMGDeptApp.TextChanged
         If LabelPMGDeptApp.Text = "Pending" Then
             LabelPMGDeptApp.BackColor = Color.PowderBlue
@@ -191,6 +288,40 @@ Public Class ViewPMG
 
         End If
     End Sub
+
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxPMGDept.Visible = True
+        txtboxPMGDept.Text = LabelPMGDeptComment.Text
+        LabelPMGDeptComment.Visible = False
+
+    End Sub
+
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxPMGDept.Visible = False
+        txtboxPMGDept.Text = LabelPMGDeptComment.Text
+        LabelPMGDeptComment.Visible = True
+
+
+    End Sub
+
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnPMGDeptApp.Visible = True
         btnPMGDeptReject.Visible = True
@@ -221,9 +352,11 @@ Public Class ViewPMG
         txtboxPMGDept.Visible = True
         txtboxPMGDept.Text = ""
         Me.Close()
+
     End Sub
 
     Private Sub ViewPMG_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+
         btnPMGDeptApp.Visible = True
         btnPMGDeptReject.Visible = True
         ButtonCancel.Visible = True
@@ -257,6 +390,9 @@ Public Class ViewPMG
             ShowData()
         End If
     End Sub
+
+
+
 
 
 End Class

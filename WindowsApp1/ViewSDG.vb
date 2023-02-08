@@ -134,6 +134,99 @@ Public Class ViewSDG
 
     'END OF REJECT
 
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+        SDGStatAccept = "Approve"
+
+        SDGNameAccept = LabelSDGDeptName.Text
+
+        SDGCommentAccept = txtboxSDGDept.Text
+
+        SDGDateAccept = Date.Today
+
+        LabelSDGDeptApp.Text = SDGStatAccept
+
+        LabelDateSDGDept.Text = SDGDateAccept
+
+        LabelSDGDeptComment.Text = txtboxSDGDept.Text
+
+
+        updateHistory = "UPDATE `sdgdepthistory` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelSDGDeptComment.Visible = True
+
+        txtboxSDGDept.Visible = False
+        txtboxsDGDept.Text = ""
+
+    End Sub
+
+
+    'END OF EDIT APPROVE
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        SDGStatAccept = "Reject"
+
+        SDGNameAccept = LabelSDGDeptName.Text
+
+        SDGCommentAccept = txtboxSDGDept.Text
+
+        SDGDateAccept = Date.Today
+
+        LabelSDGDeptApp.Text = SDGStatAccept
+
+        LabelDateSDGDept.Text = SDGDateAccept
+
+        LabelSDGDeptComment.Text = txtboxSDGDept.Text
+
+
+        updateHistory = "UPDATE `sdgdepthistory` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelSDGDeptComment.Visible = True
+
+        txtboxSDGDept.Visible = False
+        txtboxSDGDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
     'Private Function verfSDGIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select SDG from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -187,6 +280,38 @@ Public Class ViewSDG
 
         End If
     End Sub
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxSDGDept.Visible = True
+        txtboxSDGDept.Text = LabelSDGDeptComment.Text
+        LabelSDGDeptComment.Visible = False
+
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxSDGDept.Visible = False
+        txtboxSDGDept.Text = LabelSDGDeptComment.Text
+        LabelSDGDeptComment.Visible = True
+
+    End Sub
+
+
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         btnSDGDeptApp.Visible = True
         btnSDGDeptReject.Visible = True
@@ -202,6 +327,7 @@ Public Class ViewSDG
         txtboxSDGDept.Visible = True
         txtboxSDGDept.Text = ""
         Me.Close()
+
     End Sub
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
@@ -219,6 +345,7 @@ Public Class ViewSDG
         txtboxSDGDept.Visible = True
         txtboxSDGDept.Text = ""
         Me.Close()
+
     End Sub
 
     Private Sub ViewSDG_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -256,6 +383,8 @@ Public Class ViewSDG
             ShowData()
         End If
     End Sub
+
+
 
 
 End Class

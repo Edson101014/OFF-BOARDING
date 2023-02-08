@@ -136,6 +136,102 @@ Public Class ViewITOPS
 
 
     'END OF REJECT
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+        ITOPSStatAccept = "Approve"
+
+        ITOPSNameAccept = LabelITOPSDeptName.Text
+
+        ITOPSCommentAccept = txtboxITOPSDept.Text
+
+        ITOPSDateAccept = Date.Today
+
+        LabelITOPSDeptApp.Text = ITOPSStatAccept
+
+        LabelDateITOPSDept.Text = ITOPSDateAccept
+
+        LabelITOPSDeptComment.Text = txtboxITOPSDept.Text
+
+
+        updateHistory = "UPDATE `itopsdepthistory` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelITOPSDeptComment.Visible = True
+
+        txtboxITOPSDept.Visible = False
+        txtboxITOPSDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        ITOPSStatAccept = "Reject"
+
+        ITOPSNameAccept = LabelITOPSDeptName.Text
+
+        ITOPSCommentAccept = txtboxITOPSDept.Text
+
+        ITOPSDateAccept = Date.Today
+
+        LabelITOPSDeptApp.Text = ITOPSStatAccept
+
+        LabelDateITOPSDept.Text = ITOPSDateAccept
+
+        LabelITOPSDeptComment.Text = txtboxITOPSDept.Text
+
+        updateHistory = "UPDATE `itopsdepthistory` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
+
+
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelITOPSDeptComment.Visible = True
+
+        txtboxITOPSDept.Visible = False
+        txtboxITOPSDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
     'Private Function verfITOPSIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select ITOPS from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -191,6 +287,38 @@ Public Class ViewITOPS
 
         End If
     End Sub
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxITOPSDept.Visible = True
+        txtboxITOPSDept.Text = LabelITOPSDeptComment.Text
+        LabelITOPSDeptComment.Visible = False
+
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxITOPSDept.Visible = False
+        txtboxITOPSDept.Text = LabelITOPSDeptComment.Text
+        LabelITOPSDeptComment.Visible = True
+
+    End Sub
+
+
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         btnITOPSDeptApp.Visible = True
@@ -258,6 +386,8 @@ Public Class ViewITOPS
             ShowData()
         End If
     End Sub
+
+
 
 
 End Class

@@ -138,6 +138,94 @@ Public Class ViewBDG
 
 
 
+
+    'EDIT APPROVE
+
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+        BDGStatAccept = "Approve"
+
+        BDGNameAccept = LabelBDGName.Text
+
+        BDGCommentAccept = txtboxBDGDept.Text
+
+        BDGDateAccept = Date.Today
+
+        LabelBDGDeptApp.Text = BDGStatAccept
+
+        LabelDateBDGDept.Text = BDGDateAccept
+
+        LabelBDGDeptComment.Text = txtboxBDGDept.Text
+
+        updateHistory = "UPDATE `bdgdepthistory` SET `BDGDeptName`=@name, `BDGDeptStatus`=@status,`BDGDeptDate`=@dateapp, `BDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(BDGNameAccept, BDGStatAccept, BDGDateAccept, BDGCommentAccept, updateHistory)
+
+
+        updateHistory = "UPDATE `historyrequest` SET `BDGDeptName`=@name, `BDGDeptStatus`=@status,`BDGDeptDate`=@dateapp, `BDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(BDGNameAccept, BDGStatAccept, BDGDateAccept, BDGCommentAccept, updateHistory)
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelBDGDeptComment.Visible = True
+
+        txtboxBDGDept.Visible = False
+        txtboxBDGDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        BDGStatAccept = "Reject"
+
+        BDGNameAccept = LabelBDGName.Text
+
+        BDGCommentAccept = txtboxBDGDept.Text
+
+        BDGDateAccept = Date.Today
+
+        LabelBDGDeptApp.Text = BDGStatAccept
+
+        LabelDateBDGDept.Text = BDGDateAccept
+
+        LabelBDGDeptComment.Text = txtboxBDGDept.Text
+
+        updateHistory = "UPDATE `bdgdepthistory` SET `BDGDeptName`=@name, `BDGDeptStatus`=@status,`BDGDeptDate`=@dateapp, `BDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(BDGNameAccept, BDGStatAccept, BDGDateAccept, BDGCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `BDGDeptName`=@name, `BDGDeptStatus`=@status,`BDGDeptDate`=@dateapp, `BDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(BDGNameAccept, BDGStatAccept, BDGDateAccept, BDGCommentAccept, updateHistory)
+
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelBDGDeptComment.Visible = True
+
+        txtboxBDGDept.Visible = False
+        txtboxBDGDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
     'Private Function verfBDGIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select BDG from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -192,6 +280,36 @@ Public Class ViewBDG
         End If
     End Sub
 
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxBDGDept.Visible = True
+        txtboxBDGDept.Text = LabelBDGDeptComment.Text
+        LabelBDGDeptComment.Visible = False
+
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxBDGDept.Visible = False
+        txtboxBDGDept.Text = LabelBDGDeptComment.Text
+        LabelBDGDeptComment.Visible = True
+
+    End Sub
 
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles ButtonClose.Click
         btnBDGDeptApp.Visible = True
@@ -232,6 +350,11 @@ Public Class ViewBDG
         btnBDGDeptReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         LabelBDGDeptApp.Text = "Pending"
         LabelBDGDeptComment.Text = ""

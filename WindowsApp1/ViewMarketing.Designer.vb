@@ -51,6 +51,10 @@ Partial Class ViewMarketing
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label94 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ButtonEditCancel = New System.Windows.Forms.Button()
+        Me.ButtonEditReject = New System.Windows.Forms.Button()
+        Me.ButtonEditApprove = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -103,7 +107,7 @@ Partial Class ViewMarketing
         '
         Me.LabelDateMarketingDept.AutoSize = True
         Me.LabelDateMarketingDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDateMarketingDept.Location = New System.Drawing.Point(643, 259)
+        Me.LabelDateMarketingDept.Location = New System.Drawing.Point(662, 257)
         Me.LabelDateMarketingDept.Name = "LabelDateMarketingDept"
         Me.LabelDateMarketingDept.Size = New System.Drawing.Size(0, 16)
         Me.LabelDateMarketingDept.TabIndex = 393
@@ -111,9 +115,9 @@ Partial Class ViewMarketing
         'LabelMarketingDeptComment
         '
         Me.LabelMarketingDeptComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelMarketingDeptComment.Location = New System.Drawing.Point(415, 257)
+        Me.LabelMarketingDeptComment.Location = New System.Drawing.Point(404, 246)
         Me.LabelMarketingDeptComment.Name = "LabelMarketingDeptComment"
-        Me.LabelMarketingDeptComment.Size = New System.Drawing.Size(155, 49)
+        Me.LabelMarketingDeptComment.Size = New System.Drawing.Size(175, 60)
         Me.LabelMarketingDeptComment.TabIndex = 392
         Me.LabelMarketingDeptComment.Visible = False
         '
@@ -353,11 +357,63 @@ Partial Class ViewMarketing
         Me.PictureBox1.TabIndex = 369
         Me.PictureBox1.TabStop = False
         '
+        'ButtonEditCancel
+        '
+        Me.ButtonEditCancel.BackColor = System.Drawing.Color.DarkCyan
+        Me.ButtonEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditCancel.Location = New System.Drawing.Point(456, 348)
+        Me.ButtonEditCancel.Name = "ButtonEditCancel"
+        Me.ButtonEditCancel.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditCancel.TabIndex = 398
+        Me.ButtonEditCancel.Text = "CANCEL"
+        Me.ButtonEditCancel.UseVisualStyleBackColor = False
+        Me.ButtonEditCancel.Visible = False
+        '
+        'ButtonEditReject
+        '
+        Me.ButtonEditReject.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonEditReject.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditReject.Location = New System.Drawing.Point(336, 349)
+        Me.ButtonEditReject.Name = "ButtonEditReject"
+        Me.ButtonEditReject.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditReject.TabIndex = 399
+        Me.ButtonEditReject.Text = "REJECT"
+        Me.ButtonEditReject.UseVisualStyleBackColor = False
+        Me.ButtonEditReject.Visible = False
+        '
+        'ButtonEditApprove
+        '
+        Me.ButtonEditApprove.BackColor = System.Drawing.Color.Lime
+        Me.ButtonEditApprove.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditApprove.Location = New System.Drawing.Point(208, 349)
+        Me.ButtonEditApprove.Name = "ButtonEditApprove"
+        Me.ButtonEditApprove.Size = New System.Drawing.Size(104, 38)
+        Me.ButtonEditApprove.TabIndex = 400
+        Me.ButtonEditApprove.Text = "APPROVE"
+        Me.ButtonEditApprove.UseVisualStyleBackColor = False
+        Me.ButtonEditApprove.Visible = False
+        '
+        'ButtonEdit
+        '
+        Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEdit.Location = New System.Drawing.Point(559, 348)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEdit.TabIndex = 401
+        Me.ButtonEdit.Text = "EDIT"
+        Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
+        '
         'ViewMarketing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(781, 398)
+        Me.Controls.Add(Me.ButtonEdit)
+        Me.Controls.Add(Me.ButtonEditApprove)
+        Me.Controls.Add(Me.ButtonEditReject)
+        Me.Controls.Add(Me.ButtonEditCancel)
         Me.Controls.Add(Me.ButtonClose)
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.btnMarketingDeptReject)
@@ -426,4 +482,8 @@ Partial Class ViewMarketing
     Friend WithEvents Label3 As Label
     Friend WithEvents Label94 As Label
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ButtonEditCancel As Button
+    Friend WithEvents ButtonEditReject As Button
+    Friend WithEvents ButtonEditApprove As Button
+    Friend WithEvents ButtonEdit As Button
 End Class
