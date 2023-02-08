@@ -138,6 +138,97 @@ Public Class ViewMarketing
 
 
 
+
+    'EDIT APPROVE
+
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+        MarketingStatAccept = "Approve"
+
+        MarketingNameAccept = LabelMarketingName.Text
+
+        MarketingCommentAccept = txtboxMarketingDept.Text
+
+        MarketingDateAccept = Date.Today
+
+        LabelMarketingDeptApp.Text = MarketingStatAccept
+
+        LabelDateMarketingDept.Text = MarketingDateAccept
+
+        LabelMarketingDeptComment.Text = txtboxMarketingDept.Text
+
+
+        updateHistory = "UPDATE `marketingdepthistory` SET `marketingDeptName`=@name, `marketingDeptStatus`=@status,`marketingDeptDate`=@dateapp, `marketingDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(MarketingNameAccept, MarketingStatAccept, MarketingDateAccept, MarketingCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `marketingDeptName`=@name, `marketingDeptStatus`=@status,`marketingDeptDate`=@dateapp, `marketingDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(MarketingNameAccept, MarketingStatAccept, MarketingDateAccept, MarketingCommentAccept, updateHistory)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelMarketingDeptComment.Visible = True
+
+        txtboxMarketingDept.Visible = False
+        txtboxMarketingDept.Text = ""
+
+    End Sub
+
+
+    'END OF EDIT APPROVE
+
+
+
+    'EDIT REJECT
+
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        MarketingStatAccept = "Reject"
+
+        MarketingNameAccept = LabelMarketingName.Text
+
+        MarketingCommentAccept = txtboxMarketingDept.Text
+
+        MarketingDateAccept = Date.Today
+
+        LabelMarketingDeptApp.Text = MarketingStatAccept
+
+        LabelDateMarketingDept.Text = MarketingDateAccept
+
+        LabelMarketingDeptComment.Text = txtboxMarketingDept.Text
+
+
+        updateHistory = "UPDATE `marketingdepthistory` SET `marketingDeptName`=@name, `marketingDeptStatus`=@status,`marketingDeptDate`=@dateapp, `marketingDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(MarketingNameAccept, MarketingStatAccept, MarketingDateAccept, MarketingCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `marketingDeptName`=@name, `marketingDeptStatus`=@status,`marketingDeptDate`=@dateapp, `marketingDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(MarketingNameAccept, MarketingStatAccept, MarketingDateAccept, MarketingCommentAccept, updateHistory)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelMarketingDeptComment.Visible = True
+
+        txtboxMarketingDept.Visible = False
+        txtboxMarketingDept.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
+
+
+
+
     'Private Function verfMARKETINGIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select MARKETING from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -182,16 +273,52 @@ Public Class ViewMarketing
 
     '    End Function
 
+
     Private Sub LabelMarketingDeptApp_TextChanged(sender As Object, e As EventArgs) Handles LabelMarketingDeptApp.TextChanged
+
         If LabelMarketingDeptApp.Text = "Pending" Then
             LabelMarketingDeptApp.BackColor = Color.PowderBlue
-        ElseIf LabelMARKETingDeptApp.Text = "Approve" Then
+        ElseIf LabelMarketingDeptApp.Text = "Approve" Then
             LabelMarketingDeptApp.BackColor = Color.Lime
         Else
             LabelMarketingDeptApp.BackColor = Color.Firebrick
 
         End If
+
     End Sub
+
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxMarketingDept.Visible = True
+        txtboxMarketingDept.Text = LabelMarketingDeptComment.Text
+        LabelMarketingDeptComment.Visible = False
+
+    End Sub
+
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxMarketingDept.Visible = False
+        txtboxMarketingDept.Text = LabelMarketingDeptComment.Text
+        LabelMarketingDeptComment.Visible = True
+
+    End Sub
+
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnMarketingDeptApp.Visible = True

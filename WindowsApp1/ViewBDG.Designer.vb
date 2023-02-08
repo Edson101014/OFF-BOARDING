@@ -51,6 +51,10 @@ Partial Class ViewBDG
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ButtonClose = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
+        Me.ButtonEditApprove = New System.Windows.Forms.Button()
+        Me.ButtonEditReject = New System.Windows.Forms.Button()
+        Me.ButtonEditCancel = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -297,7 +301,7 @@ Partial Class ViewBDG
         '
         Me.LabelDateBDGDept.AutoSize = True
         Me.LabelDateBDGDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDateBDGDept.Location = New System.Drawing.Point(641, 257)
+        Me.LabelDateBDGDept.Location = New System.Drawing.Point(658, 257)
         Me.LabelDateBDGDept.Name = "LabelDateBDGDept"
         Me.LabelDateBDGDept.Size = New System.Drawing.Size(0, 16)
         Me.LabelDateBDGDept.TabIndex = 280
@@ -305,9 +309,9 @@ Partial Class ViewBDG
         'LabelBDGDeptComment
         '
         Me.LabelBDGDeptComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBDGDeptComment.Location = New System.Drawing.Point(405, 254)
+        Me.LabelBDGDeptComment.Location = New System.Drawing.Point(393, 246)
         Me.LabelBDGDeptComment.Name = "LabelBDGDeptComment"
-        Me.LabelBDGDeptComment.Size = New System.Drawing.Size(147, 54)
+        Me.LabelBDGDeptComment.Size = New System.Drawing.Size(175, 62)
         Me.LabelBDGDeptComment.TabIndex = 279
         Me.LabelBDGDeptComment.Visible = False
         '
@@ -353,11 +357,63 @@ Partial Class ViewBDG
         Me.ButtonClose.UseVisualStyleBackColor = False
         Me.ButtonClose.Visible = False
         '
+        'ButtonEdit
+        '
+        Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEdit.Location = New System.Drawing.Point(552, 348)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEdit.TabIndex = 283
+        Me.ButtonEdit.Text = "EDIT"
+        Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
+        '
+        'ButtonEditApprove
+        '
+        Me.ButtonEditApprove.BackColor = System.Drawing.Color.Lime
+        Me.ButtonEditApprove.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditApprove.Location = New System.Drawing.Point(201, 348)
+        Me.ButtonEditApprove.Name = "ButtonEditApprove"
+        Me.ButtonEditApprove.Size = New System.Drawing.Size(104, 38)
+        Me.ButtonEditApprove.TabIndex = 284
+        Me.ButtonEditApprove.Text = "APPROVE"
+        Me.ButtonEditApprove.UseVisualStyleBackColor = False
+        Me.ButtonEditApprove.Visible = False
+        '
+        'ButtonEditReject
+        '
+        Me.ButtonEditReject.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonEditReject.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditReject.Location = New System.Drawing.Point(329, 348)
+        Me.ButtonEditReject.Name = "ButtonEditReject"
+        Me.ButtonEditReject.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditReject.TabIndex = 285
+        Me.ButtonEditReject.Text = "REJECT"
+        Me.ButtonEditReject.UseVisualStyleBackColor = False
+        Me.ButtonEditReject.Visible = False
+        '
+        'ButtonEditCancel
+        '
+        Me.ButtonEditCancel.BackColor = System.Drawing.Color.DarkCyan
+        Me.ButtonEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditCancel.Location = New System.Drawing.Point(449, 348)
+        Me.ButtonEditCancel.Name = "ButtonEditCancel"
+        Me.ButtonEditCancel.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditCancel.TabIndex = 286
+        Me.ButtonEditCancel.Text = "CANCEL"
+        Me.ButtonEditCancel.UseVisualStyleBackColor = False
+        Me.ButtonEditCancel.Visible = False
+        '
         'ViewBDG
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(781, 398)
+        Me.Controls.Add(Me.ButtonEditCancel)
+        Me.Controls.Add(Me.ButtonEditReject)
+        Me.Controls.Add(Me.ButtonEditApprove)
+        Me.Controls.Add(Me.ButtonEdit)
         Me.Controls.Add(Me.ButtonClose)
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.LabelDateBDGDept)
@@ -426,4 +482,8 @@ Partial Class ViewBDG
     Friend WithEvents txtboxBDGDept As TextBox
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents ButtonClose As Button
+    Friend WithEvents ButtonEdit As Button
+    Friend WithEvents ButtonEditApprove As Button
+    Friend WithEvents ButtonEditReject As Button
+    Friend WithEvents ButtonEditCancel As Button
 End Class
