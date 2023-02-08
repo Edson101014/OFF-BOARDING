@@ -318,11 +318,11 @@ Partial Class ViewHRInterview
         '
         Me.CheckBoxInterview.AutoSize = True
         Me.CheckBoxInterview.BackColor = System.Drawing.Color.Gray
-        Me.CheckBoxInterview.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxInterview.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBoxInterview.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.CheckBoxInterview.Location = New System.Drawing.Point(175, 312)
+        Me.CheckBoxInterview.Location = New System.Drawing.Point(161, 312)
         Me.CheckBoxInterview.Name = "CheckBoxInterview"
-        Me.CheckBoxInterview.Size = New System.Drawing.Size(136, 19)
+        Me.CheckBoxInterview.Size = New System.Drawing.Size(171, 24)
         Me.CheckBoxInterview.TabIndex = 312
         Me.CheckBoxInterview.Text = "Scheduled Interview"
         Me.CheckBoxInterview.UseVisualStyleBackColor = False
@@ -331,11 +331,11 @@ Partial Class ViewHRInterview
         '
         Me.CheckBoxFinal.AutoSize = True
         Me.CheckBoxFinal.BackColor = System.Drawing.Color.Gray
-        Me.CheckBoxFinal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckBoxFinal.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBoxFinal.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.CheckBoxFinal.Location = New System.Drawing.Point(392, 312)
+        Me.CheckBoxFinal.Location = New System.Drawing.Point(428, 312)
         Me.CheckBoxFinal.Name = "CheckBoxFinal"
-        Me.CheckBoxFinal.Size = New System.Drawing.Size(104, 19)
+        Me.CheckBoxFinal.Size = New System.Drawing.Size(129, 24)
         Me.CheckBoxFinal.TabIndex = 313
         Me.CheckBoxFinal.Text = "Final Interview"
         Me.CheckBoxFinal.UseVisualStyleBackColor = False
