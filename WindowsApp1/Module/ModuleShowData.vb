@@ -124,7 +124,7 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthead` ORDER BY `LastDayEmploy` ASC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `LastDayEmploy` ASC"
         fillGridHistory(query)
 
     End Sub

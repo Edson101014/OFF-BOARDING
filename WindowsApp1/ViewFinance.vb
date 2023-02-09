@@ -79,7 +79,7 @@ Public Class ViewFinance
             'check = 1
 
 
-            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
+            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
             updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
             apdb.insertFinance(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, inserthistory)
@@ -155,7 +155,7 @@ Public Class ViewFinance
             'check = 1
 
 
-            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
+            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
             updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
 
@@ -199,6 +199,131 @@ Public Class ViewFinance
 
     'END OF REJECT
 
+
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        If verf() = True Then
+            FinanceStatAccept = "Approve"
+
+            FinanceNameAccept = LabelFinanceName.Text
+
+            FinanceCommentAccept = txtboxFinanceDept.Text
+
+            FinanceOthersComment = txtboxOther.Text
+
+            FinanceDateAccept = Date.Today
+
+            LabelFinanceDeptApp.Text = FinanceStatAccept
+
+            LabelDateFinanceDept.Text = FinanceDateAccept
+
+            LabelFinanceDeptComment.Text = txtboxFinanceDept.Text
+
+
+            updateHistory = "UPDATE `financedepthistory` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
+
+
+            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+            CheckBoxCash.Enabled = False
+            CheckBoxOthers.Enabled = False
+
+            LabelFinanceDeptComment.Visible = True
+
+            txtboxFinanceDept.Visible = False
+            txtboxFinanceDept.Text = ""
+            txtboxOther.Enabled = False
+
+        Else
+            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Finance Dept")
+        End If
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+        If verf() = True Then
+            FinanceStatAccept = "Reject"
+
+            FinanceNameAccept = LabelFinanceName.Text
+
+            FinanceCommentAccept = txtboxFinanceDept.Text
+
+            FinanceOthersComment = txtboxOther.Text
+
+            FinanceDateAccept = Date.Today
+
+            LabelFinanceDeptApp.Text = FinanceStatAccept
+
+            LabelDateFinanceDept.Text = FinanceDateAccept
+
+            LabelFinanceDeptComment.Text = txtboxFinanceDept.Text
+
+
+            updateHistory = "UPDATE `financedepthistory` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
+
+
+            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+            CheckBoxCash.Enabled = False
+            CheckBoxOthers.Enabled = False
+
+            LabelFinanceDeptComment.Visible = True
+
+            txtboxFinanceDept.Visible = False
+            txtboxFinanceDept.Text = ""
+            txtboxOther.Enabled = False
+
+        Else
+            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Finance Dept")
+        End If
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
+
     Private Sub LabelFinanceDeptApp_TextChanged(sender As Object, e As EventArgs) Handles LabelFinanceDeptApp.TextChanged
         If LabelFinanceDeptApp.Text = "Pending" Then
             LabelFinanceDeptApp.BackColor = Color.PowderBlue
@@ -229,9 +354,53 @@ Public Class ViewFinance
             CheckBoxOthers.BackColor = Color.Gray
             checkothers = "Unchecked"
             txtboxOther.Enabled = False
+            txtboxOther.Text = ""
         End If
     End Sub
 
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        CheckBoxCash.Enabled = True
+        CheckBoxOthers.Enabled = True
+
+        If CheckBoxOthers.Checked = True Then
+            txtboxOther.Enabled = True
+        Else
+            txtboxOther.Enabled = False
+        End If
+
+        txtboxFinanceDept.Visible = True
+        txtboxFinanceDept.Text = LabelFinanceDeptComment.Text
+        LabelFinanceDeptComment.Visible = False
+
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        CheckBoxCash.Enabled = False
+        CheckBoxOthers.Enabled = False
+
+        txtboxOther.Enabled = False
+        txtboxFinanceDept.Visible = False
+        txtboxFinanceDept.Text = LabelFinanceDeptComment.Text
+        LabelFinanceDeptComment.Visible = True
+
+    End Sub
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnFinanceDeptApp.Visible = True
@@ -375,4 +544,11 @@ Public Class ViewFinance
     Private Sub txtboxOther_MouseClick(sender As Object, e As MouseEventArgs) Handles txtboxOther.MouseClick
         txtboxOther.BackColor = SystemColors.Window
     End Sub
+
+
+
+
+
+
+
 End Class

@@ -54,6 +54,10 @@ Partial Class ViewFinance
         Me.ButtonCancel = New System.Windows.Forms.Button()
         Me.btnFinanceDeptReject = New System.Windows.Forms.Button()
         Me.btnFinanceDeptApp = New System.Windows.Forms.Button()
+        Me.ButtonEditApprove = New System.Windows.Forms.Button()
+        Me.ButtonEditReject = New System.Windows.Forms.Button()
+        Me.ButtonEditCancel = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -61,7 +65,7 @@ Partial Class ViewFinance
         '
         Me.LabelDateFinanceDept.AutoSize = True
         Me.LabelDateFinanceDept.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDateFinanceDept.Location = New System.Drawing.Point(646, 257)
+        Me.LabelDateFinanceDept.Location = New System.Drawing.Point(665, 257)
         Me.LabelDateFinanceDept.Name = "LabelDateFinanceDept"
         Me.LabelDateFinanceDept.Size = New System.Drawing.Size(0, 16)
         Me.LabelDateFinanceDept.TabIndex = 364
@@ -69,9 +73,9 @@ Partial Class ViewFinance
         'LabelFinanceDeptComment
         '
         Me.LabelFinanceDeptComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelFinanceDeptComment.Location = New System.Drawing.Point(418, 255)
+        Me.LabelFinanceDeptComment.Location = New System.Drawing.Point(404, 245)
         Me.LabelFinanceDeptComment.Name = "LabelFinanceDeptComment"
-        Me.LabelFinanceDeptComment.Size = New System.Drawing.Size(153, 49)
+        Me.LabelFinanceDeptComment.Size = New System.Drawing.Size(178, 60)
         Me.LabelFinanceDeptComment.TabIndex = 363
         Me.LabelFinanceDeptComment.Visible = False
         '
@@ -391,11 +395,63 @@ Partial Class ViewFinance
         Me.btnFinanceDeptApp.Text = "APPROVE"
         Me.btnFinanceDeptApp.UseVisualStyleBackColor = False
         '
+        'ButtonEditApprove
+        '
+        Me.ButtonEditApprove.BackColor = System.Drawing.Color.Lime
+        Me.ButtonEditApprove.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditApprove.Location = New System.Drawing.Point(194, 383)
+        Me.ButtonEditApprove.Name = "ButtonEditApprove"
+        Me.ButtonEditApprove.Size = New System.Drawing.Size(104, 38)
+        Me.ButtonEditApprove.TabIndex = 402
+        Me.ButtonEditApprove.Text = "APPROVE"
+        Me.ButtonEditApprove.UseVisualStyleBackColor = False
+        Me.ButtonEditApprove.Visible = False
+        '
+        'ButtonEditReject
+        '
+        Me.ButtonEditReject.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonEditReject.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditReject.Location = New System.Drawing.Point(322, 383)
+        Me.ButtonEditReject.Name = "ButtonEditReject"
+        Me.ButtonEditReject.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditReject.TabIndex = 403
+        Me.ButtonEditReject.Text = "REJECT"
+        Me.ButtonEditReject.UseVisualStyleBackColor = False
+        Me.ButtonEditReject.Visible = False
+        '
+        'ButtonEditCancel
+        '
+        Me.ButtonEditCancel.BackColor = System.Drawing.Color.DarkCyan
+        Me.ButtonEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditCancel.Location = New System.Drawing.Point(442, 383)
+        Me.ButtonEditCancel.Name = "ButtonEditCancel"
+        Me.ButtonEditCancel.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditCancel.TabIndex = 404
+        Me.ButtonEditCancel.Text = "CANCEL"
+        Me.ButtonEditCancel.UseVisualStyleBackColor = False
+        Me.ButtonEditCancel.Visible = False
+        '
+        'ButtonEdit
+        '
+        Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEdit.Location = New System.Drawing.Point(545, 383)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEdit.TabIndex = 405
+        Me.ButtonEdit.Text = "EDIT"
+        Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
+        '
         'ViewFinance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(781, 433)
+        Me.Controls.Add(Me.ButtonEdit)
+        Me.Controls.Add(Me.ButtonEditCancel)
+        Me.Controls.Add(Me.ButtonEditReject)
+        Me.Controls.Add(Me.ButtonEditApprove)
         Me.Controls.Add(Me.ButtonClose)
         Me.Controls.Add(Me.ButtonCancel)
         Me.Controls.Add(Me.btnFinanceDeptReject)
@@ -469,4 +525,8 @@ Partial Class ViewFinance
     Friend WithEvents ButtonCancel As Button
     Friend WithEvents btnFinanceDeptReject As Button
     Friend WithEvents btnFinanceDeptApp As Button
+    Friend WithEvents ButtonEditApprove As Button
+    Friend WithEvents ButtonEditReject As Button
+    Friend WithEvents ButtonEditCancel As Button
+    Friend WithEvents ButtonEdit As Button
 End Class

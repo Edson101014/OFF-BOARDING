@@ -444,10 +444,52 @@ Public Class Dashboard
 
                 ViewMarketing.ShowDialog()
 
-                'ElseIf Login.flag = "Finance Dept Head" Then
-                '    ViewHistoryFINANCE()
-                'ElseIf Login.flag = "ADMIN" Then
-                '    ViewHistoryADMIN()
+            ElseIf Login.flag = "Finance Dept Head" Then
+
+                ViewFinance.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewFinance.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewFinance.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewFinance.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewFinance.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewFinance.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewFinance.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewFinance.LabelFinanceName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewFinance.LabelFinanceDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewFinance.LabelFinanceDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewFinance.LabelDateFinanceDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+                If DataGridHistory.CurrentRow.Cells(12).Value.ToString = "Checked" Then
+                    ViewFinance.CheckBoxCash.Checked = True
+                Else
+                    ViewFinance.CheckBoxCash.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(13).Value.ToString = "Checked" Then
+                    ViewFinance.CheckBoxOthers.Checked = True
+                    ViewFinance.txtboxOther.Text = DataGridHistory.CurrentRow.Cells(14).Value.ToString
+                Else
+                    ViewFinance.CheckBoxOthers.Checked = False
+                    ViewFinance.txtboxOther.Text = ""
+                End If
+
+                ViewFinance.btnFinanceDeptApp.Visible = False
+                ViewFinance.btnFinanceDeptReject.Visible = False
+                ViewFinance.ButtonCancel.Visible = False
+
+                ViewFinance.txtboxFinanceDept.Visible = False
+                ViewFinance.LabelFinanceDeptComment.Visible = True
+
+                ViewFinance.CheckBoxCash.Enabled = False
+                ViewFinance.CheckBoxOthers.Enabled = False
+                ViewFinance.txtboxOther.Enabled = False
+
+                ViewFinance.ButtonEdit.Visible = True
+                ViewFinance.ButtonClose.Visible = True
+
+                ViewFinance.ShowDialog()
+
+                ElseIf Login.flag = "ADMIN" Then
+
                 'ElseIf Login.flag = "ADMINHead" Then
                 '    ViewHistoryAdminHead()
 
