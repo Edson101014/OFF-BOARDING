@@ -54,6 +54,10 @@ Partial Class ViewSysAdmin
         Me.btnSysAdminReject = New System.Windows.Forms.Button()
         Me.btnSysAdminApp = New System.Windows.Forms.Button()
         Me.CheckBoxLaptop = New System.Windows.Forms.CheckBox()
+        Me.ButtonEditApprove = New System.Windows.Forms.Button()
+        Me.ButtonEditReject = New System.Windows.Forms.Button()
+        Me.ButtonEditCancel = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -69,9 +73,9 @@ Partial Class ViewSysAdmin
         'LabelSysAdminComment
         '
         Me.LabelSysAdminComment.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSysAdminComment.Location = New System.Drawing.Point(417, 247)
+        Me.LabelSysAdminComment.Location = New System.Drawing.Point(414, 248)
         Me.LabelSysAdminComment.Name = "LabelSysAdminComment"
-        Me.LabelSysAdminComment.Size = New System.Drawing.Size(176, 59)
+        Me.LabelSysAdminComment.Size = New System.Drawing.Size(175, 60)
         Me.LabelSysAdminComment.TabIndex = 447
         Me.LabelSysAdminComment.Visible = False
         '
@@ -395,11 +399,62 @@ Partial Class ViewSysAdmin
         Me.CheckBoxLaptop.Text = "Laptop, Laptop Bag, Charger, Mouse "
         Me.CheckBoxLaptop.UseVisualStyleBackColor = False
         '
+        'ButtonEditApprove
+        '
+        Me.ButtonEditApprove.BackColor = System.Drawing.Color.Lime
+        Me.ButtonEditApprove.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditApprove.Location = New System.Drawing.Point(200, 373)
+        Me.ButtonEditApprove.Name = "ButtonEditApprove"
+        Me.ButtonEditApprove.Size = New System.Drawing.Size(104, 38)
+        Me.ButtonEditApprove.TabIndex = 457
+        Me.ButtonEditApprove.Text = "APPROVE"
+        Me.ButtonEditApprove.UseVisualStyleBackColor = False
+        Me.ButtonEditApprove.Visible = False
+        '
+        'ButtonEditReject
+        '
+        Me.ButtonEditReject.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonEditReject.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditReject.Location = New System.Drawing.Point(328, 373)
+        Me.ButtonEditReject.Name = "ButtonEditReject"
+        Me.ButtonEditReject.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditReject.TabIndex = 458
+        Me.ButtonEditReject.Text = "REJECT"
+        Me.ButtonEditReject.UseVisualStyleBackColor = False
+        Me.ButtonEditReject.Visible = False
+        '
+        'ButtonEditCancel
+        '
+        Me.ButtonEditCancel.BackColor = System.Drawing.Color.DarkCyan
+        Me.ButtonEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditCancel.Location = New System.Drawing.Point(448, 373)
+        Me.ButtonEditCancel.Name = "ButtonEditCancel"
+        Me.ButtonEditCancel.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditCancel.TabIndex = 459
+        Me.ButtonEditCancel.Text = "CANCEL"
+        Me.ButtonEditCancel.UseVisualStyleBackColor = False
+        Me.ButtonEditCancel.Visible = False
+        '
+        'ButtonEdit
+        '
+        Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEdit.Location = New System.Drawing.Point(547, 373)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEdit.TabIndex = 460
+        Me.ButtonEdit.Text = "EDIT"
+        Me.ButtonEdit.UseVisualStyleBackColor = False
+        '
         'ViewSysAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(781, 423)
+        Me.Controls.Add(Me.ButtonEdit)
+        Me.Controls.Add(Me.ButtonEditCancel)
+        Me.Controls.Add(Me.ButtonEditReject)
+        Me.Controls.Add(Me.ButtonEditApprove)
         Me.Controls.Add(Me.CheckBoxLaptop)
         Me.Controls.Add(Me.ButtonClose)
         Me.Controls.Add(Me.ButtonCancel)
@@ -473,4 +528,8 @@ Partial Class ViewSysAdmin
     Friend WithEvents btnSysAdminReject As Button
     Friend WithEvents btnSysAdminApp As Button
     Friend WithEvents CheckBoxLaptop As CheckBox
+    Friend WithEvents ButtonEditApprove As Button
+    Friend WithEvents ButtonEditReject As Button
+    Friend WithEvents ButtonEditCancel As Button
+    Friend WithEvents ButtonEdit As Button
 End Class

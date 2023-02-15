@@ -18,6 +18,7 @@ Public Class ViewAdminHead
 
     'ACCEPT
     Private Sub btnAdminHeadApp_Click(sender As Object, e As EventArgs) Handles btnAdminHeadApp.Click
+
         AdminHeadStatAccept = "Approve"
 
         AdminHeadNameAccept = LabelAdminHeadName.Text
@@ -131,6 +132,101 @@ Public Class ViewAdminHead
 
 
 
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        AdminHeadStatAccept = "Approve"
+
+        AdminHeadNameAccept = LabelAdminHeadName.Text
+
+        AdminHeadCommentAccept = txtboxAdminHead.Text
+
+        AdminHeadDateAccept = Date.Today
+
+        LabelAdminHeadApp.Text = AdminHeadStatAccept
+
+        LabelDateAdminHead.Text = AdminHeadDateAccept
+
+        LabelAdminHeadComment.Text = txtboxAdminHead.Text
+
+        updateHistory = "UPDATE `admingroupheadhistory` SET `AdminHeadName`=@name, `AdminHeadStatus`=@status, `AdminHeadComment`=@comment, `AdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(AdminHeadNameAccept, AdminHeadStatAccept, AdminHeadDateAccept, AdminHeadCommentAccept, updateHistory)
+
+
+        updateHistory = "UPDATE `historyrequest` SET `AdminHeadName`=@name, `AdminHeadStatus`=@status, `AdminHeadComment`=@comment, `AdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(AdminHeadNameAccept, AdminHeadStatAccept, AdminHeadDateAccept, AdminHeadCommentAccept, updateHistory)
+
+
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelAdminHeadComment.Visible = True
+        LabelDateAdminHead.Visible = True
+        txtboxAdminHead.Visible = False
+        txtboxAdminHead.Text = ""
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+        AdminHeadStatAccept = "Reject"
+
+        AdminHeadNameAccept = LabelAdminHeadName.Text
+
+        AdminHeadCommentAccept = txtboxAdminHead.Text
+
+        AdminHeadDateAccept = Date.Today
+
+        LabelAdminHeadApp.Text = AdminHeadStatAccept
+
+        LabelDateAdminHead.Text = AdminHeadDateAccept
+
+        LabelAdminHeadComment.Text = txtboxAdminHead.Text
+
+
+        updateHistory = "UPDATE `admingroupheadhistory` SET `AdminHeadName`=@name, `AdminHeadStatus`=@status, `AdminHeadComment`=@comment, `AdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(AdminHeadNameAccept, AdminHeadStatAccept, AdminHeadDateAccept, AdminHeadCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `AdminHeadName`=@name, `AdminHeadStatus`=@status, `AdminHeadComment`=@comment, `AdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(AdminHeadNameAccept, AdminHeadStatAccept, AdminHeadDateAccept, AdminHeadCommentAccept, updateHistory)
+
+
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelAdminHeadComment.Visible = True
+        LabelDateAdminHead.Visible = True
+        txtboxAdminHead.Visible = False
+        txtboxAdminHead.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
     'Private Function verfCheckerComplete() As Boolean
     '    Dim query As String
     '    query = "SELECT `AdminHead`, `SysAdminHead` FROM `checker` WHERE `empID`='" & LabelEmpID.Text & "' AND `AdminHead` IS NOT NULL AND `SysAdminHead` IS NOT NULL"
@@ -160,6 +256,37 @@ Public Class ViewAdminHead
             LabelAdminHeadApp.BackColor = Color.Firebrick
 
         End If
+    End Sub
+
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxAdminHead.Visible = True
+        txtboxAdminHead.Text = LabelAdminHeadComment.Text
+        LabelAdminHeadComment.Visible = False
+
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxAdminHead.Visible = False
+        txtboxAdminHead.Text = LabelAdminHeadComment.Text
+        LabelAdminHeadComment.Visible = True
+
     End Sub
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
@@ -230,4 +357,8 @@ Public Class ViewAdminHead
             ShowData()
         End If
     End Sub
+
+
+
+
 End Class

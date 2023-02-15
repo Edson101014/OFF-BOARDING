@@ -22,6 +22,7 @@ Partial Class ViewHRGroup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.LabelDateHRGroup = New System.Windows.Forms.Label()
         Me.LabelHRGroupComment = New System.Windows.Forms.Label()
         Me.txtboxHRGroup = New System.Windows.Forms.TextBox()
@@ -125,6 +126,11 @@ Partial Class ViewHRGroup
         Me.Label17 = New System.Windows.Forms.Label()
         Me.LabelHRName = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ButtonEditApprove = New System.Windows.Forms.Button()
+        Me.ButtonEditReject = New System.Windows.Forms.Button()
+        Me.ButtonEditCancel = New System.Windows.Forms.Button()
+        Me.ButtonEdit = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -482,7 +488,7 @@ Partial Class ViewHRGroup
         Me.ButtonClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonClose.BackColor = System.Drawing.Color.DarkCyan
         Me.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonClose.Location = New System.Drawing.Point(691, 399)
+        Me.ButtonClose.Location = New System.Drawing.Point(706, 399)
         Me.ButtonClose.Name = "ButtonClose"
         Me.ButtonClose.Size = New System.Drawing.Size(102, 38)
         Me.ButtonClose.TabIndex = 516
@@ -1300,11 +1306,70 @@ Partial Class ViewHRGroup
         Me.Label18.TabIndex = 522
         Me.Label18.Text = "HR Name:"
         '
+        'Timer1
+        '
+        '
+        'ButtonEditApprove
+        '
+        Me.ButtonEditApprove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonEditApprove.BackColor = System.Drawing.Color.Lime
+        Me.ButtonEditApprove.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditApprove.Location = New System.Drawing.Point(243, 399)
+        Me.ButtonEditApprove.Name = "ButtonEditApprove"
+        Me.ButtonEditApprove.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonEditApprove.TabIndex = 524
+        Me.ButtonEditApprove.Text = "APPROVE"
+        Me.ButtonEditApprove.UseVisualStyleBackColor = False
+        Me.ButtonEditApprove.Visible = False
+        '
+        'ButtonEditReject
+        '
+        Me.ButtonEditReject.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonEditReject.BackColor = System.Drawing.Color.Firebrick
+        Me.ButtonEditReject.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditReject.Location = New System.Drawing.Point(371, 399)
+        Me.ButtonEditReject.Name = "ButtonEditReject"
+        Me.ButtonEditReject.Size = New System.Drawing.Size(102, 38)
+        Me.ButtonEditReject.TabIndex = 525
+        Me.ButtonEditReject.Text = "REJECT"
+        Me.ButtonEditReject.UseVisualStyleBackColor = False
+        Me.ButtonEditReject.Visible = False
+        '
+        'ButtonEditCancel
+        '
+        Me.ButtonEditCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonEditCancel.BackColor = System.Drawing.Color.DarkCyan
+        Me.ButtonEditCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEditCancel.Location = New System.Drawing.Point(490, 399)
+        Me.ButtonEditCancel.Name = "ButtonEditCancel"
+        Me.ButtonEditCancel.Size = New System.Drawing.Size(102, 38)
+        Me.ButtonEditCancel.TabIndex = 526
+        Me.ButtonEditCancel.Text = "CANCEL"
+        Me.ButtonEditCancel.UseVisualStyleBackColor = False
+        Me.ButtonEditCancel.Visible = False
+        '
+        'ButtonEdit
+        '
+        Me.ButtonEdit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
+        Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonEdit.Location = New System.Drawing.Point(598, 399)
+        Me.ButtonEdit.Name = "ButtonEdit"
+        Me.ButtonEdit.Size = New System.Drawing.Size(102, 38)
+        Me.ButtonEdit.TabIndex = 527
+        Me.ButtonEdit.Text = "EDIT"
+        Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
+        '
         'ViewHRGroup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(819, 761)
+        Me.Controls.Add(Me.ButtonEdit)
+        Me.Controls.Add(Me.ButtonEditCancel)
+        Me.Controls.Add(Me.ButtonEditReject)
+        Me.Controls.Add(Me.ButtonEditApprove)
         Me.Controls.Add(Me.LabelHRName)
         Me.Controls.Add(Me.Label18)
         Me.Controls.Add(Me.Label17)
@@ -1462,4 +1527,9 @@ Partial Class ViewHRGroup
     Friend WithEvents Label17 As Label
     Friend WithEvents LabelHRName As Label
     Friend WithEvents Label18 As Label
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents ButtonEditApprove As Button
+    Friend WithEvents ButtonEditReject As Button
+    Friend WithEvents ButtonEditCancel As Button
+    Friend WithEvents ButtonEdit As Button
 End Class

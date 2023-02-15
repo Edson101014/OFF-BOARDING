@@ -134,8 +134,8 @@ Public Class ViewFinance
 
 
     Private Sub btnFinanceDeptReject_Click(sender As Object, e As EventArgs) Handles btnFinanceDeptReject.Click
-        If verf() = True Then
-            FinanceStatAccept = "Reject"
+
+        FinanceStatAccept = "Reject"
 
             FinanceNameAccept = LabelFinanceName.Text
 
@@ -192,9 +192,6 @@ Public Class ViewFinance
             txtboxFinanceDept.Text = ""
             txtboxOther.Enabled = False
 
-        Else
-            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Finance Dept")
-        End If
     End Sub
 
     'END OF REJECT
@@ -232,8 +229,7 @@ Public Class ViewFinance
             apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
 
 
-            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
 
 
 
@@ -268,8 +264,8 @@ Public Class ViewFinance
 
     'EDIT REJECT
     Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
-        If verf() = True Then
-            FinanceStatAccept = "Reject"
+
+        FinanceStatAccept = "Reject"
 
             FinanceNameAccept = LabelFinanceName.Text
 
@@ -293,8 +289,6 @@ Public Class ViewFinance
             apdb.updateFinance(FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, updateHistory)
 
 
-            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-            apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
 
 
@@ -313,9 +307,7 @@ Public Class ViewFinance
             txtboxFinanceDept.Text = ""
             txtboxOther.Enabled = False
 
-        Else
-            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Finance Dept")
-        End If
+
     End Sub
 
     'END OF EDIT REJECT
@@ -508,6 +500,11 @@ Public Class ViewFinance
         CheckBoxOthers.Enabled = True
         CheckBoxCash.BackColor = Color.Gray
         CheckBoxOthers.BackColor = Color.Gray
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         LabelFinanceDeptApp.Text = "Pending"
         LabelFinanceDeptComment.Text = ""

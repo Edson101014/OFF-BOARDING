@@ -186,6 +186,11 @@ Public Class ViewHRGroup
     End Sub
 
     Private Sub ViewHRGroup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Timer1.Interval = 1000
+        Timer1.Enabled = True
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         getdata()
     End Sub
 
@@ -307,57 +312,170 @@ Public Class ViewHRGroup
     'REJECT
 
     Private Sub btnHRGroupReject_Click(sender As Object, e As EventArgs) Handles btnHRGroupReject.Click
-        If verfGroupAccept() = True Then
-            HRNameAccept = LabelHRName.Text
 
-            HRStatAccept = "Reject"
 
-            HRCommentAccept = txtboxHRGroup.Text
+        HRNameAccept = LabelHRName.Text
 
-            HRDateAccept = Date.Today
+        HRStatAccept = "Reject"
 
-            LabelHRGroupApp.Text = HRStatAccept
+        HRCommentAccept = txtboxHRGroup.Text
 
-            LabelDateHRGroup.Text = HRDateAccept
+        HRDateAccept = Date.Today
 
-            LabelHRGroupComment.Text = txtboxHRGroup.Text
+        LabelHRGroupApp.Text = HRStatAccept
 
-            statusNextflow = "Pending"
+        LabelDateHRGroup.Text = HRDateAccept
 
-            updateHistory = "UPDATE `historyrequest` SET `HRGroupName`=@lblname, `HRGroupStatus`=@stats, `HRGroupComment`=@comment, `HRGroupDate`=@dateapp, `CheckHMO`=@checkHMO, `CheckInsurance`=@checkInsurance, `CheckCompanyID`=@checkCompanyID, `CheckQuitClaim`=@checkQuitClaim, `CheckCOE`=@checkCOE, `CheckITR`=@checkITR, `CheckFinalPay`=@checkFinalPay WHERE empID = '" & LabelEmpID.Text & "'"
-            insertNextFlow = "INSERT INTO `hrhead`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `hrheadstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
-            apdb.updateHRHistory(HRNameAccept, HRStatAccept, HRCommentAccept, HRDateAccept, checkHMO, checkInsurance, checkCompanyID, checkQuitClaim, checkCOE, checkITR, checkFinalPay, updateHistory)
+        LabelHRGroupComment.Text = txtboxHRGroup.Text
 
-            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
 
-            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+        updateHistory = "UPDATE `historyrequest` SET `HRGroupName`=@lblname, `HRGroupStatus`=@stats, `HRGroupComment`=@comment, `HRGroupDate`=@dateapp, `CheckHMO`=@checkHMO, `CheckInsurance`=@checkInsurance, `CheckCompanyID`=@checkCompanyID, `CheckQuitClaim`=@checkQuitClaim, `CheckCOE`=@checkCOE, `CheckITR`=@checkITR, `CheckFinalPay`=@checkFinalPay WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHRHistory(HRNameAccept, HRStatAccept, HRCommentAccept, HRDateAccept, checkHMO, checkInsurance, checkCompanyID, checkQuitClaim, checkCOE, checkITR, checkFinalPay, updateHistory)
 
-            btnHRGroupApp.Visible = False
-            btnHRGroupReject.Visible = False
-            ButtonCancel.Visible = False
-            ButtonClose.Visible = True
 
-            CheckBoxHMO.Enabled = False
-            CheckBoxInsurance.Enabled = False
-            CheckBoxCompanyID.Enabled = False
-            CheckBoxQuitClaim.Enabled = False
-            CheckBoxCOE.Enabled = False
-            CheckBoxITR.Enabled = False
-            CheckBoxFinalPay.Enabled = False
+        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+        apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
-            LabelHRGroupComment.Visible = True
+        btnHRGroupApp.Visible = False
+        btnHRGroupReject.Visible = False
+        ButtonCancel.Visible = False
+        ButtonClose.Visible = True
 
-            txtboxHRGroup.Visible = False
-            txtboxHRGroup.Text = ""
-        Else
-            MsgBox("Request can't reject!, Make sure all group is approve otherwise you cannot accept/reject", MsgBoxStyle.Exclamation, "Reject")
-        End If
+        CheckBoxHMO.Enabled = False
+        CheckBoxInsurance.Enabled = False
+        CheckBoxCompanyID.Enabled = False
+        CheckBoxQuitClaim.Enabled = False
+        CheckBoxCOE.Enabled = False
+        CheckBoxITR.Enabled = False
+        CheckBoxFinalPay.Enabled = False
+
+        LabelHRGroupComment.Visible = True
+
+        txtboxHRGroup.Visible = False
+        txtboxHRGroup.Text = ""
+
     End Sub
 
 
 
     'END OF REJECT
+
+
+
+
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        If verfGroupAccept() = True Then
+            If verf() = True Then
+
+                HRNameAccept = LabelHRName.Text
+
+                HRStatAccept = "Approve"
+
+                HRCommentAccept = txtboxHRGroup.Text
+
+                HRDateAccept = Date.Today
+
+                LabelHRGroupApp.Text = HRStatAccept
+
+                LabelDateHRGroup.Text = HRDateAccept
+
+                LabelHRGroupComment.Text = txtboxHRGroup.Text
+
+
+                updateHistory = "UPDATE `historyrequest` SET `HRGroupName`=@lblname, `HRGroupStatus`=@stats, `HRGroupComment`=@comment, `HRGroupDate`=@dateapp, `CheckHMO`=@checkHMO, `CheckInsurance`=@checkInsurance, `CheckCompanyID`=@checkCompanyID, `CheckQuitClaim`=@checkQuitClaim, `CheckCOE`=@checkCOE, `CheckITR`=@checkITR, `CheckFinalPay`=@checkFinalPay WHERE empID = '" & LabelEmpID.Text & "'"
+                apdb.updateHRHistory(HRNameAccept, HRStatAccept, HRCommentAccept, HRDateAccept, checkHMO, checkInsurance, checkCompanyID, checkQuitClaim, checkCOE, checkITR, checkFinalPay, updateHistory)
+
+
+                ButtonEdit.Visible = True
+                ButtonEditApprove.Visible = False
+                ButtonEditReject.Visible = False
+                ButtonEditCancel.Visible = False
+                ButtonClose.Visible = True
+
+                CheckBoxHMO.Enabled = False
+                CheckBoxInsurance.Enabled = False
+                CheckBoxCompanyID.Enabled = False
+                CheckBoxQuitClaim.Enabled = False
+                CheckBoxCOE.Enabled = False
+                CheckBoxITR.Enabled = False
+                CheckBoxFinalPay.Enabled = False
+
+                LabelHRGroupComment.Visible = True
+
+                txtboxHRGroup.Visible = False
+                txtboxHRGroup.Text = ""
+
+            Else
+                MsgBox("Request can't approve!, Make sure all checkbox is checked", MsgBoxStyle.Exclamation, "Approve")
+        End If
+        Else
+        MsgBox("Request can't approve!, Make sure all group is approve otherwise you cannot accept/reject", MsgBoxStyle.Exclamation, "Reject")
+        End If
+
+    End Sub
+    'END OF EDIT APPROVE
+
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+        HRNameAccept = LabelHRName.Text
+
+        HRStatAccept = "Reject"
+
+        HRCommentAccept = txtboxHRGroup.Text
+
+        HRDateAccept = Date.Today
+
+        LabelHRGroupApp.Text = HRStatAccept
+
+        LabelDateHRGroup.Text = HRDateAccept
+
+        LabelHRGroupComment.Text = txtboxHRGroup.Text
+
+
+        updateHistory = "UPDATE `historyrequest` SET `HRGroupName`=@lblname, `HRGroupStatus`=@stats, `HRGroupComment`=@comment, `HRGroupDate`=@dateapp, `CheckHMO`=@checkHMO, `CheckInsurance`=@checkInsurance, `CheckCompanyID`=@checkCompanyID, `CheckQuitClaim`=@checkQuitClaim, `CheckCOE`=@checkCOE, `CheckITR`=@checkITR, `CheckFinalPay`=@checkFinalPay WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHRHistory(HRNameAccept, HRStatAccept, HRCommentAccept, HRDateAccept, checkHMO, checkInsurance, checkCompanyID, checkQuitClaim, checkCOE, checkITR, checkFinalPay, updateHistory)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        CheckBoxHMO.Enabled = False
+        CheckBoxInsurance.Enabled = False
+        CheckBoxCompanyID.Enabled = False
+        CheckBoxQuitClaim.Enabled = False
+        CheckBoxCOE.Enabled = False
+        CheckBoxITR.Enabled = False
+        CheckBoxFinalPay.Enabled = False
+
+        LabelHRGroupComment.Visible = True
+
+        txtboxHRGroup.Visible = False
+        txtboxHRGroup.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
+
 
 
     Function verfGroupAccept() As Boolean
@@ -643,6 +761,59 @@ Public Class ViewHRGroup
 
     End Sub
 
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        CheckBoxHMO.Enabled = True
+        CheckBoxInsurance.Enabled = True
+        CheckBoxCompanyID.Enabled = True
+        CheckBoxQuitClaim.Enabled = True
+        CheckBoxCOE.Enabled = True
+        CheckBoxITR.Enabled = True
+        CheckBoxFinalPay.Enabled = True
+
+        txtboxHRGroup.Visible = True
+        txtboxHRGroup.Text = LabelHRGroupComment.Text
+        LabelHRGroupComment.Visible = False
+
+    End Sub
+
+
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        CheckBoxHMO.Enabled = False
+        CheckBoxInsurance.Enabled = False
+        CheckBoxCompanyID.Enabled = False
+        CheckBoxQuitClaim.Enabled = False
+        CheckBoxCOE.Enabled = False
+        CheckBoxITR.Enabled = False
+        CheckBoxFinalPay.Enabled = False
+
+
+
+        txtboxHRGroup.Visible = False
+        txtboxHRGroup.Text = LabelHRGroupComment.Text
+        LabelHRGroupComment.Visible = True
+
+    End Sub
+
+
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnHRGroupApp.Visible = True
         btnHRGroupReject.Visible = True
@@ -779,7 +950,7 @@ Public Class ViewHRGroup
         End If
     End Sub
 
-    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
 
-    End Sub
+
+
 End Class

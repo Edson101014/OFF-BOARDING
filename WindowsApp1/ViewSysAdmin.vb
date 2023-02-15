@@ -48,71 +48,10 @@ Public Class ViewSysAdmin
 
     'ACCEPT
     Private Sub btnSysAdminApp_Click(sender As Object, e As EventArgs) Handles btnSysAdminApp.Click
+
         If verf() = True Then
 
             SysAdminStatAccept = "Approve"
-
-            SysAdminNameAccept = LabelSysAdminName.Text
-
-            SysAdminCommentAccept = txtboxSysAdmin.Text
-
-            SysAdminDateAccept = Date.Today
-
-            LabelSysAdminApp.Text = SysAdminStatAccept
-
-            LabelDateSysAdmin.Text = SysAdminDateAccept
-
-            LabelSysAdminComment.Text = txtboxSysAdmin.Text
-
-            statusNextflow = "Pending"
-
-            inserthistory = "INSERT INTO `sysadminhistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checklaptop, @checkemail, @checkcom)"
-
-            updateHistory = "UPDATE `historyrequest` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
-
-            apdb.insertSysAdminhistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, inserthistory)
-
-            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
-
-
-            insertNextFlow = "INSERT INTO `sysadmingrouphead`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `sysadminheadstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
-
-            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
-
-            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-            apdb.deleteRequest(LabelEmpID.Text, deletedt)
-
-            btnSysAdminApp.Visible = False
-            btnsysAdminReject.Visible = False
-            ButtonCancel.Visible = False
-            ButtonClose.Visible = True
-
-            CheckBoxEmail.Enabled = False
-            CheckBoxComputer.Enabled = False
-            CheckBoxLaptop.Enabled = False
-
-            LabelSysAdminComment.Visible = True
-
-
-            txtboxSysAdmin.Visible = False
-            txtboxSysAdmin.Text = ""
-
-        Else
-            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Admin Dept")
-        End If
-
-    End Sub
-
-    'END OF REJECT
-
-
-
-
-    'REJECT
-    Private Sub btnSysAdminReject_Click(sender As Object, e As EventArgs) Handles btnSysAdminReject.Click
-        If verf() = True Then
-
-            SysAdminStatAccept = "REJECT"
 
             SysAdminNameAccept = LabelSysAdminName.Text
 
@@ -162,9 +101,181 @@ Public Class ViewSysAdmin
         Else
             MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Admin Dept")
         End If
+
     End Sub
 
     'END OF REJECT
+
+
+
+
+    'REJECT
+    Private Sub btnSysAdminReject_Click(sender As Object, e As EventArgs) Handles btnSysAdminReject.Click
+
+
+        SysAdminStatAccept = "REJECT"
+
+            SysAdminNameAccept = LabelSysAdminName.Text
+
+            SysAdminCommentAccept = txtboxSysAdmin.Text
+
+            SysAdminDateAccept = Date.Today
+
+            LabelSysAdminApp.Text = SysAdminStatAccept
+
+            LabelDateSysAdmin.Text = SysAdminDateAccept
+
+            LabelSysAdminComment.Text = txtboxSysAdmin.Text
+
+            statusNextflow = "Pending"
+
+            inserthistory = "INSERT INTO `sysadminhistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checklaptop, @checkemail, @checkcom)"
+
+            updateHistory = "UPDATE `historyrequest` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
+
+            apdb.insertSysAdminhistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, inserthistory)
+
+            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
+
+
+            insertNextFlow = "INSERT INTO `sysadmingrouphead`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `sysadminheadstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
+
+            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
+
+            Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
+            apdb.deleteRequest(LabelEmpID.Text, deletedt)
+
+            btnSysAdminApp.Visible = False
+            btnSysAdminReject.Visible = False
+            ButtonCancel.Visible = False
+            ButtonClose.Visible = True
+
+            CheckBoxEmail.Enabled = False
+            CheckBoxComputer.Enabled = False
+            CheckBoxLaptop.Enabled = False
+
+            LabelSysAdminComment.Visible = True
+
+
+            txtboxSysAdmin.Visible = False
+            txtboxSysAdmin.Text = ""
+
+
+    End Sub
+
+    'END OF REJECT
+
+
+
+
+
+    'EDIT OF APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        If verf() = True Then
+
+            SysAdminStatAccept = "Approve"
+
+            SysAdminNameAccept = LabelSysAdminName.Text
+
+            SysAdminCommentAccept = txtboxSysAdmin.Text
+
+            SysAdminDateAccept = Date.Today
+
+            LabelSysAdminApp.Text = SysAdminStatAccept
+
+            LabelDateSysAdmin.Text = SysAdminDateAccept
+
+            LabelSysAdminComment.Text = txtboxSysAdmin.Text
+
+
+            updateHistory = "UPDATE `sysadminhistory` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+            CheckBoxEmail.Enabled = False
+            CheckBoxComputer.Enabled = False
+            CheckBoxLaptop.Enabled = False
+
+            LabelSysAdminComment.Visible = True
+
+
+            txtboxSysAdmin.Visible = False
+            txtboxSysAdmin.Text = ""
+
+        Else
+            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Admin Dept")
+        End If
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+
+        SysAdminStatAccept = "Reject"
+
+        SysAdminNameAccept = LabelSysAdminName.Text
+
+            SysAdminCommentAccept = txtboxSysAdmin.Text
+
+            SysAdminDateAccept = Date.Today
+
+            LabelSysAdminApp.Text = SysAdminStatAccept
+
+            LabelDateSysAdmin.Text = SysAdminDateAccept
+
+            LabelSysAdminComment.Text = txtboxSysAdmin.Text
+
+
+        updateHistory = "UPDATE `sysadminhistory` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `SysAdminName`=@lblname, `SysAdminStatus`=@stats, `SysAdminComment`=@comment, `SysAdminDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckEmail`=@checkemail, `CheckCom`=@checkcom WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateSysAdmin(SysAdminNameAccept, SysAdminStatAccept, SysAdminCommentAccept, SysAdminDateAccept, checklaptop, checkemail, checkcomputer, updateHistory)
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+            CheckBoxEmail.Enabled = False
+            CheckBoxComputer.Enabled = False
+            CheckBoxLaptop.Enabled = False
+
+            LabelSysAdminComment.Visible = True
+
+
+            txtboxSysAdmin.Visible = False
+            txtboxSysAdmin.Text = ""
+
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
 
 
 
@@ -180,12 +291,54 @@ Public Class ViewSysAdmin
         End If
     End Sub
 
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        CheckBoxLaptop.Enabled = True
+        CheckBoxEmail.Enabled = True
+        CheckBoxComputer.Enabled = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxSysAdmin.Visible = True
+        txtboxSysAdmin.Text = LabelSysAdminComment.Text
+        LabelSysAdminComment.Visible = False
+
+    End Sub
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        CheckBoxLaptop.Enabled = False
+        CheckBoxEmail.Enabled = False
+        CheckBoxComputer.Enabled = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxSysAdmin.Visible = False
+        txtboxSysAdmin.Text = LabelSysAdminComment.Text
+        LabelSysAdminComment.Visible = True
+
+    End Sub
+
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
 
         btnSysAdminApp.Visible = True
         btnSysAdminReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         CheckBoxLaptop.Enabled = True
         CheckBoxEmail.Enabled = True
@@ -314,6 +467,10 @@ Public Class ViewSysAdmin
             ShowData()
         End If
     End Sub
+
+
+
+
 
 
 End Class

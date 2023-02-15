@@ -96,7 +96,7 @@
             statusNextflow = "Pending"
 
 
-            inserthistory = "INSERT INTO `admingrouphistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checkteleco, @checktools, @checkphone, @checktable, @checkothers, @checkotherscomment)"
+            inserthistory = "INSERT INTO `admingrouphistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checkteleco, @checktools, @checkphone, @checktable, @checkothers, @checkotherscomment)"
 
             updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
@@ -151,8 +151,8 @@
 
     Private Sub btnAdminDeptReject_Click(sender As Object, e As EventArgs) Handles btnAdminDeptReject.Click
 
-        If verf() = True Then
-            AdminStatAccept = "Reject"
+
+        AdminStatAccept = "Reject"
 
             AdminNameAccept = LabelAdminName.Text
 
@@ -173,20 +173,16 @@
             statusNextflow = "Pending"
 
 
-            inserthistory = "INSERT INTO `admingrouphistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checkteleco, @checktools, @checkphone, @checktable, @checkothers, @checkotherscomment)"
+            inserthistory = "INSERT INTO `admingrouphistory`( `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @lblname, @stats, @comment, @dateapp, @checkteleco, @checktools, @checkphone, @checktable, @checkothers, @checkotherscomment)"
 
-            updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckLaptop`=@checklaptop, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
-            insertNextFlow = "INSERT INTO `sysadmin`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
 
             apdb.insertAdminhistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, inserthistory)
 
             apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
 
-            apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
-
             insertNextFlow = "INSERT INTO `admingrouphead`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `adminheadstatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
-
             apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
 
             Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
@@ -211,15 +207,142 @@
             txtboxAdminDept.Text = ""
             txtboxOther.Enabled = False
 
-        Else
-            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Admin Dept")
-        End If
+
 
     End Sub
 
 
 
     'END OF REJECT
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        If verf() = True Then
+            AdminStatAccept = "Approve"
+
+            AdminNameAccept = LabelAdminName.Text
+
+            AdminCommentAccept = txtboxAdminDept.Text
+
+            AdminOthersComment = txtboxOther.Text
+
+            AdminDateAccept = Date.Today
+
+            LabelAdminDeptApp.Text = AdminStatAccept
+
+            LabelDateAdminDept.Text = AdminDateAccept
+
+            LabelAdminDeptComment.Text = txtboxAdminDept.Text
+
+            LabelOthers.Text = txtboxOther.Text
+
+            updateHistory = "UPDATE `admingrouphistory` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
+
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+
+            CheckBoxTelco.Enabled = False
+            CheckBoxTools.Enabled = False
+            CheckBoxPhone.Enabled = False
+            CheckBoxTable.Enabled = False
+            CheckBoxOthers.Enabled = False
+
+            LabelAdminDeptComment.Visible = True
+            LabelOthers.Visible = True
+
+            txtboxAdminDept.Visible = False
+            txtboxAdminDept.Text = ""
+            txtboxOther.Enabled = False
+            txtboxOther.Visible = False
+
+        Else
+            MsgBox("Please fill out all the items", MsgBoxStyle.Exclamation, "Admin Dept")
+        End If
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+
+        AdminStatAccept = "Reject"
+
+            AdminNameAccept = LabelAdminName.Text
+
+            AdminCommentAccept = txtboxAdminDept.Text
+
+            AdminOthersComment = txtboxOther.Text
+
+            AdminDateAccept = Date.Today
+
+            LabelAdminDeptApp.Text = AdminStatAccept
+
+            LabelDateAdminDept.Text = AdminDateAccept
+
+            LabelAdminDeptComment.Text = txtboxAdminDept.Text
+
+            LabelOthers.Text = txtboxOther.Text
+
+
+            updateHistory = "UPDATE `admingrouphistory` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
+
+            updateHistory = "UPDATE `historyrequest` SET `AdminGroupName`=@lblname, `AdminGroupStatus`=@stats, `AdminGroupComment`=@comment, `AdminGroupDate`=@dateapp, `CheckTeleco`=@checkteleco, `CheckTools`=@checktools, `CheckPhone`=@checkphone, `CheckTable`=@checktable, `CheckOthers`=@checkothers, `CheckOthersComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+            apdb.updateAdmin(AdminNameAccept, AdminStatAccept, AdminCommentAccept, AdminDateAccept, checkteleco, checktools, checkphone, checktable, checkothers, AdminOthersComment, updateHistory)
+
+
+
+
+            ButtonEdit.Visible = True
+            ButtonEditApprove.Visible = False
+            ButtonEditReject.Visible = False
+            ButtonEditCancel.Visible = False
+            ButtonClose.Visible = True
+
+
+            CheckBoxTelco.Enabled = False
+            CheckBoxTools.Enabled = False
+            CheckBoxPhone.Enabled = False
+            CheckBoxTable.Enabled = False
+            CheckBoxOthers.Enabled = False
+
+            LabelAdminDeptComment.Visible = True
+            LabelOthers.Visible = True
+
+            txtboxAdminDept.Visible = False
+            txtboxAdminDept.Text = ""
+            txtboxOther.Enabled = False
+            txtboxOther.Visible = False
+
+
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
 
     Private Sub LabelAdminDeptApp_TextChanged(sender As Object, e As EventArgs) Handles LabelAdminDeptApp.TextChanged
         If LabelAdminDeptApp.Text = "Pending" Then
@@ -230,6 +353,55 @@
             LabelAdminDeptApp.BackColor = Color.Firebrick
 
         End If
+    End Sub
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        CheckBoxTelco.Enabled = True
+        CheckBoxTools.Enabled = True
+        CheckBoxPhone.Enabled = True
+        CheckBoxTable.Enabled = True
+        CheckBoxOthers.Enabled = True
+
+        txtboxAdminDept.Visible = True
+        txtboxAdminDept.Text = LabelAdminDeptComment.Text
+        LabelAdminDeptComment.Visible = False
+        txtboxOther.Visible = True
+        txtboxOther.Text = LabelOthers.Text
+        LabelOthers.Visible = False
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        CheckBoxTelco.Enabled = False
+        CheckBoxTools.Enabled = False
+        CheckBoxPhone.Enabled = False
+        CheckBoxTable.Enabled = False
+        CheckBoxOthers.Enabled = False
+
+
+
+        txtboxAdminDept.Visible = False
+        txtboxAdminDept.Text = LabelAdminDeptComment.Text
+        LabelAdminDeptComment.Visible = True
+        txtboxOther.Visible = False
+        txtboxOther.Text = LabelOthers.Text
+        LabelOthers.Visible = True
+
     End Sub
 
 
@@ -273,6 +445,7 @@
         btnAdminDeptReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
 
 
         CheckBoxTelco.Checked = False
@@ -363,6 +536,10 @@
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         CheckBoxTelco.Checked = False
         CheckBoxTools.Checked = False
@@ -419,4 +596,9 @@
     Private Sub txtboxOther_MouseClick(sender As Object, e As MouseEventArgs) Handles txtboxOther.MouseClick
         txtboxOther.BackColor = SystemColors.Control
     End Sub
+
+
+
+
+
 End Class

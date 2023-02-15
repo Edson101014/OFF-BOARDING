@@ -358,6 +358,11 @@ Public Class ViewMarketing
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         LabelMarketingDeptApp.Text = "Pending"
         LabelMarketingDeptComment.Text = ""
         LabelDateMarketingDept.Text = ""

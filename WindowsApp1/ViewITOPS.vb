@@ -164,9 +164,6 @@ Public Class ViewITOPS
         apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
 
 
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
-
 
         ButtonEdit.Visible = True
         ButtonEditApprove.Visible = False
@@ -211,8 +208,6 @@ Public Class ViewITOPS
         apdb.updateHistory(ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, updateHistory)
 
 
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
 
         ButtonEdit.Visible = True
@@ -357,6 +352,12 @@ Public Class ViewITOPS
         btnITOPSDeptReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
 
         LabelITOPSDeptApp.Text = "Pending"
         LabelITOPSDeptComment.Text = ""
