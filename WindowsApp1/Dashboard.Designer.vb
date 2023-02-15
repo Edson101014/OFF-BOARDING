@@ -49,6 +49,9 @@ Partial Class Dashboard
         Me.TextBoxSearchHistory = New System.Windows.Forms.TextBox()
         Me.DataGridHistory = New System.Windows.Forms.DataGridView()
         Me.DataGridViewButtonColumn2 = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.DataGridViewComplete = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.LabelTotalHR = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -71,12 +74,15 @@ Partial Class Dashboard
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.LabelTotalComplete = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.DataGridHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.DataGridViewComplete, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.DataGridHR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage5.SuspendLayout()
@@ -396,6 +402,41 @@ Partial Class Dashboard
         Me.DataGridViewButtonColumn2.Text = "OPEN"
         Me.DataGridViewButtonColumn2.UseColumnTextForButtonValue = True
         '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.LabelTotalComplete)
+        Me.TabPage3.Controls.Add(Me.Label15)
+        Me.TabPage3.Controls.Add(Me.DataGridViewComplete)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(1044, 429)
+        Me.TabPage3.TabIndex = 5
+        Me.TabPage3.Text = "Complete History Request "
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'DataGridViewComplete
+        '
+        Me.DataGridViewComplete.AllowUserToAddRows = False
+        Me.DataGridViewComplete.AllowUserToDeleteRows = False
+        Me.DataGridViewComplete.AllowUserToResizeColumns = False
+        Me.DataGridViewComplete.AllowUserToResizeRows = False
+        Me.DataGridViewComplete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewComplete.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewButtonColumn1})
+        Me.DataGridViewComplete.Location = New System.Drawing.Point(6, 47)
+        Me.DataGridViewComplete.Name = "DataGridViewComplete"
+        Me.DataGridViewComplete.ReadOnly = True
+        Me.DataGridViewComplete.RowHeadersVisible = False
+        Me.DataGridViewComplete.Size = New System.Drawing.Size(1023, 334)
+        Me.DataGridViewComplete.TabIndex = 1
+        '
+        'DataGridViewButtonColumn1
+        '
+        Me.DataGridViewButtonColumn1.HeaderText = "View"
+        Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
+        Me.DataGridViewButtonColumn1.ReadOnly = True
+        Me.DataGridViewButtonColumn1.Text = "view"
+        Me.DataGridViewButtonColumn1.UseColumnTextForButtonValue = True
+        '
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.LabelTotalHR)
@@ -638,14 +679,25 @@ Partial Class Dashboard
         Me.TabPage6.Text = "TabPage5"
         Me.TabPage6.UseVisualStyleBackColor = True
         '
-        'TabPage3
+        'LabelTotalComplete
         '
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(1044, 429)
-        Me.TabPage3.TabIndex = 5
-        Me.TabPage3.Text = "Complete History Request "
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.LabelTotalComplete.AutoSize = True
+        Me.LabelTotalComplete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTotalComplete.Location = New System.Drawing.Point(919, 396)
+        Me.LabelTotalComplete.Name = "LabelTotalComplete"
+        Me.LabelTotalComplete.Size = New System.Drawing.Size(110, 20)
+        Me.LabelTotalComplete.TabIndex = 23
+        Me.LabelTotalComplete.Text = "LABELTOTAL"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(768, 396)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(145, 20)
+        Me.Label15.TabIndex = 22
+        Me.Label15.Text = "TOTAL REQUEST:"
         '
         'Dashboard
         '
@@ -664,6 +716,9 @@ Partial Class Dashboard
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         CType(Me.DataGridHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
+        CType(Me.DataGridViewComplete, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
         CType(Me.DataGridHR, System.ComponentModel.ISupportInitialize).EndInit()
@@ -722,4 +777,8 @@ Partial Class Dashboard
     Friend WithEvents Label7 As Label
     Friend WithEvents DataGridViewButtonColumn2 As DataGridViewButtonColumn
     Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents DataGridViewComplete As DataGridView
+    Friend WithEvents DataGridViewButtonColumn1 As DataGridViewButtonColumn
+    Friend WithEvents LabelTotalComplete As Label
+    Friend WithEvents Label15 As Label
 End Class

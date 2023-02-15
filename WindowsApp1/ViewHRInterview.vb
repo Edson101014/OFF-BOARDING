@@ -119,6 +119,7 @@ Public Class ViewHRInterview
 
     'FINAL ACCEPT
     Private Sub btnFinalInterview_Click(sender As Object, e As EventArgs) Handles btnFinalInterview.Click
+
         If verfCheckedFinal() = True Then
             HRInterviewStatAccept = "Interviewed"
 

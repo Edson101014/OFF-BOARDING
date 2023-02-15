@@ -153,6 +153,100 @@ Public Class ViewFinanceHead
 
 
 
+
+    'APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        FinanceHeadStatAccept = "Approve"
+
+        FinanceHeadNameAccept = LabelFinanceHeadName.Text
+
+        FinanceHeadCommentAccept = txtboxFinanceHead.Text
+
+        FinanceHeadDateAccept = Date.Today
+
+        LabelFinanceHeadApp.Text = FinanceHeadStatAccept
+
+        LabelDateFinanceHead.Text = FinanceHeadDateAccept
+
+        LabelFinanceHeadComment.Text = txtboxFinanceHead.Text
+
+        updateHistory = "UPDATE `financeheadhistory` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, updateHistory)
+
+
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelFinanceHeadComment.Visible = True
+
+        txtboxFinanceHead.Visible = False
+        txtboxFinanceHead.Text = ""
+
+    End Sub
+
+    'END OF APPROVE
+
+
+
+
+
+    'EDIT REJECT
+
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+        FinanceHeadStatAccept = "Reject"
+        FinanceHeadNameAccept = LabelFinanceHeadName.Text
+
+        FinanceHeadCommentAccept = txtboxFinanceHead.Text
+
+        FinanceHeadDateAccept = Date.Today
+
+        LabelFinanceHeadApp.Text = FinanceHeadStatAccept
+
+        LabelDateFinanceHead.Text = FinanceHeadDateAccept
+
+        LabelFinanceHeadComment.Text = txtboxFinanceHead.Text
+
+        updateHistory = "UPDATE `financeheadhistory` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
+        apdb.updateHistory(FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, updateHistory)
+
+
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelFinanceHeadComment.Visible = True
+
+        txtboxFinanceHead.Visible = False
+        txtboxFinanceHead.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
+
+
+
+
+
     'Private Function verfFinanceHeadIfEmpty() As Boolean
     '    Dim query As String
     '    query = "select FINANCEhead from checkergroup where empID='" & LabelEmpID.Text & "'"
@@ -207,6 +301,35 @@ Public Class ViewFinanceHead
         End If
     End Sub
 
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxFinanceHead.Visible = True
+        txtboxFinanceHead.Text = LabelFinanceHeadComment.Text
+        LabelFinanceHeadComment.Visible = False
+
+    End Sub
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxFinanceHead.Visible = False
+        txtboxFinanceHead.Text = LabelFinanceHeadComment.Text
+        LabelFinanceHeadComment.Visible = True
+
+    End Sub
+
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
         btnFinanceHeadApp.Visible = True
         btnFinanceHeadReject.Visible = True
@@ -244,6 +367,11 @@ Public Class ViewFinanceHead
         LabelFinanceHeadComment.Visible = False
         LabelDateFinanceHead.Text = ""
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         txtboxFinanceHead.Visible = True
         txtboxFinanceHead.Text = ""
 
@@ -267,6 +395,8 @@ Public Class ViewFinanceHead
             ShowData()
         End If
     End Sub
+
+
 
 
 

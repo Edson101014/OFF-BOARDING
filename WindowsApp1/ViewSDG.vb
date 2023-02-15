@@ -161,8 +161,6 @@ Public Class ViewSDG
         apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
 
 
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
 
         ButtonEdit.Visible = True
@@ -206,9 +204,6 @@ Public Class ViewSDG
         updateHistory = "UPDATE `historyrequest` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
         apdb.updateHistory(SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, updateHistory)
 
-
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
         ButtonEdit.Visible = True
         ButtonEditApprove.Visible = False
@@ -353,6 +348,12 @@ Public Class ViewSDG
         btnSDGDeptReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         LabelSDGDeptApp.Text = "Pending"
         LabelSDGDeptComment.Text = ""

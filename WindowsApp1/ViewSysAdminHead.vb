@@ -81,6 +81,7 @@ Public Class ViewSysAdminHead
 
     'REJECT
     Private Sub btnSysAdminHeadReject_Click(sender As Object, e As EventArgs) Handles btnSysAdminHeadReject.Click
+
         SysAdminHeadStatAccept = "Reject"
 
         SysAdminHeadNameAccept = LabelSysAdminHeadName.Text
@@ -133,6 +134,105 @@ Public Class ViewSysAdminHead
 
     End Sub
 
+    'END OF REJECT
+
+
+
+
+
+
+    'EDIT APPROVE
+    Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
+        SysAdminHeadStatAccept = "Approve"
+
+        SysAdminHeadNameAccept = LabelSysAdminHeadName.Text
+
+        SysAdminHeadCommentAccept = txtboxSysAdminHead.Text
+
+        SysAdminHeadDateAccept = Date.Today
+
+        LabelSysAdminHeadApp.Text = SysAdminHeadStatAccept
+
+        LabelDateSysAdminHead.Text = SysAdminHeadDateAccept
+
+        LabelSysAdminHeadComment.Text = txtboxSysAdminHead.Text
+
+
+        updateHistory = "UPDATE `sysadmingroupheadhistory` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(SysAdminHeadNameAccept, SysAdminHeadStatAccept, SysAdminHeadDateAccept, SysAdminHeadCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(SysAdminHeadNameAccept, SysAdminHeadStatAccept, SysAdminHeadDateAccept, SysAdminHeadCommentAccept, updateHistory)
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelSysAdminHeadComment.Visible = True
+
+        txtboxSysAdminHead.Visible = False
+        txtboxSysAdminHead.Text = ""
+
+    End Sub
+
+    'END OF EDIT APPROVE
+
+
+
+
+
+
+    'EDIT REJECT
+    Private Sub ButtonEditReject_Click(sender As Object, e As EventArgs) Handles ButtonEditReject.Click
+
+        SysAdminHeadStatAccept = "Reject"
+
+        SysAdminHeadNameAccept = LabelSysAdminHeadName.Text
+
+        SysAdminHeadCommentAccept = txtboxSysAdminHead.Text
+
+        SysAdminHeadDateAccept = Date.Today
+
+        LabelSysAdminHeadApp.Text = SysAdminHeadStatAccept
+
+        LabelDateSysAdminHead.Text = SysAdminHeadDateAccept
+
+        LabelSysAdminHeadComment.Text = txtboxSysAdminHead.Text
+
+
+
+
+        updateHistory = "UPDATE `sysadmingroupheadhistory` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(SysAdminHeadNameAccept, SysAdminHeadStatAccept, SysAdminHeadDateAccept, SysAdminHeadCommentAccept, updateHistory)
+
+        updateHistory = "UPDATE `historyrequest` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
+
+        apdb.updateHistory(SysAdminHeadNameAccept, SysAdminHeadStatAccept, SysAdminHeadDateAccept, SysAdminHeadCommentAccept, updateHistory)
+
+
+        ButtonEdit.Visible = True
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+        ButtonClose.Visible = True
+
+        LabelSysAdminHeadComment.Visible = True
+
+        txtboxSysAdminHead.Visible = False
+        txtboxSysAdminHead.Text = ""
+
+    End Sub
+
+    'END OF EDIT REJECT
+
+
+
 
 
     'Private Function verfCheckerComplete() As Boolean
@@ -166,6 +266,35 @@ Public Class ViewSysAdminHead
 
         End If
     End Sub
+
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+        ButtonEditApprove.Visible = True
+        ButtonEditReject.Visible = True
+        ButtonEditCancel.Visible = True
+
+        ButtonEdit.Visible = False
+        ButtonClose.Visible = False
+
+        txtboxSysAdminHead.Visible = True
+        txtboxSysAdminHead.Text = LabelSysAdminHeadComment.Text
+        LabelSysAdminHeadComment.Visible = False
+    End Sub
+
+    Private Sub ButtonEditCancel_Click(sender As Object, e As EventArgs) Handles ButtonEditCancel.Click
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
+        ButtonEdit.Visible = True
+        ButtonClose.Visible = True
+
+        txtboxSysAdminHead.Visible = False
+        txtboxSysAdminHead.Text = LabelSysAdminHeadComment.Text
+        LabelSysAdminHeadComment.Visible = True
+    End Sub
+
+
 
     Private Sub ButtonCancel_Click(sender As Object, e As EventArgs) Handles ButtonCancel.Click
 
@@ -239,4 +368,8 @@ Public Class ViewSysAdminHead
             ShowData()
         End If
     End Sub
+
+
+
+
 End Class

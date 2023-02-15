@@ -166,9 +166,6 @@ Public Class ViewPMG
         apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
 
 
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
-
 
         ButtonEdit.Visible = True
         ButtonEditApprove.Visible = False
@@ -212,9 +209,6 @@ Public Class ViewPMG
         apdb.updateHistory(PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, updateHistory)
 
 
-
-        Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
-        apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
 
         ButtonEdit.Visible = True
@@ -361,6 +355,12 @@ Public Class ViewPMG
         btnPMGDeptReject.Visible = True
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
+
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
 
         LabelPMGDeptApp.Text = "Pending"
         LabelPMGDeptComment.Text = ""

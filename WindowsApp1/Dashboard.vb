@@ -18,14 +18,18 @@ Public Class Dashboard
 
         ElseIf Login.flag = "HR" Then
             ShowHRData()
+
         ElseIf Login.flag = "HR Interview" Then
             ShowHRInterviewData()
 
+
         ElseIf Login.flag = "HR Head" Then
             ShowHRHeadData()
+
         Else
             ShowData()
         End If
+
 
 
 
@@ -444,21 +448,309 @@ Public Class Dashboard
 
                 ViewMarketing.ShowDialog()
 
-                'ElseIf Login.flag = "Finance Dept Head" Then
-                '    ViewHistoryFINANCE()
-                'ElseIf Login.flag = "ADMIN" Then
-                '    ViewHistoryADMIN()
-                'ElseIf Login.flag = "ADMINHead" Then
-                '    ViewHistoryAdminHead()
+            ElseIf Login.flag = "Finance Dept Head" Then
+
+                ViewFinance.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewFinance.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewFinance.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewFinance.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewFinance.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewFinance.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewFinance.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewFinance.LabelFinanceName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewFinance.LabelFinanceDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewFinance.LabelFinanceDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewFinance.LabelDateFinanceDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                If DataGridHistory.CurrentRow.Cells(12).Value.ToString = "Checked" Then
+                    ViewFinance.CheckBoxCash.Checked = True
+                Else
+                    ViewFinance.CheckBoxCash.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(13).Value.ToString = "Checked" Then
+                    ViewFinance.CheckBoxOthers.Checked = True
+                    ViewFinance.txtboxOther.Text = DataGridHistory.CurrentRow.Cells(14).Value.ToString
+                Else
+                    ViewFinance.CheckBoxOthers.Checked = False
+                    ViewFinance.txtboxOther.Text = ""
+                End If
+
+                ViewFinance.btnFinanceDeptApp.Visible = False
+                ViewFinance.btnFinanceDeptReject.Visible = False
+                ViewFinance.ButtonCancel.Visible = False
+
+                ViewFinance.txtboxFinanceDept.Visible = False
+                ViewFinance.LabelFinanceDeptComment.Visible = True
+
+                ViewFinance.CheckBoxCash.Enabled = False
+                ViewFinance.CheckBoxOthers.Enabled = False
+                ViewFinance.txtboxOther.Enabled = False
+
+                ViewFinance.ButtonEdit.Visible = True
+                ViewFinance.ButtonClose.Visible = True
+
+                ViewFinance.ShowDialog()
+
+            ElseIf Login.flag = "Finance Head" Then
+                ViewFinanceHead.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewFinanceHead.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewFinanceHead.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewFinanceHead.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewFinanceHead.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewFinanceHead.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewFinanceHead.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewFinanceHead.LabelFinanceHeadName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewFinanceHead.LabelFinanceHeadApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewFinanceHead.LabelFinanceHeadComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewFinanceHead.LabelDateFinanceHead.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
 
 
-                'ElseIf Login.flag = "SYSADMIN" Then
-                '    ViewHistorySysAdmin()
+                ViewFinanceHead.btnFinanceHeadApp.Visible = False
+                ViewFinanceHead.btnFinanceHeadReject.Visible = False
+                ViewFinanceHead.ButtonCancel.Visible = False
 
-                'ElseIf Login.flag = "SYSADMINHEAD" Then
-                '    ViewHistorySysAdminHead()
+                ViewFinanceHead.txtboxFinanceHead.Visible = False
+                ViewFinanceHead.LabelFinanceHeadComment.Visible = True
+
+                ViewFinanceHead.ButtonEdit.Visible = True
+                ViewFinanceHead.ButtonClose.Visible = True
+
+                ViewFinanceHead.ShowDialog()
+
+            ElseIf Login.flag = "ADMIN" Then
+                ViewAdmin.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewAdmin.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewAdmin.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewAdmin.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewAdmin.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewAdmin.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewAdmin.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewAdmin.LabelAdminName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewAdmin.LabelAdminDeptApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewAdmin.LabelAdminDeptComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewAdmin.LabelDateAdminDept.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                If DataGridHistory.CurrentRow.Cells(12).Value.ToString = "Checked" Then
+                    ViewAdmin.CheckBoxTelco.Checked = True
+                Else
+                    ViewAdmin.CheckBoxTelco.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(13).Value.ToString = "Checked" Then
+                    ViewAdmin.CheckBoxTools.Checked = True
+                Else
+                    ViewAdmin.CheckBoxTools.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(14).Value.ToString = "Checked" Then
+                    ViewAdmin.CheckBoxPhone.Checked = True
+                Else
+                    ViewAdmin.CheckBoxPhone.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(15).Value.ToString = "Checked" Then
+                    ViewAdmin.CheckBoxTable.Checked = True
+                Else
+                    ViewAdmin.CheckBoxTable.Checked = False
+                End If
+
+                If DataGridHistory.CurrentRow.Cells(16).Value.ToString = "Checked" Then
+                    ViewAdmin.CheckBoxOthers.Checked = True
+                    ViewAdmin.txtboxOther.Text = DataGridHistory.CurrentRow.Cells(17).Value.ToString
+                    ViewAdmin.LabelOthers.Text = ViewAdmin.txtboxOther.Text
+                Else
+                    ViewAdmin.CheckBoxOthers.Checked = False
+                    ViewAdmin.txtboxOther.Text = ""
+                    ViewAdmin.LabelOthers.Text = ViewAdmin.txtboxOther.Text
+                End If
 
 
+                ViewAdmin.btnAdminDeptApp.Visible = False
+                ViewAdmin.btnAdminDeptReject.Visible = False
+                ViewAdmin.ButtonCancel.Visible = False
+
+
+                ViewAdmin.CheckBoxTelco.Enabled = False
+                ViewAdmin.CheckBoxTools.Enabled = False
+                ViewAdmin.CheckBoxPhone.Enabled = False
+                ViewAdmin.CheckBoxTable.Enabled = False
+                ViewAdmin.CheckBoxOthers.Enabled = False
+                ViewAdmin.txtboxOther.Enabled = False
+                ViewAdmin.txtboxOther.Visible = False
+                ViewAdmin.LabelOthers.Visible = True
+
+                ViewAdmin.txtboxAdminDept.Visible = False
+                ViewAdmin.LabelAdminDeptComment.Visible = True
+
+                ViewAdmin.ButtonEdit.Visible = True
+                ViewAdmin.ButtonClose.Visible = True
+
+                ViewAdmin.ShowDialog()
+
+            ElseIf Login.flag = "ADMIN HEAD" Then
+
+                ViewAdminHead.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewAdminHead.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewAdminHead.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewAdminHead.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewAdminHead.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewAdminHead.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewAdminHead.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+
+                ViewAdminHead.LabelAdminHeadName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewAdminHead.LabelAdminHeadApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewAdminHead.LabelAdminHeadComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewAdminHead.LabelDateAdminHead.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewAdminHead.btnAdminHeadApp.Visible = False
+                ViewAdminHead.btnAdminHeadReject.Visible = False
+                ViewAdminHead.ButtonCancel.Visible = False
+
+                ViewAdminHead.txtboxAdminHead.Visible = False
+                ViewAdminHead.LabelAdminHeadComment.Visible = True
+
+                ViewAdminHead.ButtonEdit.Visible = True
+                ViewAdminHead.ButtonClose.Visible = True
+
+                ViewAdminHead.ShowDialog()
+
+            ElseIf Login.flag = "SYSADMIN" Then
+
+                ViewSysAdmin.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewSysAdmin.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewSysAdmin.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewSysAdmin.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewSysAdmin.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewSysAdmin.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewSysAdmin.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+
+                ViewSysAdmin.LabelSysAdminName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewSysAdmin.LabelSysAdminApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewSysAdmin.LabelSysAdminComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewSysAdmin.LabelDateSysAdmin.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewSysAdmin.btnSysAdminApp.Visible = False
+                ViewSysAdmin.btnSysAdminReject.Visible = False
+                ViewSysAdmin.ButtonCancel.Visible = False
+
+                ViewSysAdmin.txtboxSysAdmin.Visible = False
+                ViewSysAdmin.LabelSysAdminComment.Visible = True
+
+                ViewSysAdmin.CheckBoxLaptop.Enabled = False
+                ViewSysAdmin.CheckBoxEmail.Enabled = False
+                ViewSysAdmin.CheckBoxComputer.Enabled = False
+
+
+                ViewSysAdmin.ButtonEdit.Visible = True
+                ViewSysAdmin.ButtonClose.Visible = True
+
+                ViewSysAdmin.ShowDialog()
+
+            ElseIf Login.flag = "SYS ADMIN HEAD" Then
+
+                ViewSysAdminHead.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewSysAdminHead.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewSysAdminHead.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewSysAdminHead.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewSysAdminHead.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewSysAdminHead.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewSysAdminHead.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+
+                ViewSysAdminHead.LabelSysAdminHeadName.Text = DataGridHistory.CurrentRow.Cells(8).Value.ToString
+                ViewSysAdminHead.LabelSysAdminHeadApp.Text = DataGridHistory.CurrentRow.Cells(9).Value.ToString
+                ViewSysAdminHead.LabelSysAdminHeadComment.Text = DataGridHistory.CurrentRow.Cells(10).Value.ToString
+                ViewSysAdminHead.LabelDateSysAdminHead.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(11).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                ViewSysAdminHead.btnSysAdminHeadApp.Visible = False
+                ViewSysAdminHead.btnSysAdminHeadReject.Visible = False
+                ViewSysAdminHead.ButtonCancel.Visible = False
+
+                ViewSysAdminHead.txtboxSysAdminHead.Visible = False
+                ViewSysAdminHead.LabelSysAdminHeadComment.Visible = True
+
+                ViewSysAdminHead.ButtonEdit.Visible = True
+                ViewSysAdminHead.ButtonClose.Visible = True
+
+                ViewSysAdminHead.ShowDialog()
+
+            ElseIf Login.flag = "HR" Then
+
+                ViewHRGroup.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewHRGroup.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewHRGroup.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewHRGroup.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewHRGroup.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewHRGroup.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewHRGroup.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                If DataGridHistory.CurrentRow.Cells(72).Value.Equals(DBNull.Value) Then
+                    MsgBox("Please Approve/Reject first in the Dashboard before proceed to the history", MsgBoxStyle.Exclamation, "HR history")
+                Else
+                    ViewHRGroup.LabelHRName.Text = DataGridHistory.CurrentRow.Cells(72).Value.ToString
+                    ViewHRGroup.LabelHRGroupApp.Text = DataGridHistory.CurrentRow.Cells(73).Value.ToString
+                    ViewHRGroup.LabelHRGroupComment.Text = DataGridHistory.CurrentRow.Cells(74).Value.ToString
+                    ViewHRGroup.LabelDateHRGroup.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(75).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                    ViewHRGroup.btnHRGroupApp.Visible = False
+                    ViewHRGroup.btnHRGroupReject.Visible = False
+                    ViewHRGroup.ButtonCancel.Visible = False
+
+                    ViewHRGroup.txtboxHRGroup.Visible = False
+                    ViewHRGroup.LabelHRGroupComment.Visible = True
+
+
+                    ViewHRGroup.CheckBoxHMO.Enabled = False
+                    ViewHRGroup.CheckBoxInsurance.Enabled = False
+                    ViewHRGroup.CheckBoxCompanyID.Enabled = False
+                    ViewHRGroup.CheckBoxQuitClaim.Enabled = False
+                    ViewHRGroup.CheckBoxCOE.Enabled = False
+                    ViewHRGroup.CheckBoxITR.Enabled = False
+                    ViewHRGroup.CheckBoxFinalPay.Enabled = False
+
+
+                    ViewHRGroup.ButtonEdit.Visible = True
+                    ViewHRGroup.ButtonClose.Visible = True
+
+                    ViewHRGroup.ShowDialog()
+                End If
+
+
+            ElseIf Login.flag = "HR Head" Then
+
+                ViewHRHead.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewHRHead.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewHRHead.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewHRHead.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewHRHead.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewHRHead.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewHRHead.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+                If DataGridHistory.CurrentRow.Cells(68).Value.Equals(DBNull.Value) Then
+                    MsgBox("Please Approve/Reject first in the Dashboard before proceed to the history", MsgBoxStyle.Exclamation, "HR history")
+                Else
+                    ViewHRHead.LabelHRHeadName.Text = DataGridHistory.CurrentRow.Cells(68).Value.ToString
+                    ViewHRHead.LabelHRHeadApp.Text = DataGridHistory.CurrentRow.Cells(69).Value.ToString
+                    ViewHRHead.LabelHRHeadComment.Text = DataGridHistory.CurrentRow.Cells(70).Value.ToString
+                    ViewHRHead.LabelDateHRHead.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(71).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                    ViewHRHead.btnHRHeadApp.Visible = False
+                    ViewHRHead.btnHRHeadReject.Visible = False
+                    ViewHRHead.ButtonCancel.Visible = False
+
+                    ViewHRHead.txtboxHRHead.Visible = False
+                    ViewHRHead.LabelHRHeadComment.Visible = True
+
+                    ViewHRHead.ButtonEdit.Visible = True
+                    ViewHRHead.ButtonClose.Visible = True
+
+                    ViewHRHead.ShowDialog()
+                End If
             End If
 
         End If
@@ -466,60 +758,6 @@ Public Class Dashboard
 
     End Sub
 
-    Sub fillGridHR(ByVal command As MySqlCommand)
-        DataGridHR.ReadOnly = True
-        DataGridHR.DataSource = app.getemployee(command)
-        DataGridHR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        DataGridHR.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
-
-
-        DataGridHR.Columns(0).HeaderText = "Username"
-        DataGridHR.Columns(1).HeaderText = "Password"
-        DataGridHR.Columns(2).HeaderText = "Name"
-        DataGridHR.Columns(3).HeaderText = "Email"
-        DataGridHR.Columns(4).HeaderText = "Title"
-        DataGridHR.Columns(5).HeaderText = "Department"
-        LabelTotalHR.Text = DataGridHR.Rows.Count
-    End Sub
-
-    Private Sub DataGridHR_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridHR.CellMouseClick
-        ButtonEdit.Enabled = True
-        ButtonDelete.Enabled = True
-        HRUserForm.TextBoxUsername.Text = DataGridHR.CurrentRow.Cells(0).Value.ToString
-        HRUserForm.TextBoxPassword.Text = DataGridHR.CurrentRow.Cells(1).Value.ToString
-        HRUserForm.TextBoxName.Text = DataGridHR.CurrentRow.Cells(2).Value.ToString
-        HRUserForm.TextBoxEmail.Text = DataGridHR.CurrentRow.Cells(3).Value.ToString
-        HRUserForm.ComboBoxTitle.SelectedItem = DataGridHR.CurrentRow.Cells(4).Value.ToString
-        HRUserForm.ComboBoxDept.SelectedItem = DataGridHR.CurrentRow.Cells(5).Value.ToString
-
-    End Sub
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
-        HRUserForm.ButtonAdd.Enabled = False
-        HRUserForm.ButtonAdd.Visible = False
-        HRUserForm.ButtonDelete.Enabled = False
-        HRUserForm.ButtonDelete.Visible = False
-        HRUserForm.ButtonEdit.Enabled = True
-        HRUserForm.ButtonEdit.Visible = True
-        HRUserForm.ShowDialog()
-    End Sub
-    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
-        HRUserForm.TextBoxUsername.Clear()
-        HRUserForm.TextBoxPassword.Clear()
-        HRUserForm.TextBoxName.Clear()
-        HRUserForm.TextBoxEmail.Clear()
-        HRUserForm.ComboBoxTitle.SelectedIndex = -1
-        HRUserForm.ComboBoxDept.SelectedIndex = -1
-        HRUserForm.ShowDialog()
-    End Sub
-    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
-        HRUserForm.ButtonAdd.Enabled = False
-        HRUserForm.ButtonAdd.Visible = False
-        HRUserForm.ButtonEdit.Enabled = False
-        HRUserForm.ButtonEdit.Visible = False
-        HRUserForm.ButtonDelete.Enabled = True
-        HRUserForm.ButtonDelete.Visible = True
-        HRUserForm.ShowDialog()
-    End Sub
 
     Private Sub TextBoxsSearchDash_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearchDash.TextChanged
         If CheckBoxByID.Checked = True Then
@@ -999,6 +1237,71 @@ Public Class Dashboard
             query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY department"
             fillGridHR(query)
         End If
+    End Sub
+
+    Private Sub DataGridHR_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridHR.CellMouseClick
+        ButtonEdit.Enabled = True
+        ButtonDelete.Enabled = True
+        HRUser.TextBoxUsername.Text = DataGridHR.CurrentRow.Cells(0).Value.ToString
+        HRUser.TextBoxPassword.Text = DataGridHR.CurrentRow.Cells(1).Value.ToString
+        HRUser.TextBoxName.Text = DataGridHR.CurrentRow.Cells(2).Value.ToString
+        HRUser.TextBoxEmail.Text = DataGridHR.CurrentRow.Cells(3).Value.ToString
+        HRUser.ComboBoxTitle.SelectedItem = DataGridHR.CurrentRow.Cells(4).Value.ToString
+        HRUser.ComboBoxDepartment.SelectedItem = DataGridHR.CurrentRow.Cells(5).Value.ToString
+
+
+
+        If e.RowIndex >= 0 AndAlso e.RowIndex < DataGridHR.Rows.Count AndAlso e.ColumnIndex >= 0 AndAlso e.ColumnIndex < DataGridHR.Columns.Count Then
+            Dim clickedRow As DataGridViewRow = DataGridHR.Rows(e.RowIndex)
+            Dim clickedCell As DataGridViewCell = clickedRow.Cells(e.ColumnIndex)
+            ' Do something with the clicked cell or row...
+            For Each cell As DataGridViewCell In clickedRow.Cells
+                cell.Selected = True
+            Next
+        End If
+    End Sub
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+        HRUser.ButtonADD.Enabled = False
+        HRUser.ButtonADD.Visible = False
+        HRUser.ButtonDelete.Enabled = False
+        HRUser.ButtonDelete.Visible = False
+        HRUser.ButtonEdit.Enabled = True
+        HRUser.ButtonEdit.Visible = True
+
+        HRUser.TextBoxUsername.Enabled = True
+        HRUser.TextBoxPassword.Enabled = True
+        HRUser.TextBoxName.Enabled = True
+        HRUser.TextBoxEmail.Enabled = True
+        HRUser.ComboBoxTitle.Enabled = True
+        HRUser.ComboBoxDepartment.Enabled = True
+
+        HRUser.TextBoxName.Enabled = Enabled
+        HRUser.ShowDialog()
+    End Sub
+    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
+        HRUser.TextBoxUsername.Clear()
+        HRUser.TextBoxPassword.Clear()
+        HRUser.TextBoxName.Clear()
+        HRUser.TextBoxEmail.Clear()
+        HRUser.ComboBoxTitle.SelectedIndex = -1
+        HRUser.ComboBoxDepartment.SelectedIndex = -1
+
+        HRUser.TextBoxUsername.Enabled = True
+        HRUser.TextBoxPassword.Enabled = True
+        HRUser.TextBoxName.Enabled = True
+        HRUser.TextBoxEmail.Enabled = True
+        HRUser.ComboBoxTitle.Enabled = True
+        HRUser.ComboBoxDepartment.Enabled = True
+        HRUser.ShowDialog()
+    End Sub
+    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
+        HRUser.ButtonADD.Enabled = False
+        HRUser.ButtonADD.Visible = False
+        HRUser.ButtonEdit.Enabled = False
+        HRUser.ButtonEdit.Visible = False
+        HRUser.ButtonDelete.Enabled = True
+        HRUser.ButtonDelete.Visible = True
+        HRUser.ShowDialog()
     End Sub
 
     Private Sub Dashboard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing

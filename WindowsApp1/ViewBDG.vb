@@ -21,6 +21,7 @@ Public Class ViewBDG
 
     'ACCEPT
     Private Sub btnBDGDeptApp_Click(sender As Object, e As EventArgs) Handles btnBDGDeptApp.Click
+
         BDGStatAccept = "Approve"
 
         BDGNameAccept = LabelBDGName.Text
@@ -142,6 +143,7 @@ Public Class ViewBDG
     'EDIT APPROVE
 
     Private Sub ButtonEditApprove_Click(sender As Object, e As EventArgs) Handles ButtonEditApprove.Click
+
         BDGStatAccept = "Approve"
 
         BDGNameAccept = LabelBDGName.Text

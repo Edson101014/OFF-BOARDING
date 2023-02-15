@@ -434,7 +434,7 @@ Public Class Login
 
                     If usertype = "Dept Head" Then
 
-                        MsgBox("Welcome HR Dept Head")
+                        MsgBox("Welcome HR Group")
 
                         dbs.closecon()
 

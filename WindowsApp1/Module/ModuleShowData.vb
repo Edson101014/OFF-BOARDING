@@ -37,6 +37,21 @@ Module ModuleShowData
 
     End Sub
 
+    Public Sub fillGridComplete(ByVal command As MySqlCommand)
+        Dashboard.DataGridViewComplete.ReadOnly = True
+        Dashboard.DataGridViewComplete.DataSource = apdb.getemployee(command)
+
+        Dim columnNames() As String
+
+        columnNames = {"Employee Name", "Employee ID", "Department", "Employee Position", "Clear Purpose", "Employee Status", "Seperation Date", "BDG Dept Head Name", "BDG Dept Head Status", "BDG Dept Head Comment", "BDG Dept Head Date", "SDG Supervisor Name", "SDG Supervisor Status", "SDG Supervisor Comment", "SDG Supervisor Date", "SDG Dept Head Name", "SDG Dept Head Status", "SDG Dept Head Comment", "SDG Dept Head Date", "ITOPS Dept Head Name", "ITOPS Dept Head Status", "ITOPS Dept Head Comment", "ITOPS Dept Head Date", "PMG Dept Head Name", "PMG Dept Head Status", "PMG Dept Head Comment", "PMG Dept Head Date", "Marketing Dept Head Name", "Marketing Dept Head Status", "Marketing Dept Head Comment", "Marketing Dept Head Date", "Finance Head Name", "Finance Head Status", "Finance Head Comment", "Finance Head Date", "Finance Group Name", "Finance Group Status", "Finance Group Comment", "Finance Group Date", "Cash Advance Status", "Finance Group Others", "Finance Group Other Comment", "Admin Group Name", "Admin Group Status", "Admin Group Comment", "Admin Group Date", "Check Teleco Status", "Check Tools Status", "Check Phone Status", "Check Table Status", "Check Others Status", "Check Others Comment", "Admin Head Name", "Admin Head Status", "Admin Head Comment", "Admin Head Date", "Sys Admin Name", "Sys Admin Status", "Sys Admin Comment", "Sys Admin Date", "Check Laptop Status", "Check Email Status", "Check Computer Status", "Sys Admin Head Name", "Sys Admin Head Status", "Sys Admin Head Comment", "Sys Admin Head Date", "HR Head Name", "HR Head Status", "HR Head Comment", "HR Head Date", "HR Group Name", "HR Group Status", "HR Group Comment", "HR Group Date", "Check HMO Status", "Check Insurance Status", "Check Company ID Status", "Check Quit Claim Status", "Check COE Status", "Check ITR Status", "Check FinalPay Status", "Schedule Interviewer Name", "Schedule Interview Status", "Schedule Interview Date", "Exit Interview By", "Exit Interview Status", "Exit Interview Date"}
+        For i As Integer = 1 To columnNames.Length
+            Dashboard.DataGridViewComplete.Columns(i).HeaderText = columnNames(i - 1)
+        Next
+
+        Dashboard.LabelTotalComplete.Text = Dashboard.DataGridViewComplete.Rows.Count
+
+    End Sub
+
     Public Sub fillGridHistory(ByVal command As MySqlCommand)
         Dashboard.DataGridHistory.ReadOnly = True
         Dashboard.DataGridHistory.DataSource = apdb.getemployee(command)
@@ -80,14 +95,21 @@ Module ModuleShowData
             Dashboard.LabelTotalHistory.Text = Dashboard.DataGridHistory.Rows.Count
 
         ElseIf Login.flag = "HR" Then
-            columnNames = {"Employee Name", "Employee ID", "Department", "Employee Position", "Clearance Purpose", "Employee Status", "Seperation Date", "BDG Dept Head Name", "BDG Dept Head Status", "BDG Dept Head Comment", "BDG Dept Head Date", "SDG Supervisor Name", "SDG Supervisor Status", "SDG Supervisor Comment", "SDG Supervisor Date", "SDG Dept Head Name", "SDG Dept Head Status", "SDG Dept Head Comment", "SDG Dept HeadDate", "ITOPS Dept Head Name", "ITOPS Dept Head Status", "ITOPS Dept Head Comment", "ITOPS Dept HeadDate", "PMG Dept Head Name", "PMG Dept Head Status", "PMG Dept Head Comment", "PMG Dept Head Date", "Marketing Dept Head Name", "Marketing Dept Head Status", "Marketing Dept Head Comment", "Marketing Dept Head Date", "FINANCE Head Name", "FINANCE Head Status", "FINANCE Head Comment", "Finance Head Date", "FINANCE Dept Head Name", "FINANCE Dept Head Status", "FINANCE Dept Head Comment", "FINANCE Dept Head Date", "Cash Advance Status", "Finance Dept Head Others Status", "Finance Dept Head Other Comment", "Admin Group Name", "Admin Group Status", "Admin Group Comment", "Admin Group Date", "Check Laptop Status", "Check Teleco Status", "Check Tools Status", "Check Phone Status", "Check Table Status", "Check Others Status", "Check Others Comment", "Admin Head Name", "Admin Head Status", "Admin Head Comment", "Admin Head Date", "Sys Admin Head Name", "Sys Admin Head Status", "Sys Admin Head Comment", "Sys Admin Head Date", "Laptop Status", "Email Deactivation Status", "Computer Deactivation Status", "HR Head Name", "HR Head Status", "HR Head Comment", "HR Head Date", "HR Group Status", "HR Group Comment", "HR Group Date", "Check HMO Status", "Check Insurance Status", "Check CompanyID Status", "Check QuitClaim Status", "Check COE Status", "Check ITR Status", "Check FinalPay Status", "Interview Check Status", "Exit InterviewBy", "Exit Interview Date"}
-
+            columnNames = {"Employee Name", "Employee ID", "Department", "Employee Position", "Clear Purpose", "Employee Status", "Seperation Date", "BDG Dept Head Name", "BDG Dept Head Status", "BDG Dept Head Comment", "BDG Dept Head Date", "SDG Supervisor Name", "SDG Supervisor Status", "SDG Supervisor Comment", "SDG Supervisor Date", "SDG Dept Head Name", "SDG Dept Head Status", "SDG Dept Head Comment", "SDG Dept Head Date", "ITOPS Dept Head Name", "ITOPS Dept Head Status", "ITOPS Dept Head Comment", "ITOPS Dept Head Date", "PMG Dept Head Name", "PMG Dept Head Status", "PMG Dept Head Comment", "PMG Dept Head Date", "Marketing Dept Head Name", "Marketing Dept Head Status", "Marketing Dept Head Comment", "Marketing Dept Head Date", "Finance Head Name", "Finance Head Status", "Finance Head Comment", "Finance Head Date", "Finance Group Name", "Finance Group Status", "Finance Group Comment", "Finance Group Date", "Cash Advance Status", "Finance Group Others", "Finance Group Other Comment", "Admin Group Name", "Admin Group Status", "Admin Group Comment", "Admin Group Date", "Check Teleco Status", "Check Tools Status", "Check Phone Status", "Check Table Status", "Check Others Status", "Check Others Comment", "Admin Head Name", "Admin Head Status", "Admin Head Comment", "Admin Head Date", "Sys Admin Name", "Sys Admin Status", "Sys Admin Comment", "Sys Admin Date", "Check Laptop Status", "Check Email Status", "Check Computer Status", "Sys Admin Head Name", "Sys Admin Head Status", "Sys Admin Head Comment", "Sys Admin Head Date", "HR Head Name", "HR Head Status", "HR Head Comment", "HR Head Date", "HR Group Name", "HR Group Status", "HR Group Comment", "HR Group Date", "Check HMO Status", "Check Insurance Status", "Check Company ID Status", "Check Quit Claim Status", "Check COE Status", "Check ITR Status", "Check FinalPay Status", "Schedule Interviewer Name", "Schedule Interview Status", "Schedule Interview Date", "Exit Interview By", "Exit Interview Status", "Exit Interview Date"}
             For i As Integer = 1 To columnNames.Length
                 Dashboard.DataGridHistory.Columns(i).HeaderText = columnNames(i - 1)
             Next
 
-            Dashboard.LabelTotalDash.Text = Dashboard.DataGridHistory.Rows.Count
+            Dashboard.LabelTotalHistory.Text = Dashboard.DataGridHistory.Rows.Count
 
+        ElseIf Login.flag = "HR Head" Then
+
+            columnNames = {"Employee Name", "Employee ID", "Department", "Employee Position", "Clear Purpose", "Employee Status", "Seperation Date", "BDG Dept Head Name", "BDG Dept Head Status", "BDG Dept Head Comment", "BDG Dept Head Date", "SDG Supervisor Name", "SDG Supervisor Status", "SDG Supervisor Comment", "SDG Supervisor Date", "SDG Dept Head Name", "SDG Dept Head Status", "SDG Dept Head Comment", "SDG Dept Head Date", "ITOPS Dept Head Name", "ITOPS Dept Head Status", "ITOPS Dept Head Comment", "ITOPS Dept Head Date", "PMG Dept Head Name", "PMG Dept Head Status", "PMG Dept Head Comment", "PMG Dept Head Date", "Marketing Dept Head Name", "Marketing Dept Head Status", "Marketing Dept Head Comment", "Marketing Dept Head Date", "Finance Head Name", "Finance Head Status", "Finance Head Comment", "Finance Head Date", "Finance Group Name", "Finance Group Status", "Finance Group Comment", "Finance Group Date", "Cash Advance Status", "Finance Group Others", "Finance Group Other Comment", "Admin Group Name", "Admin Group Status", "Admin Group Comment", "Admin Group Date", "Check Teleco Status", "Check Tools Status", "Check Phone Status", "Check Table Status", "Check Others Status", "Check Others Comment", "Admin Head Name", "Admin Head Status", "Admin Head Comment", "Admin Head Date", "Sys Admin Name", "Sys Admin Status", "Sys Admin Comment", "Sys Admin Date", "Check Laptop Status", "Check Email Status", "Check Computer Status", "Sys Admin Head Name", "Sys Admin Head Status", "Sys Admin Head Comment", "Sys Admin Head Date", "HR Head Name", "HR Head Status", "HR Head Comment", "HR Head Date", "HR Group Name", "HR Group Status", "HR Group Comment", "HR Group Date", "Check HMO Status", "Check Insurance Status", "Check Company ID Status", "Check Quit Claim Status", "Check COE Status", "Check ITR Status", "Check FinalPay Status", "Schedule Interviewer Name", "Schedule Interview Status", "Schedule Interview Date", "Exit Interview By", "Exit Interview Status", "Exit Interview Date"}
+            For i As Integer = 1 To columnNames.Length
+                Dashboard.DataGridHistory.Columns(i).HeaderText = columnNames(i - 1)
+            Next
+
+            Dashboard.LabelTotalHistory.Text = Dashboard.DataGridHistory.Rows.Count
         Else
 
             columnNames = {"Employee Name", "Employee ID", "Department", "Employee Position", "Clearance Purpose", "Employee Status", "Seperation Date", "Approver Name", "Status", "Comment", "Date"}
@@ -100,20 +122,28 @@ Module ModuleShowData
         End If
     End Sub
 
+
     Public Sub ShowHRInterviewData()
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `HRStatus` FROM `hrinterview` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `HRStatus` FROM `hrinterview` ORDER BY `LastDayEmploy` DESC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
+
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
+        fillGridComplete(query)
+
+        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        fillGridHR(query)
     End Sub
+
 
     Public Sub ShowData()
 
-        query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0} FROM {1} ORDER BY `LastDayEmploy` ASC", Login.querystatus, Login.str)
+        query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0} FROM {1} ORDER BY `LastDayEmploy` DESC", Login.querystatus, Login.str)
         fillGridDashboard(query)
 
-        query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `LastDayEmploy` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+        query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `LastDayEmploy` DESC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
         fillGridHistory(query)
 
     End Sub
@@ -121,28 +151,28 @@ Module ModuleShowData
 
     Public Sub ShowFinanceData()
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthead` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthead` ORDER BY `LastDayEmploy` DESC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
 
     End Sub
     Public Sub ShowAdminData()
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminStatus` FROM `admingroup` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminStatus` FROM `admingroup` ORDER BY `LastDayEmploy` DESC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
 
     End Sub
     Public Sub ShowSysAdminData()
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminStatus` FROM `sysadmin` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminStatus` FROM `sysadmin` ORDER BY `LastDayEmploy` DESC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom` FROM `sysadminhistory` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom` FROM `sysadminhistory` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
     End Sub
 
@@ -150,8 +180,14 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `HRStatus` FROM `hr` ORDER BY `LastDayEmploy` ASC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
+
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
+        fillGridComplete(query)
+
+        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        fillGridHR(query)
     End Sub
 
 
@@ -159,10 +195,38 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `HRHeadStatus` FROM `hrhead` ORDER BY `LastDayEmploy` ASC"
         fillGridDashboard(query)
 
-        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` ASC"
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `LastDayEmploy` DESC"
         fillGridHistory(query)
+
+        query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
+        fillGridComplete(query)
+
+        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        fillGridHR(query)
     End Sub
 
+
+    Sub fillGridHR(ByVal command As MySqlCommand)
+        Dashboard.DataGridHR.ReadOnly = True
+        Dashboard.DataGridHR.DataSource = apdb.getemployee(command)
+        Dashboard.DataGridHR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        Dashboard.DataGridHR.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
+
+
+        Dashboard.DataGridHR.Columns(0).HeaderText = "Username"
+        Dashboard.DataGridHR.Columns(1).HeaderText = "Password"
+        Dashboard.DataGridHR.Columns(2).HeaderText = "Name"
+        Dashboard.DataGridHR.Columns(3).HeaderText = "Email"
+        Dashboard.DataGridHR.Columns(4).HeaderText = "Title"
+        Dashboard.DataGridHR.Columns(5).HeaderText = "Department"
+
+        Dashboard.LabelTotalHR.Text = Dashboard.DataGridHR.Rows.Count
+
+
+
+
+
+    End Sub
 
 
 

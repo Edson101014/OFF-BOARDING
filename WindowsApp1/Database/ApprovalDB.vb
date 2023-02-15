@@ -410,6 +410,8 @@ Public Class ApprovalDB
         End If
     End Function
 
+
+
     'END OF UPDATE
 
 
@@ -433,5 +435,42 @@ Public Class ApprovalDB
 
     End Function
 
+
+
     'END OF REQUEST
+
+    Public Function deleteHRuser(ByVal id As String, admin As String) As Boolean
+        Dim command As New MySqlCommand(admin, dbs.getconn())
+        command.Parameters.Add("@user", MySqlDbType.VarChar).Value = id
+
+
+        dbs.opencon()
+        If command.ExecuteNonQuery() = 1 Then
+
+            Return True
+        Else
+
+            Return False
+        End If
+        dbs.closecon()
+
+    End Function
+
+    Public Function updateHRUser(ByRef user As String, ByVal pass As String, ByVal name As String, ByVal email As String, ByVal title As String, ByVal dept As String, ByVal admin As String) As Boolean
+        Dim command As New MySqlCommand(admin, dbs.getconn())
+        command.Parameters.Add("@user", MySqlDbType.VarChar).Value = user
+        command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = pass
+        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
+        command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email
+        command.Parameters.Add("@title", MySqlDbType.VarChar).Value = title
+        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
+        dbs.opencon()
+        If command.ExecuteNonQuery() = 1 Then
+
+            Return True
+        Else
+
+            Return False
+        End If
+    End Function
 End Class
