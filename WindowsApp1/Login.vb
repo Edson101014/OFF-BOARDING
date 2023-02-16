@@ -18,9 +18,9 @@ Public Class Login
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        Try
+        'Try
 
-            Dim query As String
+        Dim query As String
             query = "select * from login where user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
             Dim dbs As New db
             Dim adapter As New MySqlDataAdapter
@@ -504,9 +504,9 @@ Public Class Login
 
             End If
 
-        Catch ex As Exception
-            MsgBox(ex)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex)
+        'End Try
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
