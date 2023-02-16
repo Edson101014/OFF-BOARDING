@@ -83,8 +83,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SDGSupervisor"
-                        querystatus = "SDGSuperStatus"
+                    str = "sdgsupervisor"
+                    querystatus = "SDGSuperStatus"
                         querycomment = "SDGSuperComment"
                         querydate = "SDGSuperDate"
                         queryName = "SDGSuperName"
@@ -111,8 +111,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SDGdepthead"
-                        querystatus = "SDGDeptStatus"
+                    str = "sdgdepthead"
+                    querystatus = "SDGDeptStatus"
                         querycomment = "SDGDeptComment"
                         querydate = "SDGDeptDate"
                         queryName = "SDGDeptName"
@@ -146,8 +146,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "ITOPSdepthead"
-                        querystatus = "ITOPSDeptStatus"
+                    str = "itopsdepthead"
+                    querystatus = "ITOPSDeptStatus"
                         querycomment = "ITOPSDeptComment"
                         querydate = "ITOPSDeptDate"
                         queryName = "ITOPSDeptName"
@@ -182,8 +182,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "PMGdepthead"
-                        querystatus = "PMGDeptStatus"
+                    str = "pmgdepthead"
+                    querystatus = "PMGDeptStatus"
                         querycomment = "PMGDeptComment"
                         querydate = "PMGDeptDate"
                         queryName = "PMGDeptName"
@@ -218,8 +218,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "MARKETINGdepthead"
-                        querystatus = "MARKETINGDeptStatus"
+                    str = "marketingdepthead"
+                    querystatus = "MARKETINGDeptStatus"
                         querycomment = "MARKETINGDeptComment"
                         querydate = "MARKETINGDeptDate"
                         queryName = "MarketingDeptName"
@@ -253,8 +253,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "FINANCEgrouphead"
-                        queryName = "FinanceHeadName"
+                    str = "financegrouphead"
+                    queryName = "FinanceHeadName"
                         querystatus = "FINANCEHeadStatus"
                         querycomment = "FINANCEHeadComment"
                         querydate = "FINANCEHeadDate"
@@ -282,8 +282,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "FINANCEdepthead"
-                        querystatus = "FINANCEDeptStatus"
+                    str = "financedepthead"
+                    querystatus = "FINANCEDeptStatus"
                         querycomment = "FINANCEDeptComment"
                         querydate = "FINANCEDeptDate"
                         queryhistory = "financedepthistory"
@@ -346,8 +346,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "Admingroup"
-                        queryName = "AdminGroupName"
+                    str = "admingroup"
+                    queryName = "AdminGroupName"
                         querystatus = "AdminGroupStatus"
                         querycomment = "AdminGroupComment"
                         querydate = "AdminGroupDate"
@@ -407,8 +407,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SYSADMIN"
-                        queryName = "SysAdminName"
+                    str = "sysadmin"
+                    queryName = "SysAdminName"
                         querystatus = "SysAdminStatus"
                         querycomment = "SysAdminComment"
                         querydate = "SysAdminDate"
@@ -457,8 +457,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "HRinterview"
-                        flag = "HR Interview"
+                    str = "hrinterview"
+                    flag = "HR Interview"
                         querystatus = "HRStatus"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
@@ -474,8 +474,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "HRhead"
-                        flag = "HR Head"
+                    str = "hrhead"
+                    flag = "HR Head"
                         querystatus = "HRHeadStatus"
                         queryhistory = "historyrequest"
 
