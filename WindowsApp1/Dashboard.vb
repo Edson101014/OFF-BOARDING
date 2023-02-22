@@ -4,6 +4,7 @@ Public Class Dashboard
     Dim app As New ApprovalDB
     Dim query As New MySqlCommand()
 
+    Dim pagerows As Integer
     Dim approve As String = "Approve"
     Dim reject As String = "Reject"
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -1303,6 +1304,8 @@ Public Class Dashboard
         HRUser.ButtonDelete.Visible = True
         HRUser.ShowDialog()
     End Sub
+
+
 
     Private Sub Dashboard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 

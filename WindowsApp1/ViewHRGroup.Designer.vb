@@ -126,11 +126,13 @@ Partial Class ViewHRGroup
         Me.Label17 = New System.Windows.Forms.Label()
         Me.LabelHRName = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ButtonEditApprove = New System.Windows.Forms.Button()
         Me.ButtonEditReject = New System.Windows.Forms.Button()
         Me.ButtonEditCancel = New System.Windows.Forms.Button()
         Me.ButtonEdit = New System.Windows.Forms.Button()
+        Me.ButtonRefresh = New System.Windows.Forms.Button()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -1306,9 +1308,6 @@ Partial Class ViewHRGroup
         Me.Label18.TabIndex = 522
         Me.Label18.Text = "HR Name:"
         '
-        'Timer1
-        '
-        '
         'ButtonEditApprove
         '
         Me.ButtonEditApprove.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -1361,11 +1360,24 @@ Partial Class ViewHRGroup
         Me.ButtonEdit.UseVisualStyleBackColor = False
         Me.ButtonEdit.Visible = False
         '
+        'ButtonRefresh
+        '
+        Me.ButtonRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonRefresh.BackColor = System.Drawing.Color.Lavender
+        Me.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonRefresh.Location = New System.Drawing.Point(11, 399)
+        Me.ButtonRefresh.Name = "ButtonRefresh"
+        Me.ButtonRefresh.Size = New System.Drawing.Size(103, 38)
+        Me.ButtonRefresh.TabIndex = 528
+        Me.ButtonRefresh.Text = "REFRESH"
+        Me.ButtonRefresh.UseVisualStyleBackColor = False
+        '
         'ViewHRGroup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(819, 761)
+        Me.Controls.Add(Me.ButtonRefresh)
         Me.Controls.Add(Me.ButtonEdit)
         Me.Controls.Add(Me.ButtonEditCancel)
         Me.Controls.Add(Me.ButtonEditReject)
@@ -1527,9 +1539,11 @@ Partial Class ViewHRGroup
     Friend WithEvents Label17 As Label
     Friend WithEvents LabelHRName As Label
     Friend WithEvents Label18 As Label
-    Friend WithEvents Timer1 As Timer
     Friend WithEvents ButtonEditApprove As Button
     Friend WithEvents ButtonEditReject As Button
     Friend WithEvents ButtonEditCancel As Button
     Friend WithEvents ButtonEdit As Button
+    Friend WithEvents ButtonRefresh As Button
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents Timer2 As Timer
 End Class

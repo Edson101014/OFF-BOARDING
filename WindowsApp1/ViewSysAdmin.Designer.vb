@@ -445,6 +445,7 @@ Partial Class ViewSysAdmin
         Me.ButtonEdit.TabIndex = 460
         Me.ButtonEdit.Text = "EDIT"
         Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
         '
         'ViewSysAdmin
         '

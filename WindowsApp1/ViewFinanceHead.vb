@@ -40,7 +40,7 @@ Public Class ViewFinanceHead
 
         inserthistory = "INSERT INTO `financeheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadDate`, `FINANCEHeadComment` ) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
-        insertNextFlow = "INSERT INTO `Financedepthead` (`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, financedeptStatus) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
+        insertNextFlow = "INSERT INTO `financedepthead` (`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, financedeptStatus) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, inserthistory)
 
@@ -109,7 +109,7 @@ Public Class ViewFinanceHead
 
         inserthistory = "INSERT INTO `financeheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadDate`, `FINANCEHeadComment` ) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `FINANCEHEADName`=@name,`FINANCEHEADStatus`=@status,`FINANCEHEADDate`=@dateapp, `FINANCEHEADComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
-        insertNextFlow = "INSERT INTO `Financedepthead` (`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, financedeptStatus) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
+        insertNextFlow = "INSERT INTO `financedepthead` (`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, financedeptStatus) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, FinanceHeadNameAccept, FinanceHeadStatAccept, FinanceHeadDateAccept, FinanceHeadCommentAccept, inserthistory)
 

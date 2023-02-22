@@ -60,9 +60,9 @@ Public Class Login
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewBDG.LabelBDGName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -83,21 +83,20 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SDGSupervisor"
-                        querystatus = "SDGSuperStatus"
+                    str = "sdgsupervisor"
+                    querystatus = "SDGSuperStatus"
                         querycomment = "SDGSuperComment"
                         querydate = "SDGSuperDate"
                         queryName = "SDGSuperName"
-                        queryhistory = "sdgSuperhistory"
+                    queryhistory = "sdgsuperhistory"
 
-                        flag = "Supervisor"
+                    flag = "Supervisor"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewSDGSuper.LabelSDGSuperName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -111,8 +110,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SDGdepthead"
-                        querystatus = "SDGDeptStatus"
+                    str = "sdgdepthead"
+                    querystatus = "SDGDeptStatus"
                         querycomment = "SDGDeptComment"
                         querydate = "SDGDeptDate"
                         queryName = "SDGDeptName"
@@ -123,9 +122,8 @@ Public Class Login
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewSDG.LabelSDGDeptName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -146,8 +144,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "ITOPSdepthead"
-                        querystatus = "ITOPSDeptStatus"
+                    str = "itopsdepthead"
+                    querystatus = "ITOPSDeptStatus"
                         querycomment = "ITOPSDeptComment"
                         querydate = "ITOPSDeptDate"
                         queryName = "ITOPSDeptName"
@@ -159,9 +157,8 @@ Public Class Login
                         classlabel.LabelStatus(ViewITOPS.LabelITOPSDeptName, labelname)
 
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -182,8 +179,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "PMGdepthead"
-                        querystatus = "PMGDeptStatus"
+                    str = "pmgdepthead"
+                    querystatus = "PMGDeptStatus"
                         querycomment = "PMGDeptComment"
                         querydate = "PMGDeptDate"
                         queryName = "PMGDeptName"
@@ -194,9 +191,8 @@ Public Class Login
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewPMG.LabelPMGName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
 
@@ -218,21 +214,20 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "MARKETINGdepthead"
-                        querystatus = "MARKETINGDeptStatus"
+                    str = "marketingdepthead"
+                    querystatus = "MARKETINGDeptStatus"
                         querycomment = "MARKETINGDeptComment"
                         querydate = "MARKETINGDeptDate"
                         queryName = "MarketingDeptName"
-                        queryhistory = "MARKETINGdepthistory"
+                    queryhistory = "marketingdepthistory"
 
-                        flag = "Marketing Dept Head"
+                    flag = "Marketing Dept Head"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewMarketing.LabelMarketingName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
 
@@ -253,8 +248,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "FINANCEgrouphead"
-                        queryName = "FinanceHeadName"
+                    str = "financegrouphead"
+                    queryName = "FinanceHeadName"
                         querystatus = "FINANCEHeadStatus"
                         querycomment = "FINANCEHeadComment"
                         querydate = "FINANCEHeadDate"
@@ -265,9 +260,8 @@ Public Class Login
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewFinanceHead.LabelFinanceHeadName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
 
@@ -282,8 +276,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "FINANCEdepthead"
-                        querystatus = "FINANCEDeptStatus"
+                    str = "financedepthead"
+                    querystatus = "FINANCEDeptStatus"
                         querycomment = "FINANCEDeptComment"
                         querydate = "FINANCEDeptDate"
                         queryhistory = "financedepthistory"
@@ -294,9 +288,8 @@ Public Class Login
                         classlabel.LabelStatus(ViewFinance.LabelFinanceName, labelname)
 
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
 
@@ -323,16 +316,15 @@ Public Class Login
                         querystatus = "AdminHeadStatus"
                         querycomment = "AdminHeadComment"
                         querydate = "AdminHeadDate"
-                        queryhistory = "Admingroupheadhistory"
+                    queryhistory = "admingroupheadhistory"
 
-                        flag = "ADMIN HEAD"
+                    flag = "ADMIN HEAD"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewAdminHead.LabelAdminHeadName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -346,21 +338,20 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "Admingroup"
-                        queryName = "AdminGroupName"
+                    str = "admingroup"
+                    queryName = "AdminGroupName"
                         querystatus = "AdminGroupStatus"
                         querycomment = "AdminGroupComment"
                         querydate = "AdminGroupDate"
-                        queryhistory = "Admingrouphistory"
+                    queryhistory = "admingrouphistory"
 
-                        flag = "ADMIN"
+                    flag = "ADMIN"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewAdmin.LabelAdminName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -384,16 +375,15 @@ Public Class Login
                         querystatus = "SysAdminHeadStatus"
                         querycomment = "SysAdminHeadComment"
                         querydate = "SysAdminHeadDate"
-                        queryhistory = "SysAdmingroupheadhistory"
+                    queryhistory = "sysadmingroupheadhistory"
 
-                        labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
+                    labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewSysAdminHead.LabelSysAdminHeadName, labelname)
 
                         flag = "SYS ADMIN HEAD"
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -407,21 +397,20 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "SYSADMIN"
-                        queryName = "SysAdminName"
+                    str = "sysadmin"
+                    queryName = "SysAdminName"
                         querystatus = "SysAdminStatus"
                         querycomment = "SysAdminComment"
                         querydate = "SysAdminDate"
-                        queryhistory = "SysAdmingrouphistory"
+                    queryhistory = "sysadmingrouphistory"
 
-                        flag = "SYSADMIN"
+                    flag = "SYSADMIN"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
                         classlabel.LabelStatus(ViewSysAdmin.LabelSysAdminName, labelname)
 
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(5))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(4))
-                        Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
+
+                    Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(3))
                         Dashboard.TabControl1.TabPages.Remove(Dashboard.TabControl1.TabPages(2))
 
                         Dashboard.Show()
@@ -457,8 +446,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "HRinterview"
-                        flag = "HR Interview"
+                    str = "hrinterview"
+                    flag = "HR Interview"
                         querystatus = "HRStatus"
 
                         labelname = "Select name FROM login WHERE user='" & TextBox1.Text & "' and pass='" & TextBox2.Text & "'"
@@ -474,8 +463,8 @@ Public Class Login
 
                         Me.Hide()
 
-                        str = "HRhead"
-                        flag = "HR Head"
+                    str = "hrhead"
+                    flag = "HR Head"
                         querystatus = "HRHeadStatus"
                         queryhistory = "historyrequest"
 

@@ -79,7 +79,7 @@ Public Class ViewFinance
             'check = 1
 
 
-            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
+            inserthistory = "INSERT INTO `financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
             updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
             apdb.insertFinance(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, inserthistory)
@@ -151,12 +151,12 @@ Public Class ViewFinance
 
             LabelFinanceDeptComment.Text = txtboxFinanceDept.Text
 
-            'statusNextflow = "Pending"
-            'check = 1
+        'statusNextflow = "Pending"
+        'check = 1
 
 
-            inserthistory = "INSERT INTO `Financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
-            updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
+        inserthistory = "INSERT INTO `financedepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FinanceDeptName`, `FinanceDeptStatus`, `FinanceDeptDate`, `FinanceDeptComment`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment, @checkcash, @checkothers, @checkotherscomment)"
+        updateHistory = "UPDATE `historyrequest` SET `FinanceDeptName`=@name, `FinanceDeptStatus`=@status,`FinanceDeptDate`=@dateapp, `FinanceDeptComment`=@comment, `CashAdvance`=@checkcash, `FinanceDeptOthers`=@checkothers, `FinanceDeptOtherComment`=@checkotherscomment WHERE empID = '" & LabelEmpID.Text & "'"
 
 
             apdb.insertFinance(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, FinanceNameAccept, FinanceStatAccept, FinanceDateAccept, FinanceCommentAccept, checkcash, checkothers, FinanceOthersComment, inserthistory)

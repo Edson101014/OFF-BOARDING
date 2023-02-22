@@ -403,6 +403,7 @@ Partial Class ViewAdminHead
         Me.ButtonEdit.TabIndex = 428
         Me.ButtonEdit.Text = "EDIT"
         Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
         '
         'ViewAdminHead
         '
