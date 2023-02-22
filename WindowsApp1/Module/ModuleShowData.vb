@@ -3,6 +3,7 @@ Module ModuleShowData
     Dim apdb As New ApprovalDB
     Dim dbs As New db
     Dim query As New MySqlCommand()
+    Dim pagerows As Integer
 
     Public Sub fillGridDashboard(ByVal command As MySqlCommand)
         Dashboard.DataGridView1.ReadOnly = True
@@ -36,6 +37,10 @@ Module ModuleShowData
         End If
 
     End Sub
+
+
+
+
 
     Public Sub fillGridComplete(ByVal command As MySqlCommand)
         Dashboard.DataGridViewComplete.ReadOnly = True
@@ -227,6 +232,106 @@ Module ModuleShowData
 
 
     End Sub
+
+    'Public Sub HistorySearchAdmin()
+    '    If Dashboard.CheckHistoryByID.Checked = True Then
+
+    '        If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `empID` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `empID` Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+
+    '    If CheckHistoryByName.Checked = True Then
+
+    '        If TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `Name` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `Name` Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+    '    If CheckHistoryByPurpose.Checked = True Then
+
+    '        If TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `clearPurpose` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `clearPurpose` Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+    '    If CheckHistoryByDepartment.Checked = True Then
+
+    '        If TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `dept` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `dept` Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+
+    '    If CheckHistoryByApprove.Checked = True Then
+
+    '        If TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & approve & "' ORDER BY `AdminStatus` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & approve & "' Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+
+    '    If CheckHistoryByRejected.Checked = True Then
+
+    '        If TextBoxSearchHistory.Text = Nothing Then
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & reject & "' ORDER BY `AdminStatus` ASC"
+    '            fillGridHistory(query)
+
+    '        Else
+
+    '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & reject & "' Like '%" & TextBoxSearchHistory.Text & "%'"
+    '            fillGridHistory(query)
+
+    '        End If
+
+    '    End If
+
+
+    'End Sub
+
+
 
 
 

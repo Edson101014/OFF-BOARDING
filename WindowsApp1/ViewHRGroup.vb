@@ -24,176 +24,130 @@ Public Class ViewHRGroup
     Dim HRCommentAccept As String
     Dim HRDateAccept As Date
 
+    Private WithEvents refreshTimer As New Timer()
+
     Sub getdata()
 
-        'Name
-        sql = "select BDGDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxBDGName, sql)
-
-        sql = "select SDGSuperName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxSDGHeadName, sql)
-
-        sql = "select SDGDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxSDGName, sql)
-
-        sql = "select ITOPSDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxITOPSName, sql)
-
-        sql = "select PMGDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxPMGName, sql)
-
-        sql = "select MarketingDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxMarketingName, sql)
-
-        sql = "select FinanceHeadName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxFinanceHeadName, sql)
-
-        sql = "select FinanceDeptName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxFinanceName, sql)
-
-        sql = "select AdminGroupName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxAdminName, sql)
-
-        sql = "select AdminHeadName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxAdminHeadName, sql)
-
-        sql = "select SysAdminName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxSysAdminName, sql)
-
-        sql = "select SysAdminHeadName from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelName(txtboxSysAdminHeadName, sql)
-
-        'End of Name
 
 
-        'Status
-        sql = "select BDGDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(BDGAccept, sql)
 
-        sql = "select SDGSuperStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(SDGHeadAccept, sql)
 
-        sql = "select SDGDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(SDGDeptAccept, sql)
 
-        sql = "select ITOPSDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(ITOPSAccept, sql)
 
-        sql = "select PMGDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(PMGAccept, sql)
 
-        sql = "select MarketingDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(MarketingAccept, sql)
+        ''COMMENT
+        'sql = "select BDGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(BDGComment, sql)
 
-        sql = "select FinanceHeadStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(FinanceHead, sql)
+        'sql = "select SDGSuperComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(SDGHeadComment, sql)
 
-        sql = "select FinanceDeptStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(FinanceAccept, sql)
+        'sql = "select SDGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(SDGComment, sql)
 
-        sql = "select AdminGroupStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(AdminAccept, sql)
+        'sql = "select ITOPSDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(ITOPSComment, sql)
 
-        sql = "select AdminHeadStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(AdminHeadAccept, sql)
+        'sql = "select PMGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(PMGComment, sql)
 
-        sql = "select SysAdminStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(SysAdminAccept, sql)
+        'sql = "select MarketingDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(MarketingComment, sql)
 
-        sql = "select SysAdminHeadStatus from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelStatus(SysAdminHeadAccept, sql)
-        'End of Status
+        'sql = "select FinanceHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(FinanceHeadComment, sql)
 
-        'COMMENT
-        sql = "select BDGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(BDGComment, sql)
+        'sql = "select FinanceDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(FinanceComment, sql)
 
-        sql = "select SDGSuperComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(SDGHeadComment, sql)
+        'sql = "select AdminGroupComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(AdminComment, sql)
 
-        sql = "select SDGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(SDGComment, sql)
+        'sql = "select AdminHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(AdminHeadComment, sql)
 
-        sql = "select ITOPSDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(ITOPSComment, sql)
+        'sql = "select SysAdminComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(SysAdminComment, sql)
 
-        sql = "select PMGDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(PMGComment, sql)
+        'sql = "select SysAdminHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelComment(SysAdminHeadComment, sql)
 
-        sql = "select MarketingDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(MarketingComment, sql)
+        ''End of Comment
 
-        sql = "select FinanceHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(FinanceHeadComment, sql)
+        ''DATE
 
-        sql = "select FinanceDeptComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(FinanceComment, sql)
+        'sql = "select BDGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(BDGDate, sql)
 
-        sql = "select AdminGroupComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(AdminComment, sql)
+        'sql = "select SDGSuperDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(SDGHeadDate, sql)
 
-        sql = "select AdminHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(AdminHeadComment, sql)
+        'sql = "select SDGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(SDGDate, sql)
 
-        sql = "select SysAdminComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(SysAdminComment, sql)
+        'sql = "select ITOPSDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(ITOPSDate, sql)
 
-        sql = "select SysAdminHeadComment from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelComment(SysAdminHeadComment, sql)
+        'sql = "select PMGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(PMGDate, sql)
 
-        'End of Comment
+        'sql = "select MarketingDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(MarketingDate, sql)
 
-        'DATE
+        'sql = "select FinanceHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(FinanceHeadDate, sql)
 
-        sql = "select BDGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(BDGDate, sql)
+        'sql = "select FinanceDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(FinanceDate, sql)
 
-        sql = "select SDGSuperDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(SDGHeadDate, sql)
+        'sql = "select AdminGroupDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(AdminDate, sql)
 
-        sql = "select SDGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(SDGDate, sql)
+        'sql = "select AdminHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(AdminHeadDate, sql)
 
-        sql = "select ITOPSDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(ITOPSDate, sql)
+        'sql = "select SysAdminDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(SysAdminDate, sql)
 
-        sql = "select PMGDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(PMGDate, sql)
+        'sql = "select SysAdminHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
+        'labeldata.LabelDate(SysAdminHeadDate, sql)
 
-        sql = "select MarketingDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(MarketingDate, sql)
-
-        sql = "select FinanceHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(FinanceHeadDate, sql)
-
-        sql = "select FinanceDeptDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(FinanceDate, sql)
-
-        sql = "select AdminGroupDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(AdminDate, sql)
-
-        sql = "select AdminHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(AdminHeadDate, sql)
-
-        sql = "select SysAdminDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(SysAdminDate, sql)
-
-        sql = "select SysAdminHeadDate from historyrequest where empID='" & LabelEmpID.Text & "'"
-        labeldata.LabelDate(SysAdminHeadDate, sql)
-
-        'END OF DATE
+        ''END OF DATE
 
     End Sub
 
     Private Sub ViewHRGroup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Timer1.Interval = 1000
-        Timer1.Enabled = True
+        labeldata.LabelHRName()
+        labeldata.LabelHRStatus()
+        labeldata.LabelHRComment()
+        labeldata.LabelHRDate()
+
+        ' Set the interval of the refresh timer to 5000ms (5 seconds)
+        refreshTimer.Interval = 5000
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        getdata()
+    Private Sub ButtonRefresh_Click(sender As Object, e As EventArgs) Handles ButtonRefresh.Click
+        labeldata.LabelHRName()
+        labeldata.LabelHRStatus()
+        labeldata.LabelHRComment()
     End Sub
 
+    Private Sub RefreshTimer_Tick(sender As Object, e As EventArgs) Handles refreshTimer.Tick
+        labeldata.LabelHRName()
+        labeldata.LabelHRStatus()
+        labeldata.LabelHRComment()
+        labeldata.LabelHRDate()
+    End Sub
+
+    Private Sub StartRefreshTimer()
+        ' Start the refresh timer
+        refreshTimer.Start()
+    End Sub
+
+    Private Sub StopRefreshTimer()
+        ' Stop the refresh timer
+        refreshTimer.Stop()
+    End Sub
     Function verf() As Boolean
         Dim checker As Integer = 0
 
@@ -949,8 +903,6 @@ Public Class ViewHRGroup
             ShowData()
         End If
     End Sub
-
-
 
 
 End Class

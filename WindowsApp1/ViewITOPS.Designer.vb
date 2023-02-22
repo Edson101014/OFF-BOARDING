@@ -403,6 +403,7 @@ Partial Class ViewITOPS
         Me.ButtonEdit.TabIndex = 372
         Me.ButtonEdit.Text = "EDIT"
         Me.ButtonEdit.UseVisualStyleBackColor = False
+        Me.ButtonEdit.Visible = False
         '
         'ViewITOPS
         '

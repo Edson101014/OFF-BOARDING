@@ -11,6 +11,7 @@ Public Class ApprovalDB
         Return table
     End Function
 
+
     'INSERT HISTORY
 
     Public Function insertchecker(ByVal empID As String, ByVal admin As String) As Boolean
