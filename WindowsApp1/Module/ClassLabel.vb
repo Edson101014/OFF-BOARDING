@@ -146,7 +146,7 @@ Public Class ClassLabel
     End Sub
 
 
-    Public Async Sub sentmail(ByVal mail As String)
+    Public Async Sub sentmail()
 
         Try
             Dim Smtp_Server As New SmtpClient
@@ -162,30 +162,44 @@ Public Class ClassLabel
                 str.Close()
 
                 Smtp_Server.UseDefaultCredentials = False
-                Smtp_Server.Credentials = New Net.NetworkCredential("edsonpaul98@gmail.com", "jytxsnpnpkpmtatv")
+                Smtp_Server.Credentials = New Net.NetworkCredential("edsonpaul98@gmail.com", "")
                 Smtp_Server.Port = 587
                 Smtp_Server.EnableSsl = True
                 Smtp_Server.Host = "smtp.gmail.com"
 
+                ' Retrieve all emails from database
 
-                Mailtext = Mailtext.Replace("@empname", ViewRequest.LabelEmpName.Text)
-                Mailtext = Mailtext.Replace("@empID", ViewRequest.LabelEmpID.Text)
-                Mailtext = Mailtext.Replace("@empPos", ViewRequest.LabelPos.Text)
-                Mailtext = Mailtext.Replace("@empStatus", ViewRequest.LabelStatus.Text)
-                Mailtext = Mailtext.Replace("@clearPurpose", ViewRequest.LabelPurpose.Text)
-                Mailtext = Mailtext.Replace("@lastday", ViewRequest.LabelLastDay.Text)
-                Mailtext = Mailtext.Replace("@dept", ViewRequest.LabelDept.Text)
+                Dim query As String = "SELECT email FROM login WHERE department != 'HR' OR (title != 'Supervisor' OR title IS NULL) ORDER BY department ASC"
 
-                e_mail = New MailMessage
-                e_mail.From = New MailAddress("no-reply@gmail.com")
-                e_mail.To.Add(mail)
+                cmd.Connection = dbs.getconn
+                dbs.opencon()
+                cmd.CommandText = query
+                reader = cmd.ExecuteReader
+                While reader.Read()
+                    Dim email As String = reader.GetString("email")
 
-                e_mail.Subject = "Request Approval Notification"
-                e_mail.IsBodyHtml = True
-                e_mail.Body = Mailtext
-                Smtp_Server.Send(e_mail)
+                    ' Populate email content
+                    Mailtext = Mailtext.Replace("@empname", ViewRequest.LabelEmpName.Text)
+                    Mailtext = Mailtext.Replace("@empID", ViewRequest.LabelEmpID.Text)
+                    Mailtext = Mailtext.Replace("@empPos", ViewRequest.LabelPos.Text)
+                    Mailtext = Mailtext.Replace("@empStatus", ViewRequest.LabelStatus.Text)
+                    Mailtext = Mailtext.Replace("@clearPurpose", ViewRequest.LabelPurpose.Text)
+                    Mailtext = Mailtext.Replace("@lastday", ViewRequest.LabelLastDay.Text)
+                    Mailtext = Mailtext.Replace("@dept", ViewRequest.LabelDept.Text)
 
-                Await Smtp_Server.SendMailAsync(e_mail)
+                    e_mail = New MailMessage
+                    e_mail.From = New MailAddress("no-reply@gmail.com")
+                    e_mail.To.Add(email)
+
+                                e_mail.Subject = "Request Approval Notification"
+                    e_mail.IsBodyHtml = True
+                    e_mail.Body = Mailtext
+
+                    ' Send email to recipient
+                    Smtp_Server.Send(e_mail)
+                    Await Task.Delay(1500) ' Delay 1 second before sending next email
+                End While
+
 
 
             End If
@@ -195,47 +209,6 @@ Public Class ClassLabel
         End Try
 
     End Sub
-    Public Sub multimail(ByRef mail1 As String, ByRef mail2 As String, ByRef mail3 As String)
-
-        Try
-            Dim Smtp_Server As New SmtpClient
-            Dim e_mail As New MailMessage()
-            Dim path As New FileStream("C:\Users\edson\source\repos\Resignee\Resignee\Resources\index.html", FileMode.Open)
-            Dim str As New StreamReader(path)
-            Dim Mailtext As String = str.ReadToEnd
-            str.Close()
-
-            Smtp_Server.UseDefaultCredentials = False
-            Smtp_Server.Credentials = New Net.NetworkCredential("edsonpaul98@gmail.com", "RXISxTJO230jYFw1")
-            Smtp_Server.Port = 587
-            Smtp_Server.EnableSsl = True
-            Smtp_Server.Host = "smtp-relay.sendinblue.com"
 
 
-            Mailtext = Mailtext.Replace("@empname", ViewRequest.LabelEmpName.Text)
-            Mailtext = Mailtext.Replace("@empID", ViewRequest.LabelEmpID.Text)
-            Mailtext = Mailtext.Replace("@empPos", ViewRequest.LabelPos.Text)
-            Mailtext = Mailtext.Replace("@empStatus", ViewRequest.LabelStatus.Text)
-            Mailtext = Mailtext.Replace("@clearPurpose", ViewRequest.LabelPurpose.Text)
-            Mailtext = Mailtext.Replace("@lastday", ViewRequest.LabelLastDay.Text)
-            Mailtext = Mailtext.Replace("@dept", ViewRequest.LabelDept.Text)
-
-            e_mail = New MailMessage
-            e_mail.From = New MailAddress("no-reply@gmail.com")
-            e_mail.To.Add(mail1)
-            e_mail.To.Add(mail2)
-            e_mail.To.Add(mail3)
-
-            e_mail.Subject = "Request Approval Notification"
-            e_mail.IsBodyHtml = True
-            e_mail.Body = Mailtext
-            Smtp_Server.Send(e_mail)
-            MsgBox("Email sent")
-
-
-        Catch error_t As Exception
-            MsgBox(error_t.ToString)
-        End Try
-
-    End Sub
 End Class

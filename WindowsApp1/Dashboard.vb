@@ -5,8 +5,8 @@ Public Class Dashboard
     Dim query As New MySqlCommand()
 
     Dim pagerows As Integer
-    Dim approve As String = "Approve"
-    Dim reject As String = "Reject"
+    Public approve As String = "Approve"
+    Public reject As String = "Reject"
     Private Sub Form4_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Login.flag = "Finance Dept Head" Then
             ShowFinanceData()
@@ -32,7 +32,7 @@ Public Class Dashboard
         End If
 
 
-
+        DataGridHistory.Refresh()
 
     End Sub
 
@@ -65,7 +65,10 @@ Public Class Dashboard
                 ViewHRInterview.LabelStatus.Text = DataGridView1.CurrentRow.Cells(6).Value.ToString
                 ViewHRInterview.LabelLastDay.Text = DateTime.Parse(DataGridView1.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
 
+
                 ViewHRInterview.LabelHRInterviewApp.Text = DataGridView1.CurrentRow.Cells(8).Value.ToString
+
+
 
                 ViewHRInterview.ShowDialog()
 
@@ -266,6 +269,9 @@ Public Class Dashboard
 
 
                 ViewHRHead.ShowDialog()
+
+
+
 
             End If
         End If
@@ -752,7 +758,54 @@ Public Class Dashboard
 
                     ViewHRHead.ShowDialog()
                 End If
+
+            ElseIf Login.flag = "HR Interview" Then
+                ViewHRInterviewHistory.LabelEmpName.Text = DataGridHistory.CurrentRow.Cells(1).Value.ToString
+                ViewHRInterviewHistory.LabelEmpID.Text = DataGridHistory.CurrentRow.Cells(2).Value.ToString
+                ViewHRInterviewHistory.LabelDept.Text = DataGridHistory.CurrentRow.Cells(3).Value.ToString
+                ViewHRInterviewHistory.LabelPos.Text = DataGridHistory.CurrentRow.Cells(4).Value.ToString
+                ViewHRInterviewHistory.LabelPurpose.Text = DataGridHistory.CurrentRow.Cells(5).Value.ToString
+                ViewHRInterviewHistory.LabelStatus.Text = DataGridHistory.CurrentRow.Cells(6).Value.ToString
+                ViewHRInterviewHistory.LabelLastDay.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                If DataGridHistory.CurrentRow.Cells(83).Value.Equals(DBNull.Value) Then
+                    MsgBox("Please Approve/Reject first in the Dashboard before proceed to the history", MsgBoxStyle.Exclamation, "HR history")
+                ElseIf DataGridHistory.CurrentRow.Cells(86).Value.Equals(DBNull.Value) Then
+
+                    ViewHRInterviewHistory.LabelHRInterviewName.Text = DataGridHistory.CurrentRow.Cells(83).Value.ToString
+                    ViewHRInterviewHistory.LabelHRInterviewApp.Text = DataGridHistory.CurrentRow.Cells(84).Value.ToString
+                    ViewHRInterviewHistory.LabelDateHRInterview.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(85).Value.ToString()).ToString("MMM-dd-yyyy")
+
+
+                    ViewHRInterviewHistory.LabelFinalInterview.Text = ""
+                    ViewHRInterviewHistory.LabelFinalStatus.Text = "Pending"
+                    ViewHRInterviewHistory.LabelFinalDate.Text = ""
+
+                    ViewHRInterviewHistory.CheckBoxInterview.Checked = True
+
+                    ViewHRInterviewHistory.CheckBoxFinal.Checked = False
+
+                    ViewHRInterviewHistory.ShowDialog()
+                Else
+
+                    ViewHRInterviewHistory.LabelHRInterviewName.Text = DataGridHistory.CurrentRow.Cells(83).Value.ToString
+                    ViewHRInterviewHistory.LabelHRInterviewApp.Text = DataGridHistory.CurrentRow.Cells(84).Value.ToString
+                    ViewHRInterviewHistory.LabelDateHRInterview.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(85).Value.ToString()).ToString("MMM-dd-yyyy")
+
+
+                    ViewHRInterviewHistory.LabelFinalInterview.Text = DataGridHistory.CurrentRow.Cells(86).Value.ToString
+                    ViewHRInterviewHistory.LabelFinalStatus.Text = DataGridHistory.CurrentRow.Cells(87).Value.ToString
+                    ViewHRInterviewHistory.LabelFinalDate.Text = DateTime.Parse(DataGridHistory.CurrentRow.Cells(88).Value.ToString()).ToString("MMM-dd-yyyy")
+
+                    ViewHRInterviewHistory.CheckBoxInterview.Checked = True
+
+                    ViewHRInterviewHistory.CheckBoxFinal.Checked = True
+
+                    ViewHRInterviewHistory.ShowDialog()
+                End if
             End If
+
+
 
         End If
 
@@ -840,238 +893,19 @@ Public Class Dashboard
 
 
     Private Sub TextBoxSearchHistory_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearchHistory.TextChanged
-        ''ADMIN
-        'If Login.flag = "ADMIN" Then
-        '    If CheckHistoryByID.Checked = True Then
 
-        '        If TextBoxSearchHistory.Text = Nothing Then
+        If Login.flag = "ADMIN" Then
+            HistorySearchAdmin()
+        ElseIf Login.flag = "Finance Dept Head" Then
+            HistorySearchFinanceDept()
+        ElseIf Login.flag = "SYSADMIN" Then
+            HistorySearchSysAdmin()
+        ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+            HistorySearchHR()
+        Else
+
+        End If
 
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `empID` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `empID` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    If CheckHistoryByName.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `Name` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `Name` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByPurpose.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `clearPurpose` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `clearPurpose` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByDepartment.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` ORDER BY `dept` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `dept` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    If CheckHistoryByApprove.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & approve & "' ORDER BY `AdminStatus` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & approve & "' Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    If CheckHistoryByRejected.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & reject & "' ORDER BY `AdminStatus` ASC"
-        '            fillGridHistory(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckLaptop`, `CheckTelco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `AdminOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & reject & "' Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    'END OF ADMIN
-
-
-        '    ' FINANCE DEPT HEAD
-        'ElseIf Login.flag = "Finance Dept Head" Then
-
-        '    If CheckHistoryByID.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `empID` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `empID` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    If CheckHistoryByName.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `Name` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `Name` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByPurpose.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `clearPurpose` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `clearPurpose` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByDepartment.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `dept` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `dept` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    'END OF FINANCE HEAD
-
-
-        '    'SYS ADMIN HEAD
-        'ElseIf Login.flag = "SYS ADMIN HEAD" Then
-        '    If CheckHistoryByID.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `empID` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `empID` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    If CheckHistoryByName.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `Name` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `Name` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByPurpose.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `clearPurpose` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `clearPurpose` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByDepartment.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptStatus` FROM `financedepthistory` ORDER BY `dept` ASC"
-        '            fillGridDashboard(query)
-
-        '        Else
-
-        '            query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvanceCheck`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `dept` Like '%" & TextBoxSearchHistory.Text & "%'"
-        '            fillGridHistory(query)
-
-        '        End If
-
-        '    End If
-
-        '    'END OF SYS ADMIN HEAD
 
 
         'Else
@@ -1120,11 +954,14 @@ Public Class Dashboard
     End Sub
 
 
+
     Private Sub CheckHistoryByID_CheckedChanged(sender As Object, e As EventArgs) Handles CheckHistoryByID.CheckedChanged
         If CheckHistoryByID.Checked = True Then
             CheckHistoryByName.Checked = False
             CheckHistoryByDepartment.Checked = False
             CheckHistoryByPurpose.Checked = False
+            CheckHistoryByApprove.Checked = False
+            CheckHistoryByRejected.Checked = False
 
         End If
     End Sub
@@ -1134,8 +971,22 @@ Public Class Dashboard
             CheckHistoryByDepartment.Checked = False
             CheckHistoryByID.Checked = False
             CheckHistoryByPurpose.Checked = False
-            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} ORDER BY Name", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-            fillGridHistory(query)
+            CheckHistoryByApprove.Checked = False
+            CheckHistoryByRejected.Checked = False
+            If Login.flag = "ADMIN" Then
+                query.CommandText = " SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` ORDER BY `Name` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "Finance Dept Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `Name` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "SYSADMIN" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `Name` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `Name` ASC"
+                fillGridHistory(query)
+            End If
+
         End If
     End Sub
 
@@ -1144,8 +995,21 @@ Public Class Dashboard
             CheckHistoryByName.Checked = False
             CheckHistoryByID.Checked = False
             CheckHistoryByDepartment.Checked = False
-            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} ORDER BY clearPurpose", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-            fillGridHistory(query)
+            CheckHistoryByApprove.Checked = False
+            CheckHistoryByRejected.Checked = False
+            If Login.flag = "ADMIN" Then
+                query.CommandText = " SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` ORDER BY `clearPurpose` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "Finance Dept Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `clearPurpose` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "SYSADMIN" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `clearPurpose` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `clearPurpose` ASC"
+                fillGridHistory(query)
+            End If
         End If
     End Sub
 
@@ -1154,10 +1018,114 @@ Public Class Dashboard
             CheckHistoryByName.Checked = False
             CheckHistoryByID.Checked = False
             CheckHistoryByPurpose.Checked = False
-            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} ORDER BY dept", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-            fillGridHistory(query)
+            CheckHistoryByApprove.Checked = False
+            CheckHistoryByRejected.Checked = False
+            If Login.flag = "ADMIN" Then
+
+                query.CommandText = " SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` ORDER BY `dept` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "Finance Dept Head" Then
+
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `dept` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "SYSADMIN" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` ORDER BY `dept` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `dept` ASC"
+                fillGridHistory(query)
+            End If
         End If
     End Sub
+
+    Private Sub CheckHistoryByApprove_CheckedChanged(sender As Object, e As EventArgs) Handles CheckHistoryByApprove.CheckedChanged
+
+        If CheckHistoryByApprove.Checked = True Then
+            CheckHistoryByName.Checked = False
+            CheckHistoryByID.Checked = False
+            CheckHistoryByPurpose.Checked = False
+            CheckHistoryByDepartment.Checked = False
+            CheckHistoryByRejected.Checked = False
+            If Login.flag = "ADMIN" Then
+
+                query.CommandText = " SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & approve & "' ORDER BY `AdminGroupStatus` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "Finance Dept Head" Then
+
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `FINANCEDeptStatus`= '" & approve & "' ORDER BY `FINANCEDeptStatus` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "SYSADMIN" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom` FROM `sysadminhistory` WHERE `SysAdminStatus`= '" & approve & "' ORDER BY `SysAdminStatus` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` WHERE 
+                `BDGDeptStatus` = '" & approve & "' OR 
+        `SDGSuperStatus` = '" & approve & "' OR 
+          `SDGDeptStatus` = '" & approve & "' OR 
+          `ITOPSDeptStatus` = '" & approve & "' OR 
+      `PMGDeptStatus` = '" & approve & "' OR 
+      `MarketingDeptStatus` = '" & approve & "' OR 
+          `FINANCEHeadStatus` = '" & approve & "' OR 
+      `FINANCEDeptStatus` = '" & approve & "' OR 
+      `AdminGroupStatus` = '" & approve & "' OR 
+      `SysAdminStatus` = '" & approve & "' OR 
+      `AdminHeadStatus` = '" & approve & "' OR 
+      `SysAdminHeadStatus` = '" & approve & "' OR 
+      `HRHeadStatus` = '" & approve & "' OR 
+      `HRGroupStatus` = '" & approve & "' ORDER BY `empID` ASC"
+                fillGridHistory(query)
+            End If
+        End If
+
+    End Sub
+
+    Private Sub CheckHistoryByRejected_CheckedChanged(sender As Object, e As EventArgs) Handles CheckHistoryByRejected.CheckedChanged
+
+        If CheckHistoryByRejected.Checked = True Then
+            CheckHistoryByName.Checked = False
+            CheckHistoryByID.Checked = False
+            CheckHistoryByPurpose.Checked = False
+            CheckHistoryByApprove.Checked = False
+            CheckHistoryByDepartment.Checked = False
+            If Login.flag = "ADMIN" Then
+
+                query.CommandText = " SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment` FROM `admingrouphistory` WHERE `AdminGroupStatus`= '" & reject & "' ORDER BY `AdminGroupStatus` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "Finance Dept Head" Then
+
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment` FROM `financedepthistory` WHERE `FINANCEDeptStatus`= '" & reject & "' ORDER BY `FINANCEDeptStatus` ASC"
+                fillGridHistory(query)
+
+            ElseIf Login.flag = "SYSADMIN" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom` FROM `sysadminhistory` WHERE `SysAdminStatus`= '" & reject & "' ORDER BY `SysAdminStatus` ASC"
+                fillGridHistory(query)
+            ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
+                query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` WHERE 
+                `BDGDeptStatus` = '" & reject & "' OR 
+        `SDGSuperStatus` = '" & reject & "' OR 
+          `SDGDeptStatus` = '" & reject & "' OR 
+          `ITOPSDeptStatus` = '" & reject & "' OR 
+      `PMGDeptStatus` = '" & reject & "' OR 
+      `MarketingDeptStatus` = '" & reject & "' OR 
+          `FINANCEHeadStatus` = '" & reject & "' OR 
+      `FINANCEDeptStatus` = '" & reject & "' OR 
+      `AdminGroupStatus` = '" & reject & "' OR 
+      `SysAdminStatus` = '" & reject & "' OR 
+      `AdminHeadStatus` = '" & reject & "' OR 
+      `SysAdminHeadStatus` = '" & reject & "' OR 
+      `HRHeadStatus` = '" & reject & "' OR 
+      `HRGroupStatus` = '" & reject & "' ORDER BY `empID` ASC"
+                fillGridHistory(query)
+            End If
+        End If
+
+    End Sub
+
 
     Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearchHR.TextChanged
         If CheckHRByUser.Checked = True Then
@@ -1311,5 +1279,27 @@ Public Class Dashboard
 
         Login.Show()
 
+    End Sub
+
+    Private Sub DataGridHistory_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridHistory.CellMouseClick
+        If e.RowIndex >= 0 AndAlso e.RowIndex < DataGridHistory.Rows.Count AndAlso e.ColumnIndex >= 0 AndAlso e.ColumnIndex < DataGridHistory.Columns.Count Then
+            Dim clickedRow As DataGridViewRow = DataGridHistory.Rows(e.RowIndex)
+            Dim clickedCell As DataGridViewCell = clickedRow.Cells(e.ColumnIndex)
+            ' Do something with the clicked cell or row...
+            For Each cell As DataGridViewCell In clickedRow.Cells
+                cell.Selected = True
+            Next
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseClick
+        If e.RowIndex >= 0 AndAlso e.RowIndex < DataGridView1.Rows.Count AndAlso e.ColumnIndex >= 0 AndAlso e.ColumnIndex < DataGridView1.Columns.Count Then
+            Dim clickedRow As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+            Dim clickedCell As DataGridViewCell = clickedRow.Cells(e.ColumnIndex)
+            ' Do something with the clicked cell or row...
+            For Each cell As DataGridViewCell In clickedRow.Cells
+                cell.Selected = True
+            Next
+        End If
     End Sub
 End Class

@@ -859,6 +859,11 @@ Public Class ViewHRGroup
         txtboxHRGroup.Visible = True
         txtboxHRGroup.Text = ""
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         CheckBoxHMO.Enabled = True
         CheckBoxInsurance.Enabled = True
         CheckBoxCompanyID.Enabled = True

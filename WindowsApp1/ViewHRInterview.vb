@@ -4,6 +4,7 @@ Public Class ViewHRInterview
     Dim dbs As New db
     Dim adapter As New MySqlDataAdapter
     Dim table As New DataTable
+    Dim label As New ClassLabel
 
     Dim insertNextFlow As String
     Dim updateHistory As String
@@ -16,14 +17,14 @@ Public Class ViewHRInterview
     Dim HRInterviewDateAccept As Date
 
     Private Sub ViewHRInterview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If verfSchedule() = True Then
+        If LabelHRInterviewApp.Text = "Scheduled" Then
             btnHRInterviewApp.Visible = False
             btnFinalInterview.Visible = True
             CheckBoxInterview.Checked = True
             CheckBoxInterview.Enabled = False
             CheckBoxFinal.Checked = False
             CheckBoxFinal.Enabled = True
-        Else
+        ElseIf LabelHRInterviewApp.Text = "Pending" Then
             btnHRInterviewApp.Visible = True
             btnFinalInterview.Visible = False
             CheckBoxInterview.Checked = False
@@ -38,11 +39,11 @@ Public Class ViewHRInterview
     Private Sub btnHRInterviewApp_Click(sender As Object, e As EventArgs) Handles btnHRInterviewApp.Click
         If verfChecked() = True Then
             Dim tablegroup(8) As String
-            tablegroup(0) = "BDGDepthead"
+            tablegroup(0) = "bdgdepthead"
             tablegroup(1) = "sdgsupervisor"
             tablegroup(2) = "itopsDepthead"
-            tablegroup(3) = "pmgDepthead"
-            tablegroup(4) = "marketingDepthead"
+            tablegroup(3) = "pmgdepthead"
+            tablegroup(4) = "marketingdepthead"
             tablegroup(5) = "financegrouphead"
             tablegroup(6) = "admingroup"
             tablegroup(7) = "sysadmin"
@@ -89,7 +90,7 @@ Public Class ViewHRInterview
                 apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, statusNextflow, insertNextFlow)
             Next
 
-
+            label.sentmail()
             Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
             apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
@@ -178,23 +179,7 @@ Public Class ViewHRInterview
         End If
     End Function
 
-    Function verfSchedule() As Boolean
-        Dim query As String
-        query = "select HRStatus from HRInterview where empID='" & LabelEmpID.Text & "' AND HRStatus='Scheduled'"
-        Dim command As New MySqlCommand(query, dbs.getconn)
-        adapter.SelectCommand = command
-        adapter.Fill(table)
 
-
-        If table.Rows.Count = 0 Then
-            Return False
-        Else
-            Return true
-        End If
-
-
-
-    End Function
 
 
     Private Sub LabelHRInterviewApp_TextChanged(sender As Object, e As EventArgs) Handles LabelHRInterviewApp.TextChanged
@@ -265,7 +250,8 @@ Public Class ViewHRInterview
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
-        LabelDateHRInterview.Visible = False
+
+        LabelDateHRInterview.Text = ""
 
         CheckBoxInterview.Enabled = True
         CheckBoxInterview.Checked = False

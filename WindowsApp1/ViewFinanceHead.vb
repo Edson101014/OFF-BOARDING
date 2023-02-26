@@ -364,6 +364,8 @@ Public Class ViewFinanceHead
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+
+
         LabelFinanceHeadComment.Visible = False
         LabelDateFinanceHead.Text = ""
 

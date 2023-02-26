@@ -339,6 +339,11 @@ Public Class ViewSysAdminHead
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         LabelSysAdminHeadApp.Text = "Pending"
         LabelSysAdminHeadComment.Text = ""
         LabelDateSysAdminHead.Text = ""

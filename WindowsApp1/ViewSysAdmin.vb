@@ -428,6 +428,11 @@ Public Class ViewSysAdmin
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         CheckBoxLaptop.Enabled = True
         CheckBoxEmail.Enabled = True
         CheckBoxComputer.Enabled = True
