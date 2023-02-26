@@ -120,7 +120,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompleteRequest.Designer.vb">
+      <DependentUpon>CompleteRequest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CompleteRequest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Database\ApprovalDB.vb" />
+    <Compile Include="Module\CompleteClass.vb" />
     <Compile Include="ViewHRInterviewHistory.Designer.vb">
       <DependentUpon>ViewHRInterviewHistory.vb</DependentUpon>
     </Compile>
@@ -272,6 +279,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CompleteRequest.resx">
+      <DependentUpon>CompleteRequest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewHRInterviewHistory.resx">
       <DependentUpon>ViewHRInterviewHistory.vb</DependentUpon>
     </EmbeddedResource>
