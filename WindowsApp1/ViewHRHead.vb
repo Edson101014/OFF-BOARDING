@@ -277,6 +277,10 @@ Public Class ViewHRHead
         LabelDateHRHead.Text = ""
         LabelHRHeadComment.Visible = False
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
 
         txtboxHRHead.Visible = True
         txtboxHRHead.Text = ""

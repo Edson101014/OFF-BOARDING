@@ -536,7 +536,7 @@
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
-        ButtonEdit.Visible = True
+        ButtonEdit.Visible = False
         ButtonEditApprove.Visible = False
         ButtonEditReject.Visible = False
         ButtonEditCancel.Visible = False

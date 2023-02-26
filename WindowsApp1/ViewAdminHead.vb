@@ -328,6 +328,11 @@ Public Class ViewAdminHead
         ButtonCancel.Visible = True
         ButtonClose.Visible = False
 
+        ButtonEdit.Visible = False
+        ButtonEditApprove.Visible = False
+        ButtonEditReject.Visible = False
+        ButtonEditCancel.Visible = False
+
         LabelAdminHeadApp.Text = "Pending"
         LabelAdminHeadComment.Text = ""
         LabelDateAdminHead.Text = ""
