@@ -1302,4 +1302,32 @@ Public Class Dashboard
             Next
         End If
     End Sub
+
+    Private Sub DataGridViewComplete_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewComplete.CellContentClick
+        Dim senderGrid = DirectCast(sender, DataGridView)
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
+           e.RowIndex >= 0 Then
+
+            CompleteRequest.LabelEmpName.Text = DataGridViewComplete.CurrentRow.Cells(1).Value.ToString
+            CompleteRequest.LabelEmpID.Text = DataGridViewComplete.CurrentRow.Cells(2).Value.ToString
+            CompleteRequest.LabelDept.Text = DataGridViewComplete.CurrentRow.Cells(3).Value.ToString
+            CompleteRequest.LabelPos.Text = DataGridViewComplete.CurrentRow.Cells(4).Value.ToString
+            CompleteRequest.LabelPurpose.Text = DataGridViewComplete.CurrentRow.Cells(5).Value.ToString
+            CompleteRequest.LabelStatus.Text = DataGridViewComplete.CurrentRow.Cells(6).Value.ToString
+            CompleteRequest.LabelLastDay.Text = DateTime.Parse(DataGridViewComplete.CurrentRow.Cells(7).Value.ToString()).ToString("MMM-dd-yyyy")
+
+            CompleteRequest.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DataGridViewComplete_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridViewComplete.CellMouseClick
+        If e.RowIndex >= 0 AndAlso e.RowIndex < DataGridViewComplete.Rows.Count AndAlso e.ColumnIndex >= 0 AndAlso e.ColumnIndex < DataGridViewComplete.Columns.Count Then
+            Dim clickedRow As DataGridViewRow = DataGridViewComplete.Rows(e.RowIndex)
+            Dim clickedCell As DataGridViewCell = clickedRow.Cells(e.ColumnIndex)
+            ' Do something with the clicked cell or row...
+            For Each cell As DataGridViewCell In clickedRow.Cells
+                cell.Selected = True
+            Next
+        End If
+    End Sub
 End Class
