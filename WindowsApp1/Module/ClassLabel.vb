@@ -162,7 +162,7 @@ Public Class ClassLabel
                 str.Close()
 
                 Smtp_Server.UseDefaultCredentials = False
-                Smtp_Server.Credentials = New Net.NetworkCredential("edsonpaul98@gmail.com", "")
+                Smtp_Server.Credentials = New Net.NetworkCredential("ojt.systemadmin@findme.com.ph", "kucgpmvpetlhbjzo")
                 Smtp_Server.Port = 587
                 Smtp_Server.EnableSsl = True
                 Smtp_Server.Host = "smtp.gmail.com"
@@ -191,7 +191,7 @@ Public Class ClassLabel
                     e_mail.From = New MailAddress("no-reply@gmail.com")
                     e_mail.To.Add(email)
 
-                                e_mail.Subject = "Request Approval Notification"
+                    e_mail.Subject = "Request Approval Notification"
                     e_mail.IsBodyHtml = True
                     e_mail.Body = Mailtext
 
