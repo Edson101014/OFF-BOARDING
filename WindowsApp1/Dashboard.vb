@@ -3,7 +3,7 @@
 Public Class Dashboard
     Dim app As New ApprovalDB
     Dim query As New MySqlCommand()
-
+    Dim dbs As New db
     Dim pagerows As Integer
     Public approve As String = "Approve"
     Public reject As String = "Reject"
@@ -1276,7 +1276,7 @@ Public Class Dashboard
 
 
     Private Sub Dashboard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
+        dbs.closecon()
         Login.Show()
 
     End Sub

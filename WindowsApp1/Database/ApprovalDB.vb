@@ -23,12 +23,13 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
+
     End Function
 
     Public Function insertcompleterequest(ByVal admin As String) As Boolean
@@ -37,10 +38,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -57,10 +58,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -82,10 +83,10 @@ Public Class ApprovalDB
         dbs.opencon()
 
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
 
         End If
@@ -111,10 +112,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
         dbs.closecon()
@@ -144,10 +145,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -172,10 +173,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -198,10 +199,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -216,10 +217,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -247,10 +248,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -265,10 +266,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -283,13 +284,13 @@ Public Class ApprovalDB
         command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
-        dbs.closecon()
+
     End Function
 
 
@@ -305,13 +306,13 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
-        dbs.closecon()
+
     End Function
 
 
@@ -331,10 +332,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -353,10 +354,10 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -378,10 +379,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -403,10 +404,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@checkFinalPay", MySqlDbType.VarChar).Value = checkFinalPay
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function
@@ -426,13 +427,13 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
-        dbs.closecon()
+
 
     End Function
 
@@ -447,13 +448,13 @@ Public Class ApprovalDB
 
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
-        dbs.closecon()
+
 
     End Function
 
@@ -467,10 +468,10 @@ Public Class ApprovalDB
         command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
         dbs.opencon()
         If command.ExecuteNonQuery() = 1 Then
-
+            dbs.closecon()
             Return True
         Else
-
+            dbs.closecon()
             Return False
         End If
     End Function

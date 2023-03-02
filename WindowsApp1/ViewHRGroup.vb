@@ -123,7 +123,7 @@ Public Class ViewHRGroup
         labeldata.LabelHRDate()
 
         ' Set the interval of the refresh timer to 5000ms (5 seconds)
-        refreshTimer.Interval = 0
+        refreshTimer.Interval = 5000
         StartRefreshTimer()
     End Sub
 
