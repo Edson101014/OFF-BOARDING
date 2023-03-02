@@ -36,7 +36,7 @@ Public Class ViewITOPS
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `ITOPSdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptDate`, `ITOPSDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `itopsdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptDate`, `ITOPSDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, inserthistory)
@@ -99,7 +99,7 @@ Public Class ViewITOPS
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `ITOPSdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptDate`, `ITOPSDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `itopsdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptDate`, `ITOPSDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `ITOPSDeptName`=@name, `ITOPSDeptStatus`=@status,`ITOPSDeptDate`=@dateapp, `ITOPSDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, ITOPSNameAccept, ITOPSStatAccept, ITOPSDateAccept, ITOPSCommentAccept, inserthistory)

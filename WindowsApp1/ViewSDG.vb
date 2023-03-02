@@ -37,7 +37,7 @@ Public Class ViewSDG
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `SDGdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptDate`, `SDGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `sdgdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptDate`, `SDGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, inserthistory)
@@ -97,7 +97,7 @@ Public Class ViewSDG
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `SDGdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptDate`, `SDGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `sdgdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptDate`, `SDGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `SDGDeptName`=@name, `SDGDeptStatus`=@status,`SDGDeptDate`=@dateapp, `SDGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, SDGNameAccept, SDGStatAccept, SDGDateAccept, SDGCommentAccept, inserthistory)

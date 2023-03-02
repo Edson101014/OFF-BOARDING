@@ -37,7 +37,7 @@ Public Class ViewPMG
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `PMGdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptDate`, `PMGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `pmgdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptDate`, `PMGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, inserthistory)
@@ -100,7 +100,7 @@ Public Class ViewPMG
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `PMGdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptDate`, `PMGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
+        inserthistory = "INSERT INTO `pmgdepthistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptDate`, `PMGDeptComment`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @dateapp, @comment)"
         updateHistory = "UPDATE `historyrequest` SET `PMGDeptName`=@name, `PMGDeptStatus`=@status,`PMGDeptDate`=@dateapp, `PMGDeptComment`=@comment WHERE empID = '" & LabelEmpID.Text & "'"
 
         apdb.insertHistory(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, PMGNameAccept, PMGStatAccept, PMGDateAccept, PMGCommentAccept, inserthistory)
