@@ -149,6 +149,7 @@ Public Class ClassLabel
     Public Async Sub sentmail()
 
         Try
+            Loading.Show()
             Dim Smtp_Server As New SmtpClient
             Dim e_mail As New MailMessage()
             Dim folderName As String = "Resources"
@@ -196,7 +197,7 @@ Public Class ClassLabel
                     e_mail.Body = Mailtext
 
                     ' Send email to recipient
-                    Smtp_Server.Send(e_mail)
+                    Await Smtp_Server.SendMailAsync(e_mail)
                     Await Task.Delay(1500) ' Delay 1 second before sending next email
                 End While
 

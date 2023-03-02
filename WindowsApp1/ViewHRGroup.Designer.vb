@@ -132,7 +132,6 @@ Partial Class ViewHRGroup
         Me.ButtonEdit = New System.Windows.Forms.Button()
         Me.ButtonRefresh = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -1372,6 +1371,9 @@ Partial Class ViewHRGroup
         Me.ButtonRefresh.Text = "REFRESH"
         Me.ButtonRefresh.UseVisualStyleBackColor = False
         '
+        'Timer1
+        '
+        '
         'ViewHRGroup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1545,5 +1547,4 @@ Partial Class ViewHRGroup
     Friend WithEvents ButtonEdit As Button
     Friend WithEvents ButtonRefresh As Button
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents Timer2 As Timer
 End Class

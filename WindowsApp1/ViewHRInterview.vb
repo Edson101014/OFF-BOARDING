@@ -38,52 +38,19 @@ Public Class ViewHRInterview
 
     Private Sub btnHRInterviewApp_Click(sender As Object, e As EventArgs) Handles btnHRInterviewApp.Click
         If verfChecked() = True Then
-            Dim tablegroup(8) As String
-            tablegroup(0) = "bdgdepthead"
-            tablegroup(1) = "sdgsupervisor"
-            tablegroup(2) = "itopsDepthead"
-            tablegroup(3) = "pmgdepthead"
-            tablegroup(4) = "marketingdepthead"
-            tablegroup(5) = "financegrouphead"
-            tablegroup(6) = "admingroup"
-            tablegroup(7) = "sysadmin"
-            tablegroup(8) = "hr"
-
-            Dim tablestatus(8) As String
-            tablestatus(0) = "bdgdeptstatus"
-            tablestatus(1) = "sdgsuperstatus"
-            tablestatus(2) = "itopsdeptstatus"
-            tablestatus(3) = "pmgdeptstatus"
-            tablestatus(4) = "marketingdeptstatus"
-            tablestatus(5) = "financeheadstatus"
-            tablestatus(6) = "adminstatus"
-            tablestatus(7) = "sysadminstatus"
-            tablestatus(8) = "hrstatus"
-
+            Dim tablegroup() As String = {"bdgdepthead", "sdgsupervisor", "itopsdepthead", "pmgdepthead", "marketingdepthead", "financegrouphead", "admingroup", "sysadmin", "hr"}
+            Dim tablestatus() As String = {"bdgdeptstatus", "sdgsuperstatus", "itopsdeptstatus", "pmgdeptstatus", "marketingdeptstatus", "financeheadstatus", "adminstatus", "sysadminstatus", "hrstatus"}
 
             HRInterviewStatAccept = "Scheduled"
-
             HRInterviewNameAccept = LabelHRInterviewName.Text
-
-
             HRInterviewDateAccept = Date.Today
 
             LabelHRInterviewApp.Text = HRInterviewStatAccept
-
             LabelDateHRInterview.Text = HRInterviewDateAccept
-
             statusNextflow = "Pending"
 
-            updateHistory = "UPDATE `historyrequest` SET `ScheduleInterviewerName`=@lblname, `ScheduleInterviewStatus`=@interviewstat, `ScheduleInterviewDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
-
+            updateHistory = "UPDATE `historyrequest` SET `ScheduleInterviewerName`=@lblname, `ScheduleInterviewStatus`=@interviewstat, `ScheduleInterviewDate`=@dateapp WHERE empID = @empID"
             apdb.updateinterview(HRInterviewNameAccept, HRInterviewStatAccept, HRInterviewDateAccept, updateHistory)
-
-            'insertchecker = "INSERT INTO `checkergroup`(`empID`) VALUES (@empid)"
-            'apdb.insertchecker(LabelEmpID.Text, insertchecker)
-
-            'insertchecker = "INSERT INTO `checker`(`empID`) VALUES (@empid)"
-            'apdb.insertchecker(LabelEmpID.Text, insertchecker)
-
 
             For n As Integer = 0 To 8
                 insertNextFlow = String.Format("INSERT INTO {0}(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {1}) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)", tablegroup(n), tablestatus(n))
@@ -91,20 +58,17 @@ Public Class ViewHRInterview
             Next
 
             label.sentmail()
+            Loading.Close()
             Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
             apdb.deleteRequest(LabelEmpID.Text, deletedt)
 
             insertNextFlow = "INSERT INTO `hrinterview`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `hrStatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
             apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, HRInterviewStatAccept, insertNextFlow)
 
-
-
             btnHRInterviewApp.Visible = False
             ButtonCancel.Visible = False
             ButtonClose.Visible = True
-
             LabelDateHRInterview.Visible = True
-
             CheckBoxInterview.Enabled = False
         Else
             MsgBox("Please check the checkbox if you want to Scheduled", MsgBoxStyle.Exclamation, "Schedule")
