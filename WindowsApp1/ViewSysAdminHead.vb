@@ -37,7 +37,7 @@ Public Class ViewSysAdminHead
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `Sysadmingroupheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @comment, @dateapp)"
+        inserthistory = "INSERT INTO `sysadmingroupheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @comment, @dateapp)"
         updateHistory = "UPDATE `historyrequest` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
 
 
@@ -99,7 +99,7 @@ Public Class ViewSysAdminHead
         'statusNextflow = "Pending"
         'check = 1
 
-        inserthistory = "INSERT INTO `Sysadmingroupheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @comment, @dateapp)"
+        inserthistory = "INSERT INTO `sysadmingroupheadhistory`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @name, @status, @comment, @dateapp)"
         updateHistory = "UPDATE `historyrequest` SET `SysAdminHeadName`=@name, `SysAdminHeadStatus`=@status, `SysAdminHeadComment`=@comment, `SysAdminHeadDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
 
 

@@ -180,13 +180,13 @@ Public Class ClassLabel
                     Dim email As String = reader.GetString("email")
 
                     ' Populate email content
-                    Mailtext = Mailtext.Replace("@empname", ViewRequest.LabelEmpName.Text)
-                    Mailtext = Mailtext.Replace("@empID", ViewRequest.LabelEmpID.Text)
-                    Mailtext = Mailtext.Replace("@empPos", ViewRequest.LabelPos.Text)
-                    Mailtext = Mailtext.Replace("@empStatus", ViewRequest.LabelStatus.Text)
-                    Mailtext = Mailtext.Replace("@clearPurpose", ViewRequest.LabelPurpose.Text)
-                    Mailtext = Mailtext.Replace("@lastday", ViewRequest.LabelLastDay.Text)
-                    Mailtext = Mailtext.Replace("@dept", ViewRequest.LabelDept.Text)
+                    Mailtext = Mailtext.Replace("@empname", ViewHRInterview.LabelEmpName.Text)
+                    Mailtext = Mailtext.Replace("@empID", ViewHRInterview.LabelEmpID.Text)
+                    Mailtext = Mailtext.Replace("@empPos", ViewHRInterview.LabelPos.Text)
+                    Mailtext = Mailtext.Replace("@empStatus", ViewHRInterview.LabelStatus.Text)
+                    Mailtext = Mailtext.Replace("@clearPurpose", ViewHRInterview.LabelPurpose.Text)
+                    Mailtext = Mailtext.Replace("@lastday", ViewHRInterview.LabelLastDay.Text)
+                    Mailtext = Mailtext.Replace("@dept", ViewHRInterview.LabelDept.Text)
 
                     e_mail = New MailMessage
                     e_mail.From = New MailAddress("no-reply@gmail.com")

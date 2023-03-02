@@ -49,7 +49,7 @@ Public Class ViewHRInterview
             LabelDateHRInterview.Text = HRInterviewDateAccept
             statusNextflow = "Pending"
 
-            updateHistory = "UPDATE `historyrequest` SET `ScheduleInterviewerName`=@lblname, `ScheduleInterviewStatus`=@interviewstat, `ScheduleInterviewDate`=@dateapp WHERE empID = @empID"
+            updateHistory = "UPDATE `historyrequest` SET `ScheduleInterviewerName`=@lblname, `ScheduleInterviewStatus`=@interviewstat, `ScheduleInterviewDate`=@dateapp WHERE empID = '" & LabelEmpID.Text & "'"
             apdb.updateinterview(HRInterviewNameAccept, HRInterviewStatAccept, HRInterviewDateAccept, updateHistory)
 
             For n As Integer = 0 To 8
@@ -59,11 +59,12 @@ Public Class ViewHRInterview
 
             label.sentmail()
             Loading.Close()
+
             Dim deletedt As String = String.Format("DELETE FROM {0} WHERE empID = @empID", Login.str)
             apdb.deleteRequest(LabelEmpID.Text, deletedt)
-
             insertNextFlow = "INSERT INTO `hrinterview`(`Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `hrStatus`) VALUES (@eName, @eID, @dept, @pos, @purpose, @stat, @lastday, @status)"
             apdb.insertNextFlow(LabelEmpName.Text, LabelEmpID.Text, LabelDept.Text, LabelPos.Text, LabelPurpose.Text, LabelStatus.Text, LabelLastDay.Text, HRInterviewStatAccept, insertNextFlow)
+
 
             btnHRInterviewApp.Visible = False
             ButtonCancel.Visible = False
