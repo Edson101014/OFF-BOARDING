@@ -127,6 +127,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Database\ApprovalDB.vb" />
+    <Compile Include="Loading.Designer.vb">
+      <DependentUpon>Loading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Loading.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Module\CompleteClass.vb" />
     <Compile Include="ViewHRInterviewHistory.Designer.vb">
       <DependentUpon>ViewHRInterviewHistory.vb</DependentUpon>
@@ -282,6 +288,9 @@
     <EmbeddedResource Include="CompleteRequest.resx">
       <DependentUpon>CompleteRequest.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Loading.resx">
+      <DependentUpon>Loading.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewHRInterviewHistory.resx">
       <DependentUpon>ViewHRInterviewHistory.vb</DependentUpon>
     </EmbeddedResource>
@@ -369,9 +378,9 @@
     <None Include="WindowsApp1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WTI-Logo-Big %282%29.png">
+    <EmbeddedResource Include="Resources\WTI-Logo-Big %282%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -382,9 +391,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="Resources\index.html">
+    <EmbeddedResource Include="Resources\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\loading1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

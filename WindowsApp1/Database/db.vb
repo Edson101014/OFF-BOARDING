@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class db
-    Public con As New MySqlConnection("server=sql12.freemysqlhosting.net;port=3306;user id=sql12598620;password=A4Cdvmxf6b;database=sql12598620")
+    Public con As New MySqlConnection("server=sql12.freemysqlhosting.net;port=3306;user id=sql12601944;password=QgulMDRHcM;database=sql12601944")
 
     ReadOnly Property getconn() As MySqlConnection
         Get

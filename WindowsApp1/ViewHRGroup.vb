@@ -123,7 +123,8 @@ Public Class ViewHRGroup
         labeldata.LabelHRDate()
 
         ' Set the interval of the refresh timer to 5000ms (5 seconds)
-        refreshTimer.Interval = 5000
+        refreshTimer.Interval = 0
+        StartRefreshTimer()
     End Sub
 
     Private Sub ButtonRefresh_Click(sender As Object, e As EventArgs) Handles ButtonRefresh.Click
@@ -887,6 +888,8 @@ Public Class ViewHRGroup
         CheckBoxCOE.Checked = False
         CheckBoxITR.Checked = False
         CheckBoxFinalPay.Checked = False
+
+        StopRefreshTimer()
 
         If Login.flag = "Finance Dept Head" Then
             ShowFinanceData()
