@@ -1,7 +1,7 @@
 ﻿Public Class ViewAdmin
     Dim apdb As New ApprovalDB
 
-
+    Dim dbs As New db
 
     Dim checkteleco As String = "Unchecked"
     Dim checktools As String = "Unchecked"
@@ -531,6 +531,7 @@
     End Sub
 
     Private Sub ViewAdmin_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnAdminDeptApp.Visible = True
         btnAdminDeptReject.Visible = True
         ButtonCancel.Visible = True

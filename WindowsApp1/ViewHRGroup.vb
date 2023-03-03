@@ -2,7 +2,7 @@
 Public Class ViewHRGroup
     Dim apdb As New ApprovalDB
     Dim labeldata As New ClassLabel
-
+    Dim dbs As New db
 
     Dim checkHMO As String = "Unchecked"
     Dim checkInsurance As String = "Unchecked"
@@ -848,6 +848,7 @@ Public Class ViewHRGroup
     End Sub
 
     Private Sub ViewHRGroup_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnHRGroupApp.Visible = True
         btnHRGroupReject.Visible = True
         ButtonCancel.Visible = True

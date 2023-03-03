@@ -59,7 +59,7 @@ Public Class HRUser
         title = ComboBoxTitle.SelectedItem
         dept = ComboBoxDepartment.SelectedItem
 
-        cmdInsert = "UPDATE `login` SET `user`=@user, `pass`=@pass, `name`=@name, `email`=@email, `title`=@title, `department`=@dept WHERE user='" & TextBoxUsername.Text & "'"
+        cmdInsert = "UPDATE `login` SET `user`=@user, `pass`=@pass, `name`=@name, `email`=@email, `title`=@title, `department`=@dept WHERE id='" & labelID.Text & "'"
         apdb.updateHRUser(user, pass, names, email, title, dept, cmdInsert)
         TextBoxUsername.Clear()
         TextBoxPassword.Clear()
@@ -77,7 +77,7 @@ Public Class HRUser
     End Sub
 
     Private Sub HRUser_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
+        dbs.returnConnection(dbs.getConn)
         ButtonADD.Visible = False
         ButtonEdit.Visible = False
         ButtonDelete.Visible = False
@@ -130,19 +130,35 @@ Public Class HRUser
         End Select
     End Sub
 
-    Private Sub ComboBoxDepartment_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDepartment.SelectedIndexChanged
-        ComboBoxDepartment.Items.Add("BDG")
-        ComboBoxDepartment.Items.Add("SDG")
-        ComboBoxDepartment.Items.Add("ITOPS")
-        ComboBoxDepartment.Items.Add("PMG")
-        ComboBoxDepartment.Items.Add("Marketing")
-        ComboBoxDepartment.Items.Add("Finance")
-        ComboBoxDepartment.Items.Add("Admin")
-        ComboBoxDepartment.Items.Add("System Admin")
-        ComboBoxDepartment.Items.Add("HR")
-        ComboBoxDepartment.Items.Add("COO")
-        ComboBoxDepartment.Items.Add("CEO")
+    Private Sub ComboBoxTitle_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxTitle.SelectedIndexChanged
+        If ComboBoxTitle.SelectedItem = "Dept Head" Then
+            ComboBoxDepartment.SelectedItem = "Admin"
+            ComboBoxDepartment.Items.Clear()
 
+            ComboBoxDepartment.Items.Add("Admin")
+            ComboBoxDepartment.SelectedItem = "Admin"
+            ComboBoxDepartment.Items.Add("BDG")
+            ComboBoxDepartment.Items.Add("Finance")
+            ComboBoxDepartment.Items.Add("ITOPS")
+            ComboBoxDepartment.Items.Add("Marketing")
+            ComboBoxDepartment.Items.Add("PMG")
+            ComboBoxDepartment.Items.Add("System Admin")
+            ComboBoxDepartment.Items.Add("HR")
+        ElseIf ComboBoxTitle.SelectedItem = "Supervisor" Then
+            ComboBoxDepartment.SelectedItem = "Admin"
+            ComboBoxDepartment.Items.Clear()
+            ComboBoxDepartment.Items.Add("Admin")
+            ComboBoxDepartment.SelectedItem = "Admin"
+            ComboBoxDepartment.Items.Add("Finance")
+            ComboBoxDepartment.Items.Add("SDG")
+            ComboBoxDepartment.Items.Add("System Admin")
+            ComboBoxDepartment.Items.Add("HR")
+        ElseIf ComboBoxTitle.SelectedItem = "Interview" Then
+            ComboBoxDepartment.SelectedItem = "HR"
+            ComboBoxDepartment.Items.Clear()
 
+            ComboBoxDepartment.Items.Add("HR")
+            ComboBoxDepartment.SelectedItem = "HR"
+        End If
     End Sub
 End Class

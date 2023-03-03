@@ -1,9 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Module ModuleShowData
     Dim apdb As New ApprovalDB
-    Dim dbs As New db
     Dim query As New MySqlCommand()
-    Dim pagerows As Integer
+
 
     Public Sub fillGridDashboard(ByVal command As MySqlCommand)
         Dashboard.DataGridView1.ReadOnly = True
@@ -138,7 +137,7 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
         fillGridComplete(query)
 
-        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
         fillGridHR(query)
     End Sub
 
@@ -191,7 +190,7 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
         fillGridComplete(query)
 
-        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
         fillGridHR(query)
     End Sub
 
@@ -206,7 +205,7 @@ Module ModuleShowData
         query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `completerequest` ORDER BY `LastDayEmploy` DESC"
         fillGridComplete(query)
 
-        query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
+        query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login`"
         fillGridHR(query)
     End Sub
 
@@ -217,13 +216,13 @@ Module ModuleShowData
         Dashboard.DataGridHR.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         Dashboard.DataGridHR.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None
 
-
-        Dashboard.DataGridHR.Columns(0).HeaderText = "Username"
-        Dashboard.DataGridHR.Columns(1).HeaderText = "Password"
-        Dashboard.DataGridHR.Columns(2).HeaderText = "Name"
-        Dashboard.DataGridHR.Columns(3).HeaderText = "Email"
-        Dashboard.DataGridHR.Columns(4).HeaderText = "Title"
-        Dashboard.DataGridHR.Columns(5).HeaderText = "Department"
+        Dashboard.DataGridHR.Columns(0).HeaderText = "No."
+        Dashboard.DataGridHR.Columns(1).HeaderText = "Username"
+        Dashboard.DataGridHR.Columns(2).HeaderText = "Password"
+        Dashboard.DataGridHR.Columns(3).HeaderText = "Name"
+        Dashboard.DataGridHR.Columns(4).HeaderText = "Email"
+        Dashboard.DataGridHR.Columns(5).HeaderText = "Title"
+        Dashboard.DataGridHR.Columns(6).HeaderText = "Department"
 
         Dashboard.LabelTotalHR.Text = Dashboard.DataGridHR.Rows.Count
 
@@ -679,7 +678,97 @@ Module ModuleShowData
     End Sub
 
     Public Sub HistorySearchGroup()
+        If Dashboard.CheckHistoryByID.Checked = True Then
 
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `empID` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            Else
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} WHERE `empID` Like '%" & Dashboard.TextBoxSearchHistory.Text & "%'", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            End If
+
+        End If
+
+        If Dashboard.CheckHistoryByName.Checked = True Then
+
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `Name` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            Else
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} WHERE `Name` Like '%" & Dashboard.TextBoxSearchHistory.Text & "%'", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            End If
+
+        End If
+        If Dashboard.CheckHistoryByPurpose.Checked = True Then
+
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `clearPurpose` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            Else
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} WHERE `clearPurpose` Like '%" & Dashboard.TextBoxSearchHistory.Text & "%'", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            End If
+
+        End If
+        If Dashboard.CheckHistoryByDepartment.Checked = True Then
+
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `dept` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            Else
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} WHERE `dept` Like '%" & Dashboard.TextBoxSearchHistory.Text & "%'", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
+            End If
+
+        End If
+
+        If Dashboard.CheckHistoryByApprove.Checked = True Then
+
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & Dashboard.approve & "' ORDER BY {6} ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
+                fillGridHistory(query)
+
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & Dashboard.approve & "' Like '%" & Dashboard.TextBoxSearchHistory.Text & "%' ", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
+                fillGridHistory(query)
+
+            End If
+
+        End If
+
+        If Dashboard.CheckHistoryByRejected.Checked = True Then
+
+            If Dashboard.TextBoxSearchHistory.Text = Nothing Then
+
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & Dashboard.reject & "' ORDER BY {6} ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
+                fillGridHistory(query)
+
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & Dashboard.reject & "' Like '%" & Dashboard.TextBoxSearchHistory.Text & "%' ", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
+                fillGridHistory(query)
+
+            End If
+
+        End If
     End Sub
 End Module
 

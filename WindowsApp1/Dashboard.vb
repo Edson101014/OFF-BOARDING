@@ -903,53 +903,10 @@ Public Class Dashboard
         ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
             HistorySearchHR()
         Else
-
+            HistorySearchGroup()
         End If
 
 
-
-        'Else
-
-        '    If CheckHistoryByID.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-        '            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}  FROM {3} ORDER BY `empID` ASC", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        Else
-        '            query.CommandText = String.Format("Select `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} WHERE `empID` Like '%" & TextBoxSearchHistory.Text & "%'", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        End If
-
-        '    End If
-        '    If CheckHistoryByName.Checked = True Then
-        '        If TextBoxSearchHistory.Text = Nothing Then
-        '            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}  FROM {3} ORDER BY `Name` ASC", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        Else
-        '            query.CommandText = String.Format("Select `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} WHERE `Name` Like '%" & TextBoxSearchHistory.Text & "%'", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        End If
-        '    End If
-        '    If CheckHistoryByPurpose.Checked = True Then
-
-        '        If TextBoxSearchHistory.Text = Nothing Then
-        '            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}  FROM {3} ORDER BY `clearPurpose` ASC", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        Else
-        '            query.CommandText = String.Format("Select `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} WHERE `clearPurpose` Like '%" & TextBoxSearchHistory.Text & "%'", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        End If
-        '    End If
-        '    If CheckHistoryByDepartment.Checked = True Then
-        '        If TextBoxSearchHistory.Text = Nothing Then
-        '            query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}  FROM {3} ORDER BY `dept` ASC", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        Else
-        '            query.CommandText = String.Format("Select `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2} FROM {3} WHERE `dept` Like '%" & TextBoxSearchHistory.Text & "%'", Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
-        '            fillGridHistory(query)
-        '        End If
-        '    End If
-        'End If
 
     End Sub
 
@@ -985,6 +942,9 @@ Public Class Dashboard
             ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
                 query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `Name` ASC"
                 fillGridHistory(query)
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `Name` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
             End If
 
         End If
@@ -1009,6 +969,10 @@ Public Class Dashboard
             ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
                 query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `clearPurpose` ASC"
                 fillGridHistory(query)
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `clearPurpose` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
+                fillGridHistory(query)
+
             End If
         End If
     End Sub
@@ -1035,6 +999,9 @@ Public Class Dashboard
                 fillGridHistory(query)
             ElseIf Login.flag = "HR" Or Login.flag = "HR Interview" Or Login.flag = "HR Head" Then
                 query.CommandText = "SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, `BDGDeptName`, `BDGDeptStatus`, `BDGDeptComment`, `BDGDeptDate`, `SDGSuperName`, `SDGSuperStatus`, `SDGSuperComment`, `SDGSuperDate`, `SDGDeptName`, `SDGDeptStatus`, `SDGDeptComment`, `SDGDeptDate`, `ITOPSDeptName`, `ITOPSDeptStatus`, `ITOPSDeptComment`, `ITOPSDeptDate`, `PMGDeptName`, `PMGDeptStatus`, `PMGDeptComment`, `PMGDeptDate`, `MarketingDeptName`, `MarketingDeptStatus`, `MarketingDeptComment`, `MarketingDeptDate`, `FINANCEHeadName`, `FINANCEHeadStatus`, `FINANCEHeadComment`, `FinanceHeadDate`, `FINANCEDeptName`, `FINANCEDeptStatus`, `FINANCEDeptComment`, `FINANCEDeptDate`, `CashAdvance`, `FinanceDeptOthers`, `FinanceDeptOtherComment`, `AdminGroupName`, `AdminGroupStatus`, `AdminGroupComment`, `AdminGroupDate`, `CheckTeleco`, `CheckTools`, `CheckPhone`, `CheckTable`, `CheckOthers`, `CheckOthersComment`, `AdminHeadName`, `AdminHeadStatus`, `AdminHeadComment`, `AdminHeadDate`, `SysAdminName`, `SysAdminStatus`, `SysAdminComment`, `SysAdminDate`, `CheckLaptop`, `CheckEmail`, `CheckCom`, `SysAdminHeadName`, `SysAdminHeadStatus`, `SysAdminHeadComment`, `SysAdminHeadDate`, `HRHeadName`, `HRHeadStatus`, `HRHeadComment`, `HRHeadDate`, `HRGroupName`, `HRGroupStatus`, `HRGroupComment`, `HRGroupDate`, `CheckHMO`, `CheckInsurance`, `CheckCompanyID`, `CheckQuitClaim`, `CheckCOE`, `CheckITR`, `CheckFinalPay`, `ScheduleInterviewerName`, `ScheduleInterviewStatus`, `ScheduleInterviewDate`, `ExitInterviewBy`, `ExitInterviewStatus`, `ExitInterviewDate` FROM `historyrequest` ORDER BY `dept` ASC"
+                fillGridHistory(query)
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} ORDER BY `dept` ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory)
                 fillGridHistory(query)
             End If
         End If
@@ -1077,6 +1044,9 @@ Public Class Dashboard
       `SysAdminHeadStatus` = '" & approve & "' OR 
       `HRHeadStatus` = '" & approve & "' OR 
       `HRGroupStatus` = '" & approve & "' ORDER BY `empID` ASC"
+                fillGridHistory(query)
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & approve & "' ORDER BY {6} ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
                 fillGridHistory(query)
             End If
         End If
@@ -1121,6 +1091,9 @@ Public Class Dashboard
       `HRHeadStatus` = '" & reject & "' OR 
       `HRGroupStatus` = '" & reject & "' ORDER BY `empID` ASC"
                 fillGridHistory(query)
+            Else
+                query.CommandText = String.Format("SELECT `Name`, `empID`, `dept`, `position`, `clearPurpose`, `employeeStatus`, `LastDayEmploy`, {0}, {1}, {2}, {3} FROM {4} wHERE {5} = '" & reject & "' ORDER BY {6} ASC", Login.queryName, Login.querystatus, Login.querycomment, Login.querydate, Login.queryhistory, Login.querystatus, Login.querystatus)
+                fillGridHistory(query)
             End If
         End If
 
@@ -1131,39 +1104,39 @@ Public Class Dashboard
         If CheckHRByUser.Checked = True Then
 
             If TextBoxSearchHR.Text = Nothing Then
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY user"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY user"
                 fillGridHR(query)
             Else
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE user like '%" & TextBoxSearchHR.Text & "%'"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE user like '%" & TextBoxSearchHR.Text & "%'"
                 fillGridHR(query)
             End If
 
         End If
         If CheckHRByName.Checked = True Then
             If TextBoxSearchHR.Text = Nothing Then
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY Name"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY Name"
                 fillGridHR(query)
             Else
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE Name like '%" & TextBoxSearchHR.Text & "%'"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE Name like '%" & TextBoxSearchHR.Text & "%'"
                 fillGridHR(query)
             End If
         End If
         If CheckHRByEmail.Checked = True Then
 
             If TextBoxSearchHR.Text = Nothing Then
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY email"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY email"
                 fillGridHR(query)
             Else
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE email like '%" & TextBoxSearchHR.Text & "%'"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE email like '%" & TextBoxSearchHR.Text & "%'"
                 fillGridHR(query)
             End If
         End If
         If CheckHRByDepartment.Checked = True Then
             If TextBoxSearchHR.Text = Nothing Then
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY department"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY department"
                 fillGridHR(query)
             Else
-                query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE department like '%" & TextBoxSearchHR.Text & "%'"
+                query.CommandText = "SELECT `id`,`user`, `pass`, `name`, `email`, `title`, `department` FROM `login` WHERE department like '%" & TextBoxSearchHR.Text & "%'"
                 fillGridHR(query)
             End If
         End If
@@ -1183,7 +1156,7 @@ Public Class Dashboard
             CheckHRByDepartment.Checked = False
             CheckHRByUser.Checked = False
             CheckHRByEmail.Checked = False
-            query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY name"
+            query.CommandText = "SELECT `id`, `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY name"
             fillGridHR(query)
         End If
     End Sub
@@ -1193,7 +1166,7 @@ Public Class Dashboard
             CheckHRByName.Checked = False
             CheckHRByUser.Checked = False
             CheckHRByDepartment.Checked = False
-            query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY email"
+            query.CommandText = "SELECT `id`, `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY email"
             fillGridHR(query)
         End If
     End Sub
@@ -1203,7 +1176,7 @@ Public Class Dashboard
             CheckHRByName.Checked = False
             CheckHRByUser.Checked = False
             CheckHRByEmail.Checked = False
-            query.CommandText = "SELECT `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY department"
+            query.CommandText = "SELECT `id`, `user`, `pass`, `name`, `email`, `title`, `department` FROM `login` ORDER BY department"
             fillGridHR(query)
         End If
     End Sub
@@ -1211,12 +1184,14 @@ Public Class Dashboard
     Private Sub DataGridHR_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridHR.CellMouseClick
         ButtonEdit.Enabled = True
         ButtonDelete.Enabled = True
-        HRUser.TextBoxUsername.Text = DataGridHR.CurrentRow.Cells(0).Value.ToString
-        HRUser.TextBoxPassword.Text = DataGridHR.CurrentRow.Cells(1).Value.ToString
-        HRUser.TextBoxName.Text = DataGridHR.CurrentRow.Cells(2).Value.ToString
-        HRUser.TextBoxEmail.Text = DataGridHR.CurrentRow.Cells(3).Value.ToString
-        HRUser.ComboBoxTitle.SelectedItem = DataGridHR.CurrentRow.Cells(4).Value.ToString
-        HRUser.ComboBoxDepartment.SelectedItem = DataGridHR.CurrentRow.Cells(5).Value.ToString
+        HRUser.labelID.Text = DataGridHR.CurrentRow.Cells(0).Value.ToString
+        HRUser.TextBoxUsername.Text = DataGridHR.CurrentRow.Cells(1).Value.ToString
+        HRUser.TextBoxPassword.Text = DataGridHR.CurrentRow.Cells(2).Value.ToString
+        HRUser.TextBoxName.Text = DataGridHR.CurrentRow.Cells(3).Value.ToString
+        HRUser.TextBoxEmail.Text = DataGridHR.CurrentRow.Cells(4).Value.ToString
+        HRUser.ComboBoxTitle.SelectedItem = DataGridHR.CurrentRow.Cells(5).Value.ToString
+
+
 
 
 
@@ -1243,8 +1218,8 @@ Public Class Dashboard
         HRUser.TextBoxEmail.Enabled = True
         HRUser.ComboBoxTitle.Enabled = True
         HRUser.ComboBoxDepartment.Enabled = True
+        HRUser.ComboBoxDepartment.SelectedItem = DataGridHR.CurrentRow.Cells(6).Value.ToString
 
-        HRUser.TextBoxName.Enabled = Enabled
         HRUser.ShowDialog()
     End Sub
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
@@ -1252,8 +1227,15 @@ Public Class Dashboard
         HRUser.TextBoxPassword.Clear()
         HRUser.TextBoxName.Clear()
         HRUser.TextBoxEmail.Clear()
-        HRUser.ComboBoxTitle.SelectedIndex = -1
-        HRUser.ComboBoxDepartment.SelectedIndex = -1
+        HRUser.ComboBoxTitle.SelectedItem = "Dept Head"
+        HRUser.ComboBoxDepartment.SelectedItem = "BDG"
+
+        HRUser.ButtonADD.Enabled = True
+        HRUser.ButtonADD.Visible = True
+        HRUser.ButtonDelete.Enabled = False
+        HRUser.ButtonDelete.Visible = False
+        HRUser.ButtonEdit.Enabled = False
+        HRUser.ButtonEdit.Visible = False
 
         HRUser.TextBoxUsername.Enabled = True
         HRUser.TextBoxPassword.Enabled = True
@@ -1270,13 +1252,14 @@ Public Class Dashboard
         HRUser.ButtonEdit.Visible = False
         HRUser.ButtonDelete.Enabled = True
         HRUser.ButtonDelete.Visible = True
+        HRUser.ComboBoxDepartment.SelectedItem = DataGridHR.CurrentRow.Cells(6).Value.ToString
         HRUser.ShowDialog()
     End Sub
 
 
 
     Private Sub Dashboard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        dbs.closecon()
+        dbs.returnConnection(dbs.getConn)
         Login.Show()
 
     End Sub
@@ -1329,5 +1312,9 @@ Public Class Dashboard
                 cell.Selected = True
             Next
         End If
+    End Sub
+
+    Private Sub ButtonLogOut_Click(sender As Object, e As EventArgs) Handles ButtonLogOut.Click
+        Me.Close()
     End Sub
 End Class

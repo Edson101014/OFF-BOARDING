@@ -68,6 +68,7 @@ Partial Class Dashboard
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBoxSearchHR = New System.Windows.Forms.TextBox()
         Me.DataGridHR = New System.Windows.Forms.DataGridView()
+        Me.ButtonLogOut = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -605,11 +606,23 @@ Partial Class Dashboard
         Me.DataGridHR.Size = New System.Drawing.Size(1022, 324)
         Me.DataGridHR.TabIndex = 1
         '
+        'ButtonLogOut
+        '
+        Me.ButtonLogOut.BackColor = System.Drawing.Color.SpringGreen
+        Me.ButtonLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonLogOut.Location = New System.Drawing.Point(947, 2)
+        Me.ButtonLogOut.Name = "ButtonLogOut"
+        Me.ButtonLogOut.Size = New System.Drawing.Size(90, 35)
+        Me.ButtonLogOut.TabIndex = 178
+        Me.ButtonLogOut.Text = "LOGOUT"
+        Me.ButtonLogOut.UseVisualStyleBackColor = False
+        '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1049, 506)
+        Me.Controls.Add(Me.ButtonLogOut)
         Me.Controls.Add(Me.TabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Name = "Dashboard"
@@ -677,4 +690,5 @@ Partial Class Dashboard
     Friend WithEvents DataGridViewButtonColumn1 As DataGridViewButtonColumn
     Friend WithEvents LabelTotalComplete As Label
     Friend WithEvents Label15 As Label
+    Friend WithEvents ButtonLogOut As Button
 End Class

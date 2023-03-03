@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class ViewSDG
     Dim apdb As New ApprovalDB
-    'Dim dbs As New db
+    Dim dbs As New db
     'Dim adapter As New MySqlDataAdapter
     'Dim table As New DataTable
 
@@ -344,6 +344,7 @@ Public Class ViewSDG
     End Sub
 
     Private Sub ViewSDG_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnSDGDeptApp.Visible = True
         btnSDGDeptReject.Visible = True
         ButtonCancel.Visible = True

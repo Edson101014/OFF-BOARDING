@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class ViewFinance
     Dim apdb As New ApprovalDB
-    'Dim dbs As New db
+    Dim dbs As New db
     'Dim adapter As New MySqlDataAdapter
     'Dim table As New DataTable
 
@@ -488,7 +488,7 @@ Public Class ViewFinance
     '    End Function
 
     Private Sub ViewFinance_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
+        dbs.returnConnection(dbs.getConn)
         btnFinanceDeptApp.Visible = True
         btnFinanceDeptReject.Visible = True
         ButtonCancel.Visible = True
