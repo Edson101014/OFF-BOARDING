@@ -210,6 +210,7 @@ Public Class ViewHRInterview
     End Sub
 
     Private Sub ViewHRInterview_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnHRInterviewApp.Visible = True
         btnFinalInterview.Visible = False
         ButtonCancel.Visible = True

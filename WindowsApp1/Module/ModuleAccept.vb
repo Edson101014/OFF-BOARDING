@@ -1,7 +1,7 @@
 ﻿
 Module ModuleAccept
     Dim apdb As New ApprovalDB
-    Dim checker As New ClassChecker
+
 
     Dim inserthistory As String
     Dim insertNextFlow As String

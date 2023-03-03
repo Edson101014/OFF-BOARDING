@@ -1,7 +1,7 @@
 ﻿
 Public Class ViewITOPS
     Dim apdb As New ApprovalDB
-    'Dim dbs As New db
+    Dim dbs As New db
     'Dim adapter As New MySqlDataAdapter
     'Dim table As New DataTable
 
@@ -348,6 +348,7 @@ Public Class ViewITOPS
     End Sub
 
     Private Sub ViewITOPS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnITOPSDeptApp.Visible = True
         btnITOPSDeptReject.Visible = True
         ButtonCancel.Visible = True

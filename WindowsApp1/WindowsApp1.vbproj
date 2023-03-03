@@ -169,7 +169,6 @@
     <Compile Include="ViewFinance.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module\ClassChecker.vb" />
     <Compile Include="Database\db.vb" />
     <Compile Include="HRUserForm.Designer.vb">
       <DependentUpon>HRUserForm.vb</DependentUpon>

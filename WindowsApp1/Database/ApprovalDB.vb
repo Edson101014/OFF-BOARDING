@@ -4,225 +4,263 @@ Public Class ApprovalDB
     Dim dbs As New db
     Public Function getemployee(ByVal command As MySqlCommand) As DataTable
 
-        command.Connection = dbs.getconn()
-        Dim adapter As New MySqlDataAdapter(command)
-        Dim table As New DataTable()
-        adapter.Fill(table)
-        Return table
+        Dim resultTable As New DataTable()
+
+        Using conn As MySqlConnection = dbs.getConn()
+            command.Connection = conn
+            Dim adapter As New MySqlDataAdapter(command)
+            adapter.Fill(resultTable)
+            dbs.returnConnection(conn)
+        End Using
+
+        Return resultTable
     End Function
 
 
     'INSERT HISTORY
 
-    Public Function insertchecker(ByVal empID As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-
-        command.Parameters.Add("@empID", MySqlDbType.VarChar).Value = empID
-
-
-
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
-
-    End Function
-
-    Public Function insertcompleterequest(ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function insertchecker(ByVal empID As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
 
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
-    End Function
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
 
-    Public Function insertNextFlow(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal stats As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
-        command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
-    End Function
-
-    Public Function insertHistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-
-        dbs.opencon()
-
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-
-        End If
+        Return result
 
     End Function
 
+    Public Function insertcompleterequest(ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
-    Public Function insertFinance(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checkcash As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@checkcash", MySqlDbType.VarChar).Value = checkcash
-        command.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
-        command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
-        dbs.closecon()
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+
+        Return result
+    End Function
+
+    Public Function insertNextFlow(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal stats As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
+
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+
+        Return result
+    End Function
+
+    Public Function insertHistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
+
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
+
     End Function
 
 
-    Public Function insertAdminhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
+    Public Function insertFinance(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checkcash As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
 
-        command.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
-        command.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
-        command.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
-        command.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
-        command.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
-        command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@checkcash", MySqlDbType.VarChar).Value = checkcash
+            cmd.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
+            cmd.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
+
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
-    Public Function insertSysAdminhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checklaptop As String, ByVal checkemail As String, ByVal checkcom As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
 
-        command.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
-        command.Parameters.Add("@checkemail", MySqlDbType.VarChar).Value = checkemail
-        command.Parameters.Add("@checkcom", MySqlDbType.VarChar).Value = checkcom
+    Public Function insertAdminhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+           cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+
+            cmd.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
+            cmd.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
+            cmd.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
+            cmd.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
+            cmd.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
+            cmd.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
-    Public Function insertHRhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal essdeact As String, ByVal comphealth As String, ByVal payroll As String, ByVal others As String, ByVal othercomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
-        command.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
-        command.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
-        command.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
-        command.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
-        command.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
-        command.Parameters.Add("@essdeact", MySqlDbType.VarChar).Value = essdeact
-        command.Parameters.Add("@comphealth", MySqlDbType.VarChar).Value = comphealth
-        command.Parameters.Add("@payroll", MySqlDbType.VarChar).Value = payroll
-        command.Parameters.Add("@others", MySqlDbType.VarChar).Value = others
-        command.Parameters.Add("@othercomment", MySqlDbType.VarChar).Value = othercomment
+    Public Function insertSysAdminhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checklaptop As String, ByVal checkemail As String, ByVal checkcom As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
 
+            cmd.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
+            cmd.Parameters.Add("@checkemail", MySqlDbType.VarChar).Value = checkemail
+            cmd.Parameters.Add("@checkcom", MySqlDbType.VarChar).Value = checkcom
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
-    Public Function insertHRUser(ByRef user As String, ByVal pass As String, ByVal name As String, ByVal email As String, ByVal title As String, ByVal dept As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@user", MySqlDbType.VarChar).Value = user
-        command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = pass
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
-        command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email
-        command.Parameters.Add("@title", MySqlDbType.VarChar).Value = title
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+    Public Function insertHRhistory(ByRef empName As String, ByVal empID As String, ByVal depart As String, ByVal empPos As String, ByVal clPurpose As String, ByVal empStatus As String, ByVal septDate As Date, ByVal essdeact As String, ByVal comphealth As String, ByVal payroll As String, ByVal others As String, ByVal othercomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@eName", MySqlDbType.VarChar).Value = empName
+            cmd.Parameters.Add("@eID", MySqlDbType.VarChar).Value = empID
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = depart
+            cmd.Parameters.Add("@pos", MySqlDbType.VarChar).Value = empPos
+            cmd.Parameters.Add("@purpose", MySqlDbType.VarChar).Value = clPurpose
+            cmd.Parameters.Add("@stat", MySqlDbType.VarChar).Value = empStatus
+            cmd.Parameters.Add("@lastday", MySqlDbType.Date).Value = septDate
+            cmd.Parameters.Add("@essdeact", MySqlDbType.VarChar).Value = essdeact
+            cmd.Parameters.Add("@comphealth", MySqlDbType.VarChar).Value = comphealth
+            cmd.Parameters.Add("@payroll", MySqlDbType.VarChar).Value = payroll
+            cmd.Parameters.Add("@others", MySqlDbType.VarChar).Value = others
+            cmd.Parameters.Add("@othercomment", MySqlDbType.VarChar).Value = othercomment
+
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
+    End Function
+
+    Public Function insertHRUser(ByRef user As String, ByVal pass As String, ByVal name As String, ByVal email As String, ByVal title As String, ByVal dept As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = user
+            cmd.Parameters.Add("@pass", MySqlDbType.VarChar).Value = pass
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
+            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email
+            cmd.Parameters.Add("@title", MySqlDbType.VarChar).Value = title
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
 
@@ -237,179 +275,202 @@ Public Class ApprovalDB
 
 
     'UPDATE HISTORY
-    Public Function updateinterview(ByVal lblname As String, ByVal interviewstat As String, ByVal dateapp As Date, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function updateinterview(ByVal lblname As String, ByVal interviewstat As String, ByVal dateapp As Date, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
 
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@interviewstat", MySqlDbType.VarChar).Value = interviewstat
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@interviewstat", MySqlDbType.VarChar).Value = interviewstat
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
 
-    Public Function updatechecker(ByVal check As Integer, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function updatechecker(ByVal check As Integer, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
 
-        command.Parameters.Add("@check", MySqlDbType.VarChar).Value = check
+            cmd.Parameters.Add("@check", MySqlDbType.VarChar).Value = check
 
-
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
 
-    Public Function updateHistory(ByVal name As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function updateHistory(ByVal name As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
-        command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
+            cmd.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
 
-    End Function
-
-
-
-    Public Function updateFinance(ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checkcash As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@checkcash", MySqlDbType.VarChar).Value = checkcash
-        command.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
-        command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
 
     End Function
 
 
-    Public Function updateAdmin(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+    Public Function updateFinance(ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checkcash As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@status", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+            cmd.Parameters.Add("@checkcash", MySqlDbType.VarChar).Value = checkcash
+            cmd.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
+            cmd.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
 
-        command.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
-        command.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
-        command.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
-        command.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
-        command.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
-        command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
     End Function
 
-    Public Function updateSysAdmin(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checklaptop As String, ByVal checkemail As String, ByVal checkcomputer As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+    Public Function updateAdmin(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
-        command.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
-        command.Parameters.Add("@checkemail", MySqlDbType.VarChar).Value = checkemail
-        command.Parameters.Add("@checkcom", MySqlDbType.VarChar).Value = checkcomputer
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
+            cmd.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
+            cmd.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
+            cmd.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
+            cmd.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
+            cmd.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
-    Public Function updateAdminDateNull(ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checklaptop As String, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function updateSysAdmin(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checklaptop As String, ByVal checkemail As String, ByVal checkcomputer As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = DBNull.Value
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
 
-        command.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
-        command.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
-        command.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
-        command.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
-        command.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
-        command.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
-        command.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
+            cmd.Parameters.Add("@checkemail", MySqlDbType.VarChar).Value = checkemail
+            cmd.Parameters.Add("@checkcom", MySqlDbType.VarChar).Value = checkcomputer
+
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
-    Public Function updateHRHistory(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkHMO As String, ByVal checkInsurance As String, ByVal checkCompanyID As String, ByVal checkQuitClaim As String, ByVal checkCOE As String, ByVal checkITR As String, ByVal checkFinalPay As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
+    Public Function updateAdminDateNull(ByVal lblname As String, ByVal stats As String, ByVal dateapp As Date, ByVal comment As String, ByVal checklaptop As String, ByVal checkteleco As String, ByVal checktools As String, ByVal checkphone As String, ByVal checktable As String, ByVal checkothers As String, ByVal checkotherscomment As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
 
-        command.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
-        command.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
-        command.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
-        command.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = DBNull.Value
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
 
-        command.Parameters.Add("@checkHMO", MySqlDbType.VarChar).Value = checkHMO
-        command.Parameters.Add("@checkInsurance", MySqlDbType.VarChar).Value = checkInsurance
-        command.Parameters.Add("@checkCompanyID", MySqlDbType.VarChar).Value = checkCompanyID
-        command.Parameters.Add("@checkQuitClaim", MySqlDbType.VarChar).Value = checkQuitClaim
-        command.Parameters.Add("@checkCOE", MySqlDbType.VarChar).Value = checkCOE
-        command.Parameters.Add("@checkITR", MySqlDbType.VarChar).Value = checkITR
-        command.Parameters.Add("@checkFinalPay", MySqlDbType.VarChar).Value = checkFinalPay
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            cmd.Parameters.Add("@checklaptop", MySqlDbType.VarChar).Value = checklaptop
+            cmd.Parameters.Add("@checkteleco", MySqlDbType.VarChar).Value = checkteleco
+            cmd.Parameters.Add("@checktools", MySqlDbType.VarChar).Value = checktools
+            cmd.Parameters.Add("@checkphone", MySqlDbType.VarChar).Value = checkphone
+            cmd.Parameters.Add("@checktable", MySqlDbType.VarChar).Value = checktable
+            cmd.Parameters.Add("@checkothers", MySqlDbType.VarChar).Value = checkothers
+            cmd.Parameters.Add("@checkotherscomment", MySqlDbType.VarChar).Value = checkotherscomment
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
+    End Function
+
+    Public Function updateHRHistory(ByVal lblname As String, ByVal stats As String, ByVal comment As String, ByVal dateapp As Date, ByVal checkHMO As String, ByVal checkInsurance As String, ByVal checkCompanyID As String, ByVal checkQuitClaim As String, ByVal checkCOE As String, ByVal checkITR As String, ByVal checkFinalPay As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+
+            cmd.Parameters.Add("@lblname", MySqlDbType.VarChar).Value = lblname
+            cmd.Parameters.Add("@stats", MySqlDbType.VarChar).Value = stats
+            cmd.Parameters.Add("@dateapp", MySqlDbType.Date).Value = dateapp
+            cmd.Parameters.Add("@comment", MySqlDbType.VarChar).Value = comment
+
+            cmd.Parameters.Add("@checkHMO", MySqlDbType.VarChar).Value = checkHMO
+            cmd.Parameters.Add("@checkInsurance", MySqlDbType.VarChar).Value = checkInsurance
+            cmd.Parameters.Add("@checkCompanyID", MySqlDbType.VarChar).Value = checkCompanyID
+            cmd.Parameters.Add("@checkQuitClaim", MySqlDbType.VarChar).Value = checkQuitClaim
+            cmd.Parameters.Add("@checkCOE", MySqlDbType.VarChar).Value = checkCOE
+            cmd.Parameters.Add("@checkITR", MySqlDbType.VarChar).Value = checkITR
+            cmd.Parameters.Add("@checkFinalPay", MySqlDbType.VarChar).Value = checkFinalPay
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 
 
@@ -420,19 +481,22 @@ Public Class ApprovalDB
 
 
     'DELETE REQUEST
-    Public Function deleteRequest(ByVal id As String, admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@empID", MySqlDbType.VarChar).Value = id
+    Public Function deleteRequest(ByVal id As String, sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@empID", MySqlDbType.VarChar).Value = id
 
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
 
 
     End Function
@@ -441,38 +505,44 @@ Public Class ApprovalDB
 
     'END OF REQUEST
 
-    Public Function deleteHRuser(ByVal id As String, admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@user", MySqlDbType.VarChar).Value = id
+    Public Function deleteHRuser(ByVal id As String, sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = id
 
 
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
 
 
     End Function
 
-    Public Function updateHRUser(ByRef user As String, ByVal pass As String, ByVal name As String, ByVal email As String, ByVal title As String, ByVal dept As String, ByVal admin As String) As Boolean
-        Dim command As New MySqlCommand(admin, dbs.getconn())
-        command.Parameters.Add("@user", MySqlDbType.VarChar).Value = user
-        command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = pass
-        command.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
-        command.Parameters.Add("@email", MySqlDbType.VarChar).Value = email
-        command.Parameters.Add("@title", MySqlDbType.VarChar).Value = title
-        command.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
-        dbs.opencon()
-        If command.ExecuteNonQuery() = 1 Then
-            dbs.closecon()
-            Return True
-        Else
-            dbs.closecon()
-            Return False
-        End If
+    Public Function updateHRUser(ByRef user As String, ByVal pass As String, ByVal name As String, ByVal email As String, ByVal title As String, ByVal dept As String, ByVal sql As String) As Boolean
+        Dim result As Boolean = False
+        Using conn As MySqlConnection = dbs.getConn()
+            Dim cmd As New MySqlCommand(sql, conn)
+            cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = user
+            cmd.Parameters.Add("@pass", MySqlDbType.VarChar).Value = pass
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name
+            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email
+            cmd.Parameters.Add("@title", MySqlDbType.VarChar).Value = title
+            cmd.Parameters.Add("@dept", MySqlDbType.VarChar).Value = dept
+            conn.Open()
+            Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+            If rowsAffected = 1 Then
+                result = True
+            End If
+            conn.Close()
+            dbs.returnConnection(conn)
+        End Using
+        Return result
     End Function
 End Class

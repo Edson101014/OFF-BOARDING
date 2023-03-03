@@ -1,7 +1,7 @@
 ﻿
 Public Class ViewHRHead
     Dim apdb As New ApprovalDB
-
+    Dim dbs As New db
 
     Dim insertNextFlow As String
     Dim updateHistory As String
@@ -267,6 +267,7 @@ Public Class ViewHRHead
     End Sub
 
     Private Sub ViewHRHead_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnHRHeadApp.Visible = True
         btnHRHeadReject.Visible = True
         ButtonCancel.Visible = True

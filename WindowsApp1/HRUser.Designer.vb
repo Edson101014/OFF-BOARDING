@@ -38,13 +38,14 @@ Partial Class HRUser
         Me.ButtonADD = New System.Windows.Forms.Button()
         Me.ComboBoxDepartment = New System.Windows.Forms.ComboBox()
         Me.ComboBoxTitle = New System.Windows.Forms.ComboBox()
+        Me.labelID = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ButtonDelete
         '
         Me.ButtonDelete.BackColor = System.Drawing.Color.Firebrick
         Me.ButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonDelete.Location = New System.Drawing.Point(196, 243)
+        Me.ButtonDelete.Location = New System.Drawing.Point(196, 231)
         Me.ButtonDelete.Name = "ButtonDelete"
         Me.ButtonDelete.Size = New System.Drawing.Size(108, 38)
         Me.ButtonDelete.TabIndex = 0
@@ -55,7 +56,7 @@ Partial Class HRUser
         '
         Me.ButtonEdit.BackColor = System.Drawing.Color.Turquoise
         Me.ButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonEdit.Location = New System.Drawing.Point(196, 243)
+        Me.ButtonEdit.Location = New System.Drawing.Point(196, 231)
         Me.ButtonEdit.Name = "ButtonEdit"
         Me.ButtonEdit.Size = New System.Drawing.Size(108, 38)
         Me.ButtonEdit.TabIndex = 1
@@ -66,7 +67,7 @@ Partial Class HRUser
         '
         Me.ButtonCancel.BackColor = System.Drawing.Color.DarkCyan
         Me.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonCancel.Location = New System.Drawing.Point(320, 243)
+        Me.ButtonCancel.Location = New System.Drawing.Point(320, 231)
         Me.ButtonCancel.Name = "ButtonCancel"
         Me.ButtonCancel.Size = New System.Drawing.Size(95, 38)
         Me.ButtonCancel.TabIndex = 2
@@ -77,7 +78,7 @@ Partial Class HRUser
         '
         Me.TextBoxName.Enabled = False
         Me.TextBoxName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxName.Location = New System.Drawing.Point(123, 24)
+        Me.TextBoxName.Location = New System.Drawing.Point(123, 12)
         Me.TextBoxName.Name = "TextBoxName"
         Me.TextBoxName.Size = New System.Drawing.Size(292, 22)
         Me.TextBoxName.TabIndex = 3
@@ -86,7 +87,7 @@ Partial Class HRUser
         '
         Me.TextBoxUsername.Enabled = False
         Me.TextBoxUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxUsername.Location = New System.Drawing.Point(123, 61)
+        Me.TextBoxUsername.Location = New System.Drawing.Point(123, 49)
         Me.TextBoxUsername.Name = "TextBoxUsername"
         Me.TextBoxUsername.Size = New System.Drawing.Size(292, 22)
         Me.TextBoxUsername.TabIndex = 4
@@ -95,7 +96,7 @@ Partial Class HRUser
         '
         Me.TextBoxPassword.Enabled = False
         Me.TextBoxPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxPassword.Location = New System.Drawing.Point(123, 95)
+        Me.TextBoxPassword.Location = New System.Drawing.Point(123, 83)
         Me.TextBoxPassword.Name = "TextBoxPassword"
         Me.TextBoxPassword.Size = New System.Drawing.Size(292, 22)
         Me.TextBoxPassword.TabIndex = 5
@@ -104,7 +105,7 @@ Partial Class HRUser
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(20, 28)
+        Me.Label1.Location = New System.Drawing.Point(20, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(55, 18)
         Me.Label1.TabIndex = 6
@@ -115,7 +116,7 @@ Partial Class HRUser
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(20, 131)
+        Me.Label2.Location = New System.Drawing.Point(20, 119)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 18)
         Me.Label2.TabIndex = 7
@@ -125,7 +126,7 @@ Partial Class HRUser
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(20, 95)
+        Me.Label3.Location = New System.Drawing.Point(20, 83)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(100, 18)
         Me.Label3.TabIndex = 8
@@ -135,7 +136,7 @@ Partial Class HRUser
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(20, 61)
+        Me.Label4.Location = New System.Drawing.Point(20, 49)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(97, 18)
         Me.Label4.TabIndex = 9
@@ -145,7 +146,7 @@ Partial Class HRUser
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(20, 163)
+        Me.Label5.Location = New System.Drawing.Point(20, 151)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(51, 18)
         Me.Label5.TabIndex = 10
@@ -155,7 +156,7 @@ Partial Class HRUser
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(20, 191)
+        Me.Label6.Location = New System.Drawing.Point(20, 179)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(115, 18)
         Me.Label6.TabIndex = 11
@@ -165,7 +166,7 @@ Partial Class HRUser
         '
         Me.TextBoxEmail.Enabled = False
         Me.TextBoxEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxEmail.Location = New System.Drawing.Point(123, 130)
+        Me.TextBoxEmail.Location = New System.Drawing.Point(123, 118)
         Me.TextBoxEmail.Name = "TextBoxEmail"
         Me.TextBoxEmail.Size = New System.Drawing.Size(292, 22)
         Me.TextBoxEmail.TabIndex = 12
@@ -174,7 +175,7 @@ Partial Class HRUser
         '
         Me.ButtonADD.BackColor = System.Drawing.Color.Lime
         Me.ButtonADD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonADD.Location = New System.Drawing.Point(196, 243)
+        Me.ButtonADD.Location = New System.Drawing.Point(196, 231)
         Me.ButtonADD.Name = "ButtonADD"
         Me.ButtonADD.Size = New System.Drawing.Size(108, 38)
         Me.ButtonADD.TabIndex = 15
@@ -189,7 +190,7 @@ Partial Class HRUser
         Me.ComboBoxDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBoxDepartment.FormattingEnabled = True
         Me.ComboBoxDepartment.Items.AddRange(New Object() {"BDG", "SDG", "ITOPS", "PMG", "Marketing", "Finance", "Admin", "System Admin", "HR", "Interview"})
-        Me.ComboBoxDepartment.Location = New System.Drawing.Point(141, 192)
+        Me.ComboBoxDepartment.Location = New System.Drawing.Point(141, 180)
         Me.ComboBoxDepartment.Name = "ComboBoxDepartment"
         Me.ComboBoxDepartment.Size = New System.Drawing.Size(274, 21)
         Me.ComboBoxDepartment.TabIndex = 123
@@ -202,16 +203,27 @@ Partial Class HRUser
         Me.ComboBoxTitle.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBoxTitle.FormattingEnabled = True
         Me.ComboBoxTitle.Items.AddRange(New Object() {"Dept Head", "Supervisor", "Interview"})
-        Me.ComboBoxTitle.Location = New System.Drawing.Point(123, 163)
+        Me.ComboBoxTitle.Location = New System.Drawing.Point(123, 151)
         Me.ComboBoxTitle.Name = "ComboBoxTitle"
         Me.ComboBoxTitle.Size = New System.Drawing.Size(292, 21)
         Me.ComboBoxTitle.TabIndex = 124
+        '
+        'labelID
+        '
+        Me.labelID.AutoSize = True
+        Me.labelID.Location = New System.Drawing.Point(44, 255)
+        Me.labelID.Name = "labelID"
+        Me.labelID.Size = New System.Drawing.Size(39, 13)
+        Me.labelID.TabIndex = 125
+        Me.labelID.Text = "Label7"
+        Me.labelID.Visible = False
         '
         'HRUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(427, 293)
+        Me.ClientSize = New System.Drawing.Size(427, 281)
+        Me.Controls.Add(Me.labelID)
         Me.Controls.Add(Me.ComboBoxTitle)
         Me.Controls.Add(Me.ComboBoxDepartment)
         Me.Controls.Add(Me.ButtonADD)
@@ -253,4 +265,5 @@ Partial Class HRUser
     Friend WithEvents ButtonADD As Button
     Friend WithEvents ComboBoxDepartment As ComboBox
     Friend WithEvents ComboBoxTitle As ComboBox
+    Friend WithEvents labelID As Label
 End Class

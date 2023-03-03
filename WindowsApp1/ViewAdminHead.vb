@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class ViewAdminHead
     Dim apdb As New ApprovalDB
-    'Dim dbs As New db
+    Dim dbs As New db
 
 
     Dim inserthistory As String
@@ -322,7 +322,9 @@ Public Class ViewAdminHead
     End Sub
 
 
+
     Private Sub ViewAdminHead_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         btnAdminHeadApp.Visible = True
         btnAdminHeadReject.Visible = True
         ButtonCancel.Visible = True

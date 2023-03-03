@@ -1,4 +1,5 @@
 ﻿Public Class ViewHRInterviewHistory
+    Dim dbs As New db
     Private Sub HRInterviewHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -10,6 +11,7 @@
     End Sub
 
     Private Sub HRInterviewHistory_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        dbs.returnConnection(dbs.getConn)
         LabelFinalInterview.Text = ""
         LabelFinalDate.Text = ""
         LabelFinalStatus.Text = "Pending"

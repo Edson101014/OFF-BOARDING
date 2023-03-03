@@ -1,7 +1,7 @@
 ﻿
 Public Class ViewSysAdmin
     Dim apdb As New ApprovalDB
-
+    Dim dbs As New db
     Dim checklaptop As String = "Unchecked"
     Dim checkemail As String = "Unchecked"
     Dim checkcomputer As String = "Unchecked"
@@ -422,7 +422,7 @@ Public Class ViewSysAdmin
     End Sub
 
     Private Sub ViewSysAdmin_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-
+        dbs.returnConnection(dbs.getConn)
         btnSysAdminApp.Visible = True
         btnSysAdminReject.Visible = True
         ButtonCancel.Visible = True
